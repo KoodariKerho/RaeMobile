@@ -10,8 +10,12 @@ import React, {useState} from 'react';
 import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import Modal from 'react-native-modal';
+import {useAppSelector, useAppDispatch} from '../hooks';
+import {changeUser} from '../features/userSlice';
 
 export default ({navigation}: any): JSX.Element => {
+  const dispatch = useAppDispatch();
+
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,8 +29,18 @@ export default ({navigation}: any): JSX.Element => {
   const handleLogin = async () => {
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(data => {
         console.log('success');
+        dispatch(
+          changeUser({
+            uid: data.user.uid,
+            username: data.user.displayName,
+            email: data.user.email,
+            photo: data.user.photoURL,
+            friends: [],
+            posts: [],
+          }),
+        );
         navigation.navigate('Home');
       })
       .catch(error => {
@@ -60,6 +74,17 @@ export default ({navigation}: any): JSX.Element => {
             posts: [],
           }),
         });
+        dispatch(
+          changeUser({
+            uid: data.user.uid,
+            username: data.user.displayName,
+            email: data.user.email,
+            photo:
+              'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
+            friends: [],
+            posts: [],
+          }),
+        );
         navigation.navigate('Home');
       })
       .catch(error => {
@@ -93,6 +118,16 @@ export default ({navigation}: any): JSX.Element => {
     );
     console.log(firebaseUserCredential.user);
     setUser(firebaseUserCredential.user);
+    dispatch(
+      changeUser({
+        uid: firebaseUserCredential.user.uid,
+        username: firebaseUserCredential.user.displayName,
+        email: firebaseUserCredential.user.email,
+        photo: firebaseUserCredential.user.photoURL,
+        friends: [],
+        posts: [],
+      }),
+    );
     const url =
       'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
       firebaseUserCredential.user.uid;
@@ -123,6 +158,7 @@ export default ({navigation}: any): JSX.Element => {
         value={email}
         placeholder="Email"
         keyboardType="email-address"
+        textContentType="emailAddress"
       />
       <TextInput
         style={styles.input}
@@ -149,6 +185,8 @@ export default ({navigation}: any): JSX.Element => {
             onChangeText={e => setEmail(e)}
             value={email}
             placeholder="Email"
+            textContentType="emailAddress"
+            keyboardType="email-address"
           />
           <TextInput
             style={styles.input}
@@ -166,9 +204,6 @@ export default ({navigation}: any): JSX.Element => {
       <Button title="Sign up" onPress={toggleModal} />
       <TouchableOpacity onPress={() => signInWithGoogle()}>
         <Text>This will be goolge button </Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={signInWithEmailAndPassword}>
-        <Text>This will be modal opening button </Text>
       </TouchableOpacity>
     </View>
   );

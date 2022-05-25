@@ -7,22 +7,25 @@ import Friends from './Views/Friends';
 import Events from './Views/Events';
 import GenerateQr from './Views/GenerateQr';
 import Profile from './Views/Profile';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 const App = () => {
-
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Front">
-        <Stack.Screen name="Front" component={Frontpage} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Friends" component={Friends} />
-        <Stack.Screen name="Events" component={Events} />
-        <Stack.Screen name="QR" component={GenerateQr} />
-        <Stack.Screen name="Profile" component={Profile} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Front">
+          <Stack.Screen name="Front" component={Frontpage} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Friends" component={Friends} />
+          <Stack.Screen name="Events" component={Events} />
+          <Stack.Screen name="QR" component={GenerateQr} />
+          <Stack.Screen name="Profile" component={Profile} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

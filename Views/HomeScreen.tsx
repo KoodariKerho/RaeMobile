@@ -5,7 +5,6 @@ import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 
-
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
@@ -64,6 +63,9 @@ export default ({navigation}: any): JSX.Element => {
 
   return (
     <View>
+      <TouchableOpacity onPress={() => navigation.navigate('Events')}>
+        <Text style={{color: 'red'}}>Events</Text>
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('QrReader')}>
         <Text>HEERERRE</Text>
       </TouchableOpacity>
@@ -97,4 +99,3 @@ export default ({navigation}: any): JSX.Element => {
     </View>
   );
 };
-

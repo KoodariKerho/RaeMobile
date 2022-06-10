@@ -11,6 +11,7 @@ import Friend from './Views/Friend';
 import QrReader from './Views/QrReader';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import EventDetails from './Views/EventDetails';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ const App = () => {
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Friend" component={Friend} />
           <Stack.Screen name="QrReader" component={QrReader} />
+          <Stack.Screen name="Eventdetails" component={EventDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

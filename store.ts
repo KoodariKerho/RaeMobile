@@ -1,11 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
 import userReducer from './features/userSlice';
 import friendReducer from './features/friendSlice';
+import eventReducer from './features/eventSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     friend: friendReducer,
+    event: eventReducer,
   },
 });
 

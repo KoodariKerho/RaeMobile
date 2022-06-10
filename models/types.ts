@@ -16,3 +16,35 @@ export interface Friend {
   posts: string[];
   username: string;
 }
+
+export interface Event {
+  event_id: string;
+  attendees: string[];
+  availability: number[];
+  companyMediaFilename: string;
+  companyName: string;
+  dateActualFrom: string;
+  dateActualUntil: string;
+  dateCreated: string;
+  datePublishFrom: string;
+  dateSalesFrom: string;
+  dateSalesUntil: string;
+  favoritedTimes: number;
+  hasFreeInventoryItems: boolean;
+  hasInventoryItems: boolean;
+  isActual: boolean;
+  maxPrice: object;
+  mediaFilename: string;
+  minPrice: object;
+  name: string;
+  place: string;
+  pricingInformation: string;
+  productType: number;
+  salesEnded: boolean;
+  salesOngoing: boolean;
+  salesPaused: boolean;
+  salesStarted: boolean;
+  timeUntilActual: number;
+  timeUntilSalesStart: number;
+  photoUrl: string;
+}

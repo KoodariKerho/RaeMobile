@@ -1,8 +1,12 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useAppSelector} from '../hooks';
+import {useAppDispatch} from '../hooks';
+import {changeFriend} from '../features/friendSlice';
+import { Friend } from '../models/types';
 
 export default ({navigation}: any): JSX.Element => {
+  const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
   const [friendsEvents, setFriendsEvents] = useState([]);
 
@@ -34,7 +38,7 @@ export default ({navigation}: any): JSX.Element => {
     };
   }, [user.uid]);
 
-  const addToOwnPosts = async eventId => {
+  const addToOwnPosts = async (eventId: string) => {
     const url =
       'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/add-post-to-user/' +
       user.uid +
@@ -52,6 +56,11 @@ export default ({navigation}: any): JSX.Element => {
     //TODO: Show toast error or success
   };
 
+  const goToFriendProfile = (friend: Friend) => {
+    dispatch(changeFriend(friend));
+    navigation.navigate('Friend');
+  };
+
   return (
     <View>
       <View>
@@ -63,7 +72,9 @@ export default ({navigation}: any): JSX.Element => {
               <Text>{post.event.id}</Text>
               <Text>User id</Text>
               <Text>{post.user.attribute_values.id}</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}> {/* Add also friend data to profile */}
+              <TouchableOpacity
+                onPress={() => goToFriendProfile(post.user.attribute_values)}>
+                {/* Add also friend data to profile */}
                 <Image
                   style={{width: 50, height: 50}}
                   source={{uri: post.user.attribute_values.photo}}

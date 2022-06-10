@@ -7,3 +7,12 @@ export interface Products {
   reservedQuantity: number;
   productPrice: number;
 }
+
+export interface Friend {
+  email: string;
+  friends: string[];
+  id: string;
+  photo: string;
+  posts: string[];
+  username: string;
+}

@@ -1,9 +1,10 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useAppSelector} from '../hooks';
 import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
-import { Friend } from '../models/types';
+import {Friend} from '../models/types';
+
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -63,6 +64,9 @@ export default ({navigation}: any): JSX.Element => {
 
   return (
     <View>
+      <TouchableOpacity onPress={() => navigation.navigate('QrReader')}>
+        <Text>HEERERRE</Text>
+      </TouchableOpacity>
       <View>
         {friendsEvents?.map((post: any) => {
           console.log(post);
@@ -71,7 +75,9 @@ export default ({navigation}: any): JSX.Element => {
               <Text>Event id</Text>
               <Text>{post.event.id}</Text>
               <Text>User id</Text>
-              <Text>{post.user.attribute_values.id}</Text>
+              <Text style={{color: 'red'}}>
+                {post.user.attribute_values.id}
+              </Text>
               <TouchableOpacity
                 onPress={() => goToFriendProfile(post.user.attribute_values)}>
                 {/* Add also friend data to profile */}
@@ -91,3 +97,4 @@ export default ({navigation}: any): JSX.Element => {
     </View>
   );
 };
+

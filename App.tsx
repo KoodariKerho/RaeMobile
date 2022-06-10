@@ -8,6 +8,7 @@ import Events from './Views/Events';
 import GenerateQr from './Views/GenerateQr';
 import Profile from './Views/Profile';
 import Friend from './Views/Friend';
+import QrReader from './Views/QrReader';
 import {Provider} from 'react-redux';
 import {store} from './store';
 
@@ -25,6 +26,7 @@ const App = () => {
           <Stack.Screen name="QR" component={GenerateQr} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Friend" component={Friend} />
+          <Stack.Screen name="QrReader" component={QrReader} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -172,6 +172,8 @@ export default ({navigation}: any): JSX.Element => {
         isVisible={modalVisible}
         backdropOpacity={0.8}
         onBackdropPress={() => setModalVisible(false)}
+        hasBackdrop={true}
+        backdropColor={'green'}
         onBackButtonPress={toggleModal}>
         <View style={{flex: 1}}>
           <TextInput

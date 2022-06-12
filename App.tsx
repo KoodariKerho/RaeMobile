@@ -12,15 +12,37 @@ import QrReader from './Views/QrReader';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import EventDetails from './Views/EventDetails';
-
+import {useColorScheme} from 'react-native';
+const DarkTheme = {
+  dark: true,
+  colors: {
+    primary: '#8a0099',
+    background: '#121212',
+    card: '#1F1F1F',
+    text: '#FFFFFF',
+    border: 'rgb(199, 199, 204)',
+    notification: 'rgb(255, 69, 58)',
+  },
+};
+const DefaultTheme = {
+  dark: true,
+  colors: {
+    primary: '#8a0099',
+    background: '#121212',
+    card: '#1F1F1F',
+    text: '#FFFFFF',
+    border: 'rgb(199, 199, 204)',
+    notification: 'rgb(255, 69, 58)',
+  },
+};
 const App = () => {
   const Stack = createNativeStackNavigator();
-
+  const scheme = useColorScheme();
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack.Navigator initialRouteName="Front">
-          <Stack.Screen name="Front" component={Frontpage} />
+          <Stack.Screen name="Hello" component={Frontpage} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Friends" component={Friends} />
           <Stack.Screen name="Events" component={Events} />

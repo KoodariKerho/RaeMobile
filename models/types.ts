@@ -9,12 +9,14 @@ export interface Products {
 }
 
 export interface Friend {
-  email: string;
-  friends: string[];
-  id: string;
-  photo: string;
-  posts: string[];
-  username: string;
+  attribute_values: {
+    email: string;
+    friends: string[];
+    id: string;
+    photo: string;
+    posts: string[];
+    username?: string;
+  };
 }
 
 export interface Event {

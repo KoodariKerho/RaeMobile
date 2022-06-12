@@ -4,11 +4,14 @@ import {useAppSelector} from '../hooks';
 import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
+import {useTheme} from '@react-navigation/native';
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
   const [friendsEvents, setFriendsEvents] = useState([]);
+
+  const {colors} = useTheme();
 
   //TODO: Make user login if not logged in
   console.log(user);
@@ -68,6 +71,12 @@ export default ({navigation}: any): JSX.Element => {
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('QrReader')}>
         <Text>HEERERRE</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('QR')}>
+        <Text>GENERATE QR</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Friends')}>
+        <Text> FRIENDS</Text>
       </TouchableOpacity>
       <View>
         {friendsEvents?.map((post: any) => {

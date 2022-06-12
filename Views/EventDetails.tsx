@@ -37,6 +37,7 @@ export default ({navigation}: any): JSX.Element => {
   return (
     <View>
       <Text>{event?.name}</Text>
+      <Text>{event.id}</Text>
       <TouchableOpacity onPress={() => attendToEvent()}>
         <Text style={{color: 'red'}}>Attend to event</Text>
       </TouchableOpacity>

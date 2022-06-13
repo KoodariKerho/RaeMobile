@@ -14,6 +14,16 @@ import {Provider} from 'react-redux';
 import {store} from './store';
 import EventDetails from './Views/EventDetails';
 import {useColorScheme} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faExclamationCircle,
+  faHome,
+  faCalendar,
+  faUserFriends,
+  faPerson,
+  faQrcode,
+  faCamera,
+} from '@fortawesome/free-solid-svg-icons';
 const DarkTheme = {
   dark: true,
   colors: {
@@ -44,32 +54,86 @@ const App = () => {
     return (
       <Tab.Navigator>
         <Tab.Screen
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <FontAwesomeIcon
+                color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
+                icon={faHome}
+                style={{width: 20, height: 20}}
+              />
+            ),
+          }}
           name="Home"
           component={HomeScreen}
         />
         <Tab.Screen
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <FontAwesomeIcon
+                color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
+                icon={faCalendar}
+                style={{width: 20, height: 20}}
+              />
+            ),
+          }}
           name="Events"
           component={Events}
         />
         <Tab.Screen
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <FontAwesomeIcon
+                color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
+                icon={faUserFriends}
+                style={{width: 20, height: 20}}
+              />
+            ),
+          }}
           name="Friends"
           component={Friends}
         />
         <Tab.Screen
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <FontAwesomeIcon
+                color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
+                icon={faPerson}
+                style={{width: 20, height: 20}}
+              />
+            ),
+          }}
           name="Profile"
           component={Profile}
         />
         <Tab.Screen
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <FontAwesomeIcon
+                color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
+                icon={faQrcode}
+                style={{width: 20, height: 20}}
+              />
+            ),
+          }}
           name="QR"
           component={GenerateQr}
         />
         <Tab.Screen
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <FontAwesomeIcon
+                icon={faCamera}
+                color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
+                style={{width: 20, height: 20}}
+              />
+            ),
+          }}
           name="QrReader"
           component={QrReader}
         />

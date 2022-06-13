@@ -43,12 +43,36 @@ const App = () => {
   function AppTabs() {
     return (
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Events" component={Events} />
-        <Tab.Screen name="Friends" component={Friends} />
-        <Tab.Screen name="Profile" component={Profile} />
-        <Tab.Screen name="QR" component={GenerateQr} />
-        <Tab.Screen name="QrReader" component={QrReader} />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="Home"
+          component={HomeScreen}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="Events"
+          component={Events}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="Friends"
+          component={Friends}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="Profile"
+          component={Profile}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="QR"
+          component={GenerateQr}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="QrReader"
+          component={QrReader}
+        />
       </Tab.Navigator>
     );
   }
@@ -59,7 +83,11 @@ const App = () => {
           <Stack.Screen name="Hello" component={Frontpage} />
           <Stack.Screen name="Friend" component={Friend} />
           <Stack.Screen name="Eventdetails" component={EventDetails} />
-          <Stack.Screen name="AppTabs" component={AppTabs} />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="AppTabs"
+            component={AppTabs}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

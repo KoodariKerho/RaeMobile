@@ -6,14 +6,16 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Event} from '../models/types';
-import {useAppDispatch} from '../hooks';
+import {useAppDispatch, useAppSelector} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
 import {useTheme} from '@react-navigation/native';
 import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(
+    useAppSelector(state => state.events.value),
+  );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -21,23 +23,25 @@ export default ({navigation}: any): JSX.Element => {
     let unmounted = false;
     const getAllEvents = async () => {
       setLoading(true);
-      try {
-        const url =
-          'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/';
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        setEvents(data);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
+      if (events === null || events === undefined) {
+        console.log('Getting all events from server');
+        try {
+          const url =
+            'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/';
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          console.log(data);
+          setEvents(data);
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        }
       }
-      setEvents;
       setLoading(false);
     };
     if (!unmounted) {

@@ -50,3 +50,11 @@ export interface Event {
   timeUntilSalesStart: number;
   photoUrl: string;
 }
+
+export interface Events {
+  events: Event[];
+}
+
+export interface Friends {
+  friends: Friend[];
+}

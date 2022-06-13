@@ -8,31 +8,37 @@ import {changeFriend} from '../features/friendSlice';
 import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState(
+    useAppSelector(state => state.friends.value),
+  );
   const [loading, setLoading] = useState(false);
   const user = useAppSelector(state => state.user.value);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     let unmounted = false;
+
     const getAllFriends = async () => {
       setLoading(true);
-      try {
-        const url =
-          'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/friends/' +
-          user.uid;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        setFriends(data);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
+      if (friends === null || friends === undefined) {
+        console.log('Getting all friends from server');
+        try {
+          const url =
+            'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/friends/' +
+            user.uid;
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          console.log(data);
+          setFriends(data);
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        }
       }
       setLoading(false);
     };

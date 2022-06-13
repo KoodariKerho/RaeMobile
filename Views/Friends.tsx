@@ -1,10 +1,11 @@
-import {View, Text, Image, ActivityIndicator, FlatList} from 'react-native';
+import {View, Image, ActivityIndicator, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {Friend} from '../models/types';
 import {changeFriend} from '../features/friendSlice';
+import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
   const [friends, setFriends] = useState([]);

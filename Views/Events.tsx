@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   ActivityIndicator,
   FlatList,
   TouchableOpacity,
@@ -9,8 +8,11 @@ import React, {useEffect, useState} from 'react';
 import {Event} from '../models/types';
 import {useAppDispatch} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
+import {useTheme} from '@react-navigation/native';
+import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
+  const {colors} = useTheme();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();

@@ -1,10 +1,11 @@
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useAppSelector} from '../hooks';
 import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {useTheme} from '@react-navigation/native';
+import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();

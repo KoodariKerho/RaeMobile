@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
+import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();

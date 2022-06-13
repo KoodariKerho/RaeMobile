@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
   Image,
@@ -10,8 +9,11 @@ import {
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {useAppSelector} from '../hooks';
 import Modal from 'react-native-modal';
+import {useTheme} from '@react-navigation/native';
+import Text from '../Components/CustomText';
 
 export default ({navigation}: any): JSX.Element => {
+  const {colors} = useTheme();
   const user = useAppSelector(state => state.user.value);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [friendData, setFriend] = useState({

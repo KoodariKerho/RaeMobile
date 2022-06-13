@@ -1,4 +1,5 @@
 import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './Views/HomeScreen';
@@ -36,21 +37,29 @@ const DefaultTheme = {
   },
 };
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
   const scheme = useColorScheme();
+  const Stack = createNativeStackNavigator();
+  function AppTabs() {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Events" component={Events} />
+        <Tab.Screen name="Friends" component={Friends} />
+        <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name="QR" component={GenerateQr} />
+        <Tab.Screen name="QrReader" component={QrReader} />
+      </Tab.Navigator>
+    );
+  }
   return (
     <Provider store={store}>
       <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack.Navigator initialRouteName="Front">
           <Stack.Screen name="Hello" component={Frontpage} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Friends" component={Friends} />
-          <Stack.Screen name="Events" component={Events} />
-          <Stack.Screen name="QR" component={GenerateQr} />
-          <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Friend" component={Friend} />
-          <Stack.Screen name="QrReader" component={QrReader} />
           <Stack.Screen name="Eventdetails" component={EventDetails} />
+          <Stack.Screen name="AppTabs" component={AppTabs} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

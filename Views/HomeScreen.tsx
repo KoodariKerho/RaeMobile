@@ -7,6 +7,7 @@ import {
   FlatList,
   Dimensions,
   Button,
+  Text,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useAppSelector} from '../hooks';
@@ -14,8 +15,8 @@ import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {useTheme} from '@react-navigation/native';
-import Text from '../Components/CustomText';
 import {changeEvent} from '../features/eventSlice';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -74,7 +75,7 @@ export default ({navigation}: any): JSX.Element => {
           borderRadius: 10,
           width: width - 20,
           margin: 10,
-          height: height * 0.2,
+          height: height * 0.5,
           shadowColor: '#FFFFFF',
           shadowOffset: {
             width: 1,
@@ -82,40 +83,53 @@ export default ({navigation}: any): JSX.Element => {
           },
           shadowOpacity: 0.45,
           shadowRadius: 3.84,
-
           elevation: 5,
         }}>
-        {/* author data */}
-        <View
-          style={{
-            position: 'relative',
-            left: 3,
-            top: 8,
-          }}>
-          <TouchableOpacity
-            onPress={() => goToFriendProfile(post.user.attribute_values)}>
-            <Image
+        <View style={{}}>
+          <View style={{}}>
+            <TouchableOpacity
+              onPress={() => goToFriendProfile(post.user.attribute_values)}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}>
+                <Image
+                  style={{
+                    width: 50,
+                    height: 50,
+                    marginRight: 10,
+                  }}
+                  source={{uri: post.user.attribute_values.photo}}
+                />
+                <View style={{justifyContent: 'center'}}>
+                  <Text style={styles.userText}>
+                    {post.user.attribute_values.username}
+                  </Text>
+                  <Text style={styles.timestampText}>18.05.22</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'column'}}>
+            <Text style={styles.headerText}>{post.event.name}</Text>
+            <View
               style={{
-                width: 50,
-                height: 50,
-                borderRadius: 50,
-                borderWidth: 1,
-                borderColor: '#ccc',
-              }}
-              source={{uri: post.user.attribute_values.photo}}
-            />
-            <Text>{post.user.attribute_values.username}</Text>
-          </TouchableOpacity>
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginBottom: 10,
+              }}>
+              <Text style={styles.descText}>{post.event.companyName}</Text>
+              <Text style={styles.descText}>@{post.event.place}</Text>
+            </View>
+          </View>
         </View>
-        {/* Event data */}
-        <View>
-          <Text>{post.event.name}</Text>
-          <Text>{post.event.companyName}</Text>
-          <Text>{post.event.place}</Text>
+        <View style={{alignItems: 'center'}}>
           <Image
             style={{
-              width: 120,
-              height: 120,
+              width: width - 40,
+              height: height * 0.3 - 20,
               borderRadius: 10,
             }}
             source={{
@@ -123,10 +137,28 @@ export default ({navigation}: any): JSX.Element => {
             }}
           />
         </View>
-        <Button
-          onPress={() => goToEventDetails(post.event)}
-          title="Lisätietoja"
-        />
+        <View
+          style={{
+            backgroundColor: colors.primary,
+            position: 'absolute',
+            bottom: 10,
+            right: 10,
+            borderRadius: 10,
+            padding: 7,
+            shadowColor: colors.primary,
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.23,
+            shadowRadius: 2.62,
+            marginTop: 10,
+            elevation: 4,
+          }}>
+          <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
+            <Text style={styles.buttonText}>Lisätietoja</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
@@ -152,6 +184,41 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+  },
+  textStyle: {
+    color: '#FFF',
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFF',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 10,
+    marginRight: 10,
+  },
+  descText: {
+    fontSize: 10,
+    color: '#FFF',
+    marginVertical: 4,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 15,
+    color: '#FFF',
+  },
+  userText: {
+    fontSize: 15,
+    color: '#FFF',
+    fontWeight: 'bold',
+    maxWidth: 90,
+  },
+  timestampText: {
+    fontSize: 10,
+    color: '#474747',
+    fontWeight: 'bold',
   },
 });
 

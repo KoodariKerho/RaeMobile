@@ -81,7 +81,7 @@ export default ({navigation}: any): JSX.Element => {
         dispatch(
           changeUser({
             uid: data.user.uid,
-            username: data.user.displayName,
+            username: username,
             email: data.user.email,
             photo:
               'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',

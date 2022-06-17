@@ -3,8 +3,7 @@
 .DS_Store
 
 # Xcode
-#
-build/
+
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -27,6 +26,11 @@ DerivedData
 local.properties
 *.iml
 *.hprof
+android/app/generated/
+android/app/intermediates/
+android/app/tmp/
+apk/
+
 
 # node.js
 #

@@ -1,4 +1,12 @@
-import {View, Image, ActivityIndicator, FlatList} from 'react-native';
+import {
+  View,
+  Image,
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Clipboard,
+  Dimensions,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
@@ -6,6 +14,9 @@ import {useAppDispatch, useAppSelector} from '../hooks';
 import {Friend} from '../models/types';
 import {changeFriend} from '../features/friendSlice';
 import Text from '../Components/CustomText';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCamera, faQrcode, faShare} from '@fortawesome/free-solid-svg-icons';
+import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
   const [friends, setFriends] = useState(
@@ -34,7 +45,7 @@ export default ({navigation}: any): JSX.Element => {
           });
           const data = await response.json();
           console.log(data);
-          setFriends(data);
+          setFriends(data.reverse());
         } catch (error) {
           setLoading(false);
           console.log(error);
@@ -55,15 +66,38 @@ export default ({navigation}: any): JSX.Element => {
     navigation.navigate('Friend');
   };
 
+  const copyFriendLink = () => {
+    console.log('Copying friend link');
+    const urlToCopy = `https://opiskelija-appi.web.app/qr?uid=${user.uid}`;
+    console.log(urlToCopy);
+    Clipboard.setString(urlToCopy);
+    showToast('Linkki kopioitu leikepöydälle', 'success');
+  };
+  const width = Dimensions.get('window').width;
+  const height = Dimensions.get('window').height;
+
   const FriendListItem = ({item}: {item: Friend}) => (
     <TouchableOpacity onPress={() => goToFriendDetails(item.attribute_values)}>
-      <View>
-        <Text>{item.attribute_values.email}</Text>
-        <Text>{item.attribute_values?.username}</Text>
-        <Image
-          style={{width: 50, height: 50}}
-          source={{uri: item.attribute_values.photo}}
-        />
+      <View style={{alignItems: 'center', marginVertical: 5}}>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            backgroundColor: colors.card,
+            width: width - 30,
+            padding: 20,
+            alignItems: 'center',
+          }}>
+          <Image
+            style={{width: 50, height: 50, borderRadius: 25}}
+            source={{uri: item.attribute_values.photo}}
+          />
+          <View>
+            <Text>{item.attribute_values.email}</Text>
+            <Text>{item.attribute_values?.username}</Text>
+          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -71,16 +105,57 @@ export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   return (
     <View>
-      <Text>Friends</Text>
       <View>
         {loading ? (
           <ActivityIndicator size="large" color="#00ff00" />
         ) : (
           <View>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                borderBottomColor: '#ccc',
+                borderBottomWidth: 1,
+                padding: 20,
+              }}>
+              <TouchableOpacity onPress={() => navigation.navigate('QR')}>
+                <View style={{width: 100, alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={faQrcode} size={30} color="#FFF" />
+                  <Text>Avaa sinun QR</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('QrReader')}>
+                <View style={{width: 100, alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={faCamera} size={30} color="#FFF" />
+                  <Text>Skannaa QR</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => copyFriendLink()}>
+                <View style={{width: 100, alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
+                  <Text>Jaa kaverilinkki</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
             <FlatList
               data={friends}
               keyExtractor={item => item.attribute_values.id}
               renderItem={FriendListItem}
+              ListEmptyComponent={() => (
+                <View
+                  style={{
+                    flex: 1,
+                    marginTop: 20,
+                  }}>
+                  <Text style={styles.emptyText}>
+                    Sinulla ei ole vielä yhtään kavereita 🥺
+                  </Text>
+                  <Text style={styles.emptyText}>
+                    Lisää kaverisi klikkaamalla yläpuolelta olevaa painiketta
+                  </Text>
+                </View>
+              )}
             />
           </View>
         )}
@@ -88,3 +163,23 @@ export default ({navigation}: any): JSX.Element => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  emptyText: {
+    fontSize: 20,
+    color: '#fff',
+    textAlign: 'center',
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFF',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 20,
+    marginRight: 10,
+  },
+});

@@ -14,6 +14,7 @@ import {useAppDispatch} from '../hooks';
 import {changeUser} from '../features/userSlice';
 import {useTheme} from '@react-navigation/native';
 import Text from '../Components/CustomText';
+import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
@@ -45,10 +46,12 @@ export default ({navigation}: any): JSX.Element => {
             posts: [],
           }),
         );
+        showToast('Login successful', 'success');
         navigation.navigate('AppTabs');
       })
       .catch(error => {
         console.log(error);
+        showToast(error.message, 'danger');
       });
   };
 
@@ -89,15 +92,18 @@ export default ({navigation}: any): JSX.Element => {
             posts: [],
           }),
         );
+        showToast('Registration successful', 'success');
         navigation.navigate('AppTabs');
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
           console.log('That email address is already in use!');
+          showToast('That email address is already in use!', 'danger');
         }
 
         if (error.code === 'auth/invalid-email') {
           console.log('That email address is invalid!');
+          showToast('That email address is invalid!', 'danger');
         }
         console.error(error);
       });
@@ -153,9 +159,11 @@ export default ({navigation}: any): JSX.Element => {
       });
       console.log(response);
       setLoading(false);
+      showToast('Login successful', 'success');
       navigation.navigate('AppTabs');
     } catch (error) {
       console.log(error);
+      showToast(error.message, 'danger');
       setLoading(false);
     }
   };

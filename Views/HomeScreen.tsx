@@ -37,7 +37,7 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
-      setFriendsEvents(data);
+      setFriendsEvents(data.reverse());
     };
     if (!unmounted) {
       getFriendEvents();
@@ -99,6 +99,8 @@ export default ({navigation}: any): JSX.Element => {
                     width: 50,
                     height: 50,
                     marginRight: 10,
+                    borderRadius: 25,
+                    margin: 5,
                   }}
                   source={{uri: post.user.attribute_values.photo}}
                 />
@@ -121,7 +123,7 @@ export default ({navigation}: any): JSX.Element => {
                 marginBottom: 10,
               }}>
               <Text style={styles.descText}>{post.event.companyName}</Text>
-              <Text style={styles.descText}>@{post.event.place}</Text>
+              <Text style={styles.descText}> @ {post.event.place}</Text>
             </View>
           </View>
         </View>
@@ -129,8 +131,8 @@ export default ({navigation}: any): JSX.Element => {
           <Image
             style={{
               width: width - 40,
-              height: height * 0.3 - 20,
               borderRadius: 10,
+              aspectRatio: 16 / 9,
             }}
             source={{
               uri: url,
@@ -173,6 +175,30 @@ export default ({navigation}: any): JSX.Element => {
             data={friendsEvents}
             renderItem={renderItem}
             keyExtractor={item => item.id}
+            ListEmptyComponent={() => (
+              <View
+                style={{
+                  flex: 1,
+                }}>
+                <Text style={styles.emptyText}>
+                  Kavereilla ei ole vielä yhtään tapahtumaa. 🥺
+                </Text>
+                <Text style={styles.emptyText}>
+                  Lisää kavereita "Kaverit" välilehdellä
+                </Text>
+              </View>
+            )}
+            ListHeaderComponent={() => (
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  marginBottom: 10,
+                }}>
+                <Text style={styles.headerText}>Kavereiden tapahtumat</Text>
+              </View>
+            )}
           />
         </SafeAreaView>
       </View>
@@ -184,6 +210,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 20,
+    color: '#fff',
+    textAlign: 'center',
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textStyle: {
     color: '#FFF',

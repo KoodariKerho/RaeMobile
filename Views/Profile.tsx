@@ -9,79 +9,75 @@ import React, {useState} from 'react';
 import {useTheme} from '@react-navigation/native';
 import Text from '../Components/CustomText';
 import {useAppSelector} from '../hooks';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import showToast from '../utils/toaster';
 
 export default (): JSX.Element => {
   const user = useAppSelector(state => state.user.value);
   const [username, setUsername] = useState(user.username);
-  const [photo, setPhoto] = useState({});
-  console.log(user);
-
-  const handleUploadPhoto = () => {
-    fetch(
-      'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/uploadfile',
-      {
-        method: 'POST',
-        body: createFormData({userId: '123'}),
-      },
-    )
-      .then(response => response.json())
-      .then(response => {
-        console.log('response', response);
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
-  };
-
-  const createFormData = (body = {}) => {
-    const data = new FormData();
-
-    data.append('photo', {
-      name: photo.fileName,
-      type: photo.type,
-      uri: photo.uri,
-    });
-
-    Object.keys(body).forEach(key => {
-      data.append(key, body[key]);
-    });
-
-    return data;
-  };
-
-  const options = {
-    mediaType: 'photo',
-    quality: 1,
-    cameraType: 'back',
-    includeBase64: true,
-  };
-  const takePhoto = async () => {
-    const result = await launchCamera(options);
-    setPhoto(result);
-    handleUploadPhoto();
-    console.log(result);
-  };
-  const pickImage = async () => {
-    const result1 = await launchImageLibrary(options);
-    console.log(result1);
-  };
 
   const {colors} = useTheme();
+
+  const updateUserData = async () => {
+    try {
+      const url =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/update-user/' +
+        user.uid;
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: user.uid,
+          username: username,
+          email: user.email,
+          photo: user.photo,
+        }),
+      });
+      const data = await response.json();
+      console.log('DATA');
+      console.log(data);
+      if (data.status_code !== 200) {
+        showToast('Cannot update username', 'error');
+      } else {
+        showToast('Username updated!', 'success');
+      }
+    } catch (error) {
+      console.log(error);
+      showToast('Something went wrong', 'error');
+    }
+  };
   return (
     <View>
-      <Text>Profile</Text>
-      <Image
-        source={{uri: user.photo}}
-        style={{width: 120, height: 120, borderRadius: 180}}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={e => setUsername(e)}
-        value={username}
-        placeholder="Username"
-        selectTextOnFocus={true}
-      />
+      <View style={styles.container}>
+        <Image
+          source={{uri: user.photo}}
+          style={{width: 120, height: 120, borderRadius: 180, marginBottom: 50}}
+        />
+        <Text>Vaihda käyttäjänimi</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={e => setUsername(e)}
+          value={username}
+          placeholder="Username"
+          selectTextOnFocus={true}
+          autoComplete={'username'}
+          maxLength={20}
+          onKeyPress={() => updateUserData()}
+        />
+      </View>
+      <TouchableOpacity
+        style={{
+          alignSelf: 'flex-end',
+          marginRight: 40,
+          marginTop: 5,
+          backgroundColor: colors.primary,
+          padding: 10,
+          borderRadius: 10,
+        }}
+        onPress={() => updateUserData()}>
+        <Text>Vaihda</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -89,6 +85,9 @@ export default (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
   input: {
     height: 40,

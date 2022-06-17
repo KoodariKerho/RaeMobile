@@ -7,7 +7,6 @@ import {
   useColorScheme,
   Text,
   Linking,
-  StyleSheet,
 } from 'react-native';
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
@@ -19,6 +18,7 @@ import {
   faStar,
   faTicket,
 } from '@fortawesome/free-solid-svg-icons';
+import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
@@ -62,6 +62,7 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
+      console.log('INTESTED AND GOING');
       console.log(data);
       setIntrested(data.total_intrested);
       setGoing(data.total_attendees);
@@ -93,13 +94,25 @@ export default ({navigation}: any): JSX.Element => {
         }),
       });
       const data = await response.json();
+      console.log('DATA');
       console.log(data);
+      if (data.status_code !== 200) {
+        showToast('You are already attending this event', 'error');
+      } else {
+        showToast('You are now attending this event', 'success');
+      }
     } catch (error) {
       console.log(error);
+      showToast('Something went wrong', 'error');
     }
   };
 
   const intrestedInEvent = async () => {
+    const body = JSON.stringify({
+      userId: user.uid,
+      username: user.username,
+      photo: user.photo,
+    });
     try {
       const intrestedUrl =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/event_interested/' +
@@ -109,16 +122,20 @@ export default ({navigation}: any): JSX.Element => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          userId: user.uid,
-          username: user.username,
-          photo: user.photo,
-        }),
+        body: body,
       });
+      console.log(body);
+      console.log(response);
       const data = await response.json();
-      console.log(data);
+      console.log(response);
+      if (data.status_code !== 200) {
+        showToast('You are already interested in this event', 'error');
+      } else {
+        showToast('You are now intrested in this event', 'success');
+      }
     } catch (error) {
       console.log(error);
+      showToast('Something went wrong', 'error');
     }
   };
 
@@ -165,21 +182,13 @@ export default ({navigation}: any): JSX.Element => {
               flexDirection: 'column',
               alignItems: 'center',
             }}>
-            <FontAwesomeIcon
-              icon={faStar}
-              color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
-              size={32}
-            />
+            <FontAwesomeIcon icon={faStar} color={'white'} size={32} />
             <Text style={{color: colors.text}}>Intrested</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => attendToEvent()}>
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
-            <FontAwesomeIcon
-              icon={faCheck}
-              color={scheme === 'dark' ? '#000000' : '#FFFFFF'}
-              size={32}
-            />
+            <FontAwesomeIcon icon={faCheck} color={'white'} size={32} />
             <Text style={{color: colors.text}}>Going</Text>
           </View>
         </TouchableOpacity>
@@ -256,6 +265,8 @@ export default ({navigation}: any): JSX.Element => {
           borderTopColor: '#ccc',
           borderTopWidth: 1,
           padding: 10,
+          borderBottomColor: '#ccc',
+          borderBottomWidth: 1,
         }}>
         <View style={{width: 90}}>
           <Text style={{color: colors.text, fontSize: 15}}>
@@ -293,10 +304,21 @@ export default ({navigation}: any): JSX.Element => {
           </Text>
         </View>
       </View>
-      <View>
-        <Text style={{color: colors.text, fontSize: 15, marginTop: 10}}>
-          Ihmisiä menossa:{going} Ihmisiä kiinnotunut:{interested}
-        </Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          marginTop: 10,
+        }}>
+        <View style={{alignItems: 'center'}}>
+          <Text style={{color: colors.text, fontSize: 18}}>Menossa</Text>
+          <Text style={{color: colors.text, fontSize: 18}}>{going}</Text>
+        </View>
+        <View style={{alignItems: 'center'}}>
+          <Text style={{color: colors.text, fontSize: 18}}>Kiinnostunut</Text>
+          <Text style={{color: colors.text, fontSize: 18}}>{interested}</Text>
+        </View>
       </View>
     </View>
   );

@@ -7,7 +7,13 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "np": "np --no-publish",
+    "postversion": "react-native-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KoodariKerho/RaeMobile.git"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",

@@ -76,8 +76,7 @@
       "js",
       "jsx",
       "json",
-      "node",
-      "png"
+      "node"
     ]
   }
 }

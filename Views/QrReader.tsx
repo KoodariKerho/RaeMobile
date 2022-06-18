@@ -39,7 +39,6 @@ export default ({navigation}: any): JSX.Element => {
     });
     const data = await response.json();
     setFriend(data.attribute_values);
-    console.log(data);
     return data;
   };
 
@@ -56,7 +55,6 @@ export default ({navigation}: any): JSX.Element => {
       },
     });
     const data = await response.json();
-    console.log(data);
     //This status code is harcoded in the backend :D for luls
     if (data.status_code === 418) {
       return true;
@@ -68,10 +66,8 @@ export default ({navigation}: any): JSX.Element => {
   const onSuccess = async (e: {data: any}) => {
     try {
       const friendId = e.data;
-      console.log(friendId);
       const isAlreadyFriend = await addFriend(friendId);
       if (isAlreadyFriend) {
-        console.log('Already a friend');
         setIsAlreadyFriend(true);
         setErrorVisible(true);
         return;
@@ -83,7 +79,6 @@ export default ({navigation}: any): JSX.Element => {
       toggleModal();
     } catch {
       //Show toast when error
-      console.log('EOEOE');
     }
   };
   return (

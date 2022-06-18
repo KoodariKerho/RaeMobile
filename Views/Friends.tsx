@@ -32,7 +32,6 @@ export default ({navigation}: any): JSX.Element => {
     const getAllFriends = async () => {
       setLoading(true);
       if (friends === null || friends === undefined) {
-        console.log('Getting all friends from server');
         try {
           const url =
             'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/friends/' +
@@ -44,11 +43,9 @@ export default ({navigation}: any): JSX.Element => {
             },
           });
           const data = await response.json();
-          console.log(data);
           setFriends(data.reverse());
         } catch (error) {
           setLoading(false);
-          console.log(error);
         }
       }
       setLoading(false);
@@ -67,14 +64,11 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   const copyFriendLink = () => {
-    console.log('Copying friend link');
     const urlToCopy = `https://opiskelija-appi.web.app/qr?uid=${user.uid}`;
-    console.log(urlToCopy);
     Clipboard.setString(urlToCopy);
     showToast('Linkki kopioitu leikepöydälle', 'success');
   };
   const width = Dimensions.get('window').width;
-  const height = Dimensions.get('window').height;
 
   const FriendListItem = ({item}: {item: Friend}) => (
     <TouchableOpacity onPress={() => goToFriendDetails(item.attribute_values)}>

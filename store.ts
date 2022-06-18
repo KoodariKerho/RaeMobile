@@ -4,6 +4,7 @@ import friendReducer from './features/friendSlice';
 import eventReducer from './features/eventSlice';
 import eventsReducer from './features/eventsSlice';
 import friendsReducer from './features/friendsSlice';
+import languageReducer from './features/languageSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     event: eventReducer,
     events: eventsReducer,
     friends: friendsReducer,
+    language: languageReducer,
   },
 });
 

@@ -8,7 +8,6 @@ export default (): JSX.Element => {
   const {colors} = useTheme();
 
   const user = useAppSelector(state => state.user.value);
-  console.log(user);
 
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;

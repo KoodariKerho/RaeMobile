@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -20,18 +20,15 @@ import {
   faCalendar,
   faUserFriends,
   faPerson,
-  faQrcode,
-  faCamera,
 } from '@fortawesome/free-solid-svg-icons';
 import Toast from 'react-native-toast-message';
-import QRCode from 'react-native-qrcode-svg';
 
 const DarkTheme = {
   dark: true,
   colors: {
     primary: '#8a0099',
     background: '#121212',
-    card: '#1F1F1F',
+    card: '#202020',
     text: '#FFFFFF',
     border: 'rgb(199, 199, 204)',
     notification: 'rgb(255, 69, 58)',
@@ -42,7 +39,7 @@ const DefaultTheme = {
   colors: {
     primary: '#8a0099',
     background: '#121212',
-    card: '#1F1F1F',
+    card: '#202020',
     text: '#FFFFFF',
     border: 'rgb(199, 199, 204)',
     notification: 'rgb(255, 69, 58)',
@@ -118,7 +115,13 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack.Navigator initialRouteName="Front">
-          <Stack.Screen name="Hello" component={Frontpage} />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Hello"
+            component={Frontpage}
+          />
           <Stack.Screen name="Friend" component={Friend} />
           <Stack.Screen name="Eventdetails" component={EventDetails} />
           <Stack.Screen name="QrReader" component={QrReader} />

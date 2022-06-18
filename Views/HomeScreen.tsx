@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   FlatList,
   Dimensions,
-  Button,
   Text,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
@@ -16,7 +15,6 @@ import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {useTheme} from '@react-navigation/native';
 import {changeEvent} from '../features/eventSlice';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -53,8 +51,6 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   const goToEventDetails = event => {
-    console.log('THIS EVENT');
-    console.log(event);
 
     dispatch(changeEvent(event));
     navigation.navigate('Eventdetails');
@@ -65,103 +61,84 @@ export default ({navigation}: any): JSX.Element => {
 
   const Item = ({post}) => {
     const url = `https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/${post.event.mediaFilename}`;
-    console.log(url);
     return (
-      <View
-        style={{
-          borderWidth: 1,
-          borderColor: '#ccc',
-          backgroundColor: colors.card,
-          borderRadius: 10,
-          width: width - 20,
-          margin: 10,
-          height: height * 0.5,
-          shadowColor: '#FFFFFF',
-          shadowOffset: {
-            width: 1,
-            height: 4,
-          },
-          shadowOpacity: 0.45,
-          shadowRadius: 3.84,
-          elevation: 5,
-        }}>
-        <View style={{}}>
-          <View style={{}}>
-            <TouchableOpacity
-              onPress={() => goToFriendProfile(post.user.attribute_values)}>
+      <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
+        <View
+          style={{
+            borderWidth: 1,
+            borderColor: '#262525',
+            backgroundColor: colors.card,
+            borderRadius: 10,
+            width: width - 20,
+            margin: 10,
+            height: height * 0.45,
+          }}>
+          <View
+            style={{
+              shadowColor: '#262525',
+              shadowOffset: {
+                width: 1,
+                height: 4,
+              },
+              shadowOpacity: 0.45,
+              shadowRadius: 3.84,
+              elevation: 5,
+            }}>
+            <View style={{}}>
+              <TouchableOpacity
+                onPress={() => goToFriendProfile(post.user.attribute_values)}>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                  }}>
+                  <Image
+                    style={{
+                      width: 50,
+                      height: 50,
+                      marginRight: 10,
+                      borderRadius: 25,
+                      margin: 5,
+                    }}
+                    source={{uri: post.user.attribute_values.photo}}
+                  />
+                  <View style={{justifyContent: 'center'}}>
+                    <Text style={styles.userText}>
+                      {post.user.attribute_values.username}
+                    </Text>
+                    <Text style={styles.timestampText}>18.05.22</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={{display: 'flex', flexDirection: 'column'}}>
+              <Text style={styles.headerText}>{post.event.name}</Text>
               <View
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
+                  justifyContent: 'center',
+                  marginBottom: 10,
                 }}>
-                <Image
-                  style={{
-                    width: 50,
-                    height: 50,
-                    marginRight: 10,
-                    borderRadius: 25,
-                    margin: 5,
-                  }}
-                  source={{uri: post.user.attribute_values.photo}}
-                />
-                <View style={{justifyContent: 'center'}}>
-                  <Text style={styles.userText}>
-                    {post.user.attribute_values.username}
-                  </Text>
-                  <Text style={styles.timestampText}>18.05.22</Text>
-                </View>
+                <Text style={styles.descText}>{post.event.companyName}</Text>
+                <Text style={styles.descText}> @ {post.event.place}</Text>
               </View>
-            </TouchableOpacity>
-          </View>
-          <View style={{display: 'flex', flexDirection: 'column'}}>
-            <Text style={styles.headerText}>{post.event.name}</Text>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginBottom: 10,
-              }}>
-              <Text style={styles.descText}>{post.event.companyName}</Text>
-              <Text style={styles.descText}> @ {post.event.place}</Text>
             </View>
           </View>
+          <View style={{alignItems: 'center'}}>
+            <Image
+              style={{
+                width: width - 40,
+                borderRadius: 10,
+                aspectRatio: 16 / 9,
+              }}
+              source={{
+                uri: url,
+              }}
+            />
+          </View>
         </View>
-        <View style={{alignItems: 'center'}}>
-          <Image
-            style={{
-              width: width - 40,
-              borderRadius: 10,
-              aspectRatio: 16 / 9,
-            }}
-            source={{
-              uri: url,
-            }}
-          />
-        </View>
-        <View
-          style={{
-            backgroundColor: colors.primary,
-            position: 'absolute',
-            bottom: 10,
-            right: 10,
-            borderRadius: 10,
-            padding: 7,
-            shadowColor: colors.primary,
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            marginTop: 10,
-            elevation: 4,
-          }}>
-          <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
-            <Text style={styles.buttonText}>Lisätietoja</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

@@ -13,6 +13,7 @@ import {useTheme} from '@react-navigation/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faCalendar,
+  faCalendarAlt,
   faCheck,
   faLocationDot,
   faStar,
@@ -62,8 +63,6 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
-      console.log('INTESTED AND GOING');
-      console.log(data);
       setIntrested(data.total_intrested);
       setGoing(data.total_attendees);
     };
@@ -94,15 +93,12 @@ export default ({navigation}: any): JSX.Element => {
         }),
       });
       const data = await response.json();
-      console.log('DATA');
-      console.log(data);
       if (data.status_code !== 200) {
         showToast('You are already attending this event', 'error');
       } else {
         showToast('You are now attending this event', 'success');
       }
     } catch (error) {
-      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };
@@ -124,17 +120,13 @@ export default ({navigation}: any): JSX.Element => {
         },
         body: body,
       });
-      console.log(body);
-      console.log(response);
       const data = await response.json();
-      console.log(response);
       if (data.status_code !== 200) {
         showToast('You are already interested in this event', 'error');
       } else {
         showToast('You are now intrested in this event', 'success');
       }
     } catch (error) {
-      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };

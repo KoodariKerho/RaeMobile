@@ -35,15 +35,12 @@ export default (): JSX.Element => {
         }),
       });
       const data = await response.json();
-      console.log('DATA');
-      console.log(data);
       if (data.status_code !== 200) {
         showToast('Cannot update username', 'error');
       } else {
         showToast('Username updated!', 'success');
       }
     } catch (error) {
-      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };

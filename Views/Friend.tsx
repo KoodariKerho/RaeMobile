@@ -7,7 +7,6 @@ import Text from '../Components/CustomText';
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   const friend = useAppSelector(state => state.friend.value);
-  console.log(friend);
   return (
     <View>
       <Text>{friend.username}</Text>

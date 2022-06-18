@@ -5,6 +5,8 @@ import {
   StyleSheet,
   Image,
   ActivityIndicator,
+  Text,
+  Dimensions,
 } from 'react-native';
 import React, {useState} from 'react';
 import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
@@ -13,12 +15,11 @@ import Modal from 'react-native-modal';
 import {useAppDispatch} from '../hooks';
 import {changeUser} from '../features/userSlice';
 import {useTheme} from '@react-navigation/native';
-import Text from '../Components/CustomText';
 import showToast from '../utils/toaster';
+import Toast from 'react-native-toast-message';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
-  const dispatch = useAppDispatch();
 
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -26,16 +27,23 @@ export default ({navigation}: any): JSX.Element => {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+
+  const dispatch = useAppDispatch();
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      showToast('Please enter email and password', 'error');
+      return;
+    }
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(data => {
-        console.log('success');
         dispatch(
           changeUser({
             uid: data.user.uid,
@@ -46,26 +54,25 @@ export default ({navigation}: any): JSX.Element => {
             posts: [],
           }),
         );
-        showToast('Login successful', 'success');
         navigation.navigate('AppTabs');
       })
       .catch(error => {
-        console.log(error);
-        showToast(error.message, 'danger');
+        showToast('Invalid username or password', 'error');
       });
   };
 
   const signInWithEmailAndPassword = async () => {
-    console.log('signInWithEmailAndPassword');
+    if (email.length === 0 || password.length === 0 || username.length === 0) {
+      showToast('Please enter email, username and password', 'error');
+      return;
+    }
     toggleModal();
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(data => {
-        console.log(data);
         const url =
           'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
           data.user.uid;
-        console.log(url);
         fetch(url, {
           method: 'POST',
           headers: {
@@ -97,13 +104,11 @@ export default ({navigation}: any): JSX.Element => {
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-          showToast('That email address is already in use!', 'danger');
+          showToast('That email address is already in use!', 'error');
         }
 
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-          showToast('That email address is invalid!', 'danger');
+          showToast('That email address is invalid!', 'error');
         }
         console.error(error);
       });
@@ -118,16 +123,13 @@ export default ({navigation}: any): JSX.Element => {
       });
 
       const data = await GoogleSignin.signIn();
-      console.log(data);
       const credential = firebase.auth.GoogleAuthProvider.credential(
         data.idToken,
         data.accessToken,
       );
-      console.log(credential);
       const firebaseUserCredential = await auth().signInWithCredential(
         credential,
       );
-      console.log(firebaseUserCredential.user);
       setUser(firebaseUserCredential.user);
       dispatch(
         changeUser({
@@ -142,7 +144,6 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
         firebaseUserCredential.user.uid;
-      console.log(url);
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -157,13 +158,11 @@ export default ({navigation}: any): JSX.Element => {
           posts: [],
         }),
       });
-      console.log(response);
       setLoading(false);
       showToast('Login successful', 'success');
       navigation.navigate('AppTabs');
     } catch (error) {
-      console.log(error);
-      showToast(error.message, 'danger');
+      showToast('Unexpected error in Google login', 'error');
       setLoading(false);
     }
   };
@@ -171,10 +170,12 @@ export default ({navigation}: any): JSX.Element => {
   const Button = children => {
     return (
       <TouchableOpacity onPress={children.onPress}>
-        <Text>{children.title}</Text>
+        <Text style={{color: 'white'}}>{children.title}</Text>
       </TouchableOpacity>
     );
   };
+
+  const height = Dimensions.get('window').height;
 
   return (
     <View style={styles.container}>
@@ -184,73 +185,144 @@ export default ({navigation}: any): JSX.Element => {
             <ActivityIndicator size="large" color={colors.primary} />
           </View>
         ) : (
-          <View style={styles.fields}>
+          <View style={{height: height}}>
             <Image
               source={{
                 uri: 'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
               }}
               style={styles.image}
             />
-            <TouchableOpacity
-              style={styles.googleButton}
-              onPress={() => signInWithGoogle()}>
-              <Image source={require('../pics/google_signin_light.png')} />
-            </TouchableOpacity>
-
-            <Text>Tai</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={e => setEmail(e)}
-              value={email}
-              placeholder="Email"
-              keyboardType="email-address"
-              textContentType="emailAddress"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={e => setPassword(e)}
-              value={password}
-              placeholder="Password"
-              textContentType="password"
-              secureTextEntry={true}
-            />
-            <Modal
-              isVisible={modalVisible}
-              backdropOpacity={0.9}
-              onBackdropPress={() => setModalVisible(false)}
-              hasBackdrop={true}
-              backdropColor={colors.card}
-              onBackButtonPress={toggleModal}>
-              <View style={{flex: 1}}>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={e => setUserName(e)}
-                  value={username}
-                  placeholder="Username"
+            <View style={styles.fields}>
+              <TextInput
+                style={styles.input}
+                onChangeText={e => setEmail(e)}
+                value={email}
+                placeholder="Email"
+                keyboardType="email-address"
+                textContentType="emailAddress"
+              />
+              <TextInput
+                style={styles.input}
+                onChangeText={e => setPassword(e)}
+                value={password}
+                placeholder="Password"
+                textContentType="password"
+                secureTextEntry={true}
+              />
+              <TouchableOpacity onPress={handleLogin}>
+                <Text
+                  style={{
+                    color: '#14B8A6',
+                    fontSize: 18,
+                    textDecorationLine: 'underline',
+                  }}>
+                  Kirjaudu sisään
+                </Text>
+              </TouchableOpacity>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View
+                  style={{
+                    flex: 1,
+                    height: 1,
+                    backgroundColor: 'white',
+                    marginLeft: 20,
+                  }}
                 />
-                <TextInput
-                  style={styles.input}
-                  onChangeText={e => setEmail(e)}
-                  value={email}
-                  placeholder="Email"
-                  textContentType="emailAddress"
-                  keyboardType="email-address"
+                <View>
+                  <Text
+                    style={{
+                      color: 'white',
+                      marginVertical: 30,
+                      width: 50,
+                      textAlign: 'center',
+                    }}>
+                    Tai
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    height: 1,
+                    backgroundColor: 'white',
+                    marginRight: 20,
+                  }}
                 />
-                <TextInput
-                  style={styles.input}
-                  onChangeText={e => setPassword(e)}
-                  value={password}
-                  placeholder="Password"
-                  textContentType="password"
-                  secureTextEntry={true}
-                />
-
-                <Button title="Register" onPress={signInWithEmailAndPassword} />
               </View>
-            </Modal>
-            <Button title="Kirjaudu sisään" onPress={handleLogin} />
-            <Text>Ei vielä tiliä?</Text>
-            <Button title="Rekisteröidy" onPress={toggleModal} />
+              <TouchableOpacity
+                style={styles.googleButton}
+                onPress={() => signInWithGoogle()}>
+                <Image source={require('../pics/google_signin_light.png')} />
+              </TouchableOpacity>
+
+              <Modal
+                isVisible={modalVisible}
+                backdropOpacity={0.9}
+                onBackdropPress={() => setModalVisible(false)}
+                hasBackdrop={true}
+                backdropColor={colors.card}
+                onBackButtonPress={toggleModal}>
+                <Toast />
+                <View
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={e => setUserName(e)}
+                    value={username}
+                    placeholder="Username"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={e => setEmail(e)}
+                    value={email}
+                    placeholder="Email"
+                    textContentType="emailAddress"
+                    keyboardType="email-address"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={e => setPassword(e)}
+                    value={password}
+                    placeholder="Password"
+                    textContentType="password"
+                    secureTextEntry={true}
+                  />
+
+                  <Button
+                    title="Register"
+                    onPress={signInWithEmailAndPassword}
+                  />
+                </View>
+              </Modal>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  marginTop: 20,
+                }}>
+                <Text
+                  style={{
+                    color: colors.text,
+                    marginRight: 10,
+                    fontSize: 18,
+                  }}>
+                  Ei vielä tiliä?
+                </Text>
+                <TouchableOpacity onPress={toggleModal}>
+                  <Text
+                    style={{
+                      color: '#14B8A6',
+                      fontSize: 18,
+                      textDecorationLine: 'underline',
+                    }}>
+                    Rekisteröidy
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         )}
       </View>
@@ -274,14 +346,15 @@ const styles = StyleSheet.create({
   fields: {
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 'auto',
   },
   image: {
-    width: '20%',
-    height: '20%',
+    width: '25%',
+    height: '25%',
     resizeMode: 'contain',
+    alignSelf: 'center',
   },
   googleButton: {
-    marginVertical: 20,
     marginHorizontal: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,

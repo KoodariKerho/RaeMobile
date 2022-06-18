@@ -58,3 +58,7 @@ export interface Events {
 export interface Friends {
   friends: Friend[];
 }
+
+export interface Language {
+  language: string;
+}

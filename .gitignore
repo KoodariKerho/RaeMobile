@@ -26,10 +26,7 @@ DerivedData
 local.properties
 *.iml
 *.hprof
-android/app/generated/
-android/app/intermediates/
-android/app/tmp/
-apk/
+build/
 
 
 # node.js

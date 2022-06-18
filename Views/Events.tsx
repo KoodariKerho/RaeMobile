@@ -39,7 +39,6 @@ export default ({navigation}: any): JSX.Element => {
           event.place.toLowerCase().includes(search.toLowerCase())
         );
       });
-      console.log(newEvents);
       setSearchEvents(newEvents);
     }
   };
@@ -49,7 +48,6 @@ export default ({navigation}: any): JSX.Element => {
     const getAllEvents = async () => {
       setLoading(true);
       if (events === null || events === undefined) {
-        console.log('Getting all events from server');
         try {
           const url =
             'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/';
@@ -64,7 +62,6 @@ export default ({navigation}: any): JSX.Element => {
           setSearchEvents(data);
         } catch (error) {
           setLoading(false);
-          console.log(error);
         }
       }
       setLoading(false);

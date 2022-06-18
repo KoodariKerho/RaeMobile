@@ -20,6 +20,7 @@ MERGED from [:react-native-permissions] /Users/jonijuntto/projects/omat/RaeMobil
 MERGED from [:react-native-safe-area-context] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-svg] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-vector-icons] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/88e48ebb5eca6353e6c44da5cbdf3728/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/b1c42f913b0df1359831e24b7ac030d4/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -285,6 +286,8 @@ MERGED from [:react-native-screens] /Users/jonijuntto/projects/omat/RaeMobile/no
 MERGED from [:react-native-screens] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/88e48ebb5eca6353e6c44da5cbdf3728/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44

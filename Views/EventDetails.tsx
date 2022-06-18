@@ -97,6 +97,7 @@ export default ({navigation}: any): JSX.Element => {
         showToast('You are already attending this event', 'error');
       } else {
         showToast('You are now attending this event', 'success');
+        setGoing(going + 1);
       }
     } catch (error) {
       showToast('Something went wrong', 'error');
@@ -125,6 +126,7 @@ export default ({navigation}: any): JSX.Element => {
         showToast('You are already interested in this event', 'error');
       } else {
         showToast('You are now intrested in this event', 'success');
+        setIntrested(interested + 1);
       }
     } catch (error) {
       showToast('Something went wrong', 'error');
@@ -143,7 +145,7 @@ export default ({navigation}: any): JSX.Element => {
         <Image
           style={{
             width: width - 40,
-            height: height * 0.3 - 20,
+            height: height * 0.25 - 20,
             borderRadius: 10,
             marginTop: 10,
           }}
@@ -161,27 +163,43 @@ export default ({navigation}: any): JSX.Element => {
           flexDirection: 'row',
           justifyContent: 'space-around',
           marginTop: 30,
-          borderTopColor: '#ccc',
-          borderTopWidth: 1,
+          marginHorizontal: 20,
           paddingTop: 10,
-          borderBottomColor: '#ccc',
-          borderBottomWidth: 1,
           paddingBottom: 10,
         }}>
-        <TouchableOpacity onPress={() => intrestedInEvent()}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#292828',
+            borderRadius: 10,
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            width: 100,
+          }}
+          onPress={() => intrestedInEvent()}>
           <View
             style={{
               flexDirection: 'column',
               alignItems: 'center',
             }}>
             <FontAwesomeIcon icon={faStar} color={'white'} size={32} />
+
             <Text style={{color: colors.text}}>Intrested</Text>
+            <Text style={{color: colors.text, fontSize: 18}}>{interested}</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => attendToEvent()}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#292828',
+            borderRadius: 10,
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            width: 100,
+          }}
+          onPress={() => attendToEvent()}>
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
             <FontAwesomeIcon icon={faCheck} color={'white'} size={32} />
             <Text style={{color: colors.text}}>Going</Text>
+            <Text style={{color: colors.text, fontSize: 18}}>{going}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -254,11 +272,7 @@ export default ({navigation}: any): JSX.Element => {
           alignItems: 'center',
           marginTop: 30,
           marginHorizontal: 10,
-          borderTopColor: '#ccc',
-          borderTopWidth: 1,
           padding: 10,
-          borderBottomColor: '#ccc',
-          borderBottomWidth: 1,
         }}>
         <View style={{width: 90}}>
           <Text style={{color: colors.text, fontSize: 15}}>
@@ -294,22 +308,6 @@ export default ({navigation}: any): JSX.Element => {
           <Text style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>
             {timeUntilSalesStart}
           </Text>
-        </View>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          marginTop: 10,
-        }}>
-        <View style={{alignItems: 'center'}}>
-          <Text style={{color: colors.text, fontSize: 18}}>Menossa</Text>
-          <Text style={{color: colors.text, fontSize: 18}}>{going}</Text>
-        </View>
-        <View style={{alignItems: 'center'}}>
-          <Text style={{color: colors.text, fontSize: 18}}>Kiinnostunut</Text>
-          <Text style={{color: colors.text, fontSize: 18}}>{interested}</Text>
         </View>
       </View>
     </View>

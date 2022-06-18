@@ -159,7 +159,6 @@ export default ({navigation}: any): JSX.Element => {
         }),
       });
       setLoading(false);
-      showToast('Login successful', 'success');
       navigation.navigate('AppTabs');
     } catch (error) {
       showToast('Unexpected error in Google login', 'error');

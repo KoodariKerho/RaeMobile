@@ -51,7 +51,6 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   const goToEventDetails = event => {
-
     dispatch(changeEvent(event));
     navigation.navigate('Eventdetails');
   };
@@ -66,24 +65,23 @@ export default ({navigation}: any): JSX.Element => {
         <View
           style={{
             borderWidth: 1,
-            borderColor: '#262525',
+            borderColor: '#4a4949',
             backgroundColor: colors.card,
             borderRadius: 10,
             width: width - 20,
             margin: 10,
             height: height * 0.45,
+            shadowColor: '#4a4949',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
           }}>
-          <View
-            style={{
-              shadowColor: '#262525',
-              shadowOffset: {
-                width: 1,
-                height: 4,
-              },
-              shadowOpacity: 0.45,
-              shadowRadius: 3.84,
-              elevation: 5,
-            }}>
+          <View>
             <View style={{}}>
               <TouchableOpacity
                 onPress={() => goToFriendProfile(post.user.attribute_values)}>
@@ -112,7 +110,19 @@ export default ({navigation}: any): JSX.Element => {
               </TouchableOpacity>
             </View>
             <View style={{display: 'flex', flexDirection: 'column'}}>
-              <Text style={styles.headerText}>{post.event.name}</Text>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: '#FFF',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  marginTop: 10,
+                  marginRight: 10,
+                  width: width - 40,
+                  fontSize: 16,
+                }}>
+                {post.event.name}
+              </Text>
               <View
                 style={{
                   display: 'flex',
@@ -151,7 +161,7 @@ export default ({navigation}: any): JSX.Element => {
           <FlatList
             data={friendsEvents}
             renderItem={renderItem}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.user.attribute_values.id + item.event.id}
             ListEmptyComponent={() => (
               <View
                 style={{
@@ -200,13 +210,13 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   headerText: {
-    fontSize: 20,
     fontWeight: 'bold',
     color: '#FFF',
     alignItems: 'center',
     textAlign: 'center',
     marginTop: 10,
     marginRight: 10,
+    fontSize: 20,
   },
   descText: {
     fontSize: 10,
@@ -221,14 +231,13 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   userText: {
-    fontSize: 15,
+    fontSize: 18,
     color: '#FFF',
     fontWeight: 'bold',
-    maxWidth: 90,
   },
   timestampText: {
-    fontSize: 10,
-    color: '#474747',
+    fontSize: 13,
+    color: '#595959',
     fontWeight: 'bold',
   },
 });

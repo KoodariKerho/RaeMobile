@@ -12,6 +12,7 @@ MERGED from [:react-native-firebase_auth] /Users/jonijuntto/projects/omat/RaeMob
 MERGED from [:react-native-firebase_storage] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-32:12
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:17:1-73:12
+MERGED from [:react-native-community_clipboard] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-community/clipboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-google-signin_google-signin] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-camera] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-camera/android/build/intermediates/merged_manifest/generalDebug/AndroidManifest.xml:2:1-18:12
 MERGED from [:react-native-permissions] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-permissions/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -266,6 +267,8 @@ MERGED from [:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobi
 MERGED from [:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:21:5-44
+MERGED from [:react-native-community_clipboard] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-community/clipboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_clipboard] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-community/clipboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-google-signin_google-signin] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-google-signin_google-signin] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-camera] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-camera/android/build/intermediates/merged_manifest/generalDebug/AndroidManifest.xml:5:5-7:41

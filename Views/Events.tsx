@@ -72,7 +72,7 @@ export default ({navigation}: any): JSX.Element => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [events]);
 
   const goToEventDetails = event => {
     dispatch(changeEvent(event));

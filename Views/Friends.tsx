@@ -15,13 +15,15 @@ import {changeFriend} from '../features/friendSlice';
 import Text from '../Components/CustomText';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCamera, faQrcode, faShare} from '@fortawesome/free-solid-svg-icons';
-import showToast from '../utils/toaster';
+import Clipboard from '@react-native-community/clipboard';
+import Toast from 'react-native-toast-message';
 
 export default ({navigation}: any): JSX.Element => {
   const [friends, setFriends] = useState(
     useAppSelector(state => state.friends.value),
   );
   const [loading, setLoading] = useState(false);
+  const [linkShown, setLinkShown] = useState(false);
   const user = useAppSelector(state => state.user.value);
   const dispatch = useAppDispatch();
 
@@ -55,7 +57,7 @@ export default ({navigation}: any): JSX.Element => {
     return () => {
       unmounted = true;
     };
-  }, [user.uid]);
+  }, [user.uid, friends]);
 
   const goToFriendDetails = friend => {
     dispatch(changeFriend(friend));
@@ -89,6 +91,20 @@ export default ({navigation}: any): JSX.Element => {
       </View>
     </TouchableOpacity>
   );
+  const friendLink = 'https://opiskelija-appi.web.app/qr?uid=' + user.uid;
+  const showLink = () => {
+    try {
+      setLinkShown(true);
+      Clipboard.setString(friendLink);
+      Toast.show({
+        text1: 'Link copied to clipboard',
+        type: 'success',
+        position: 'top',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const {colors} = useTheme();
   return (
@@ -119,13 +135,16 @@ export default ({navigation}: any): JSX.Element => {
                   <Text>Skannaa QR</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={showLink}>
                 <View style={{width: 100, alignItems: 'center'}}>
                   <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
                   <Text>Jaa kaverilinkki</Text>
                 </View>
               </TouchableOpacity>
             </View>
+            {linkShown ? (
+              <Text style={{color: 'white', fontSize: 22}}>{friendLink}</Text>
+            ) : null}
             <FlatList
               data={friends}
               keyExtractor={item => item.attribute_values.id}

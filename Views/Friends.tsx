@@ -4,7 +4,6 @@ import {
   ActivityIndicator,
   FlatList,
   StyleSheet,
-  Clipboard,
   Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -63,11 +62,6 @@ export default ({navigation}: any): JSX.Element => {
     navigation.navigate('Friend');
   };
 
-  const copyFriendLink = () => {
-    const urlToCopy = `https://opiskelija-appi.web.app/qr?uid=${user.uid}`;
-    Clipboard.setString(urlToCopy);
-    showToast('Linkki kopioitu leikepöydälle', 'success');
-  };
   const width = Dimensions.get('window').width;
 
   const FriendListItem = ({item}: {item: Friend}) => (
@@ -125,7 +119,7 @@ export default ({navigation}: any): JSX.Element => {
                   <Text>Skannaa QR</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => copyFriendLink()}>
+              <TouchableOpacity>
                 <View style={{width: 100, alignItems: 'center'}}>
                   <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
                   <Text>Jaa kaverilinkki</Text>

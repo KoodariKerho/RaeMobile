@@ -11,8 +11,6 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-// @react-native-clipboard/clipboard
-import com.reactnativecommunity.clipboard.ClipboardPackage;
 // @react-native-firebase/app
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // @react-native-firebase/auth
@@ -23,8 +21,6 @@ import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // react-native-camera
 import org.reactnative.camera.RNCameraPackage;
-// react-native-image-picker
-import com.imagepicker.ImagePickerPackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-safe-area-context
@@ -80,13 +76,11 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
-      new ClipboardPackage(),
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseAuthPackage(),
       new ReactNativeFirebaseStoragePackage(),
       new RNGoogleSigninPackage(),
       new RNCameraPackage(),
-      new ImagePickerPackage(),
       new RNPermissionsPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

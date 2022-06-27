@@ -1,3 +1,4 @@
+$RNFirebaseAsStaticFramework = true
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
@@ -6,7 +7,10 @@ install! 'cocoapods', :deterministic_uuids => false
 
 target 'RaeMobile' do
   config = use_native_modules!
+  use_frameworks!
+  permissions_path = '../node_modules/react-native-permissions/ios'
 
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -19,9 +23,6 @@ target 'RaeMobile' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
-
-  pod 'RNCClipboard', :path => '../node_modules/@react-native-clipboard/clipboard'
 
   target 'RaeMobileTests' do
     inherit! :complete

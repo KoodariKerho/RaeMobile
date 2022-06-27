@@ -11,14 +11,11 @@ import {
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faCalendar,
-  faCalendarAlt,
-  faCheck,
-  faLocationDot,
-  faStar,
-  faTicket,
-} from '@fortawesome/free-solid-svg-icons';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
+import {faCheck} from '@fortawesome/free-solid-svg-icons/faCheck';
+import {faLocationArrow} from '@fortawesome/free-solid-svg-icons/faLocationArrow';
+import {faStar} from '@fortawesome/free-solid-svg-icons/faStar';
+import {faTicketAlt} from '@fortawesome/free-solid-svg-icons/faTicketAlt';
 import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
@@ -230,7 +227,7 @@ export default ({navigation}: any): JSX.Element => {
           marginTop: 20,
           marginLeft: 10,
         }}>
-        <FontAwesomeIcon icon={faLocationDot} color={colors.text} size={32} />
+        <FontAwesomeIcon icon={faLocationArrow} color={colors.text} size={32} />
         <Text
           style={{
             color: colors.text,
@@ -250,7 +247,7 @@ export default ({navigation}: any): JSX.Element => {
             marginTop: 20,
             marginLeft: 10,
           }}>
-          <FontAwesomeIcon icon={faTicket} color={colors.text} size={32} />
+          <FontAwesomeIcon icon={faTicketAlt} color={colors.text} size={32} />
           <Text
             style={{
               color: colors.text,

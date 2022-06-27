@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -15,12 +15,10 @@ import {store} from './store';
 import EventDetails from './Views/EventDetails';
 import {useColorScheme} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faHome,
-  faCalendar,
-  faUserFriends,
-  faPerson,
-} from '@fortawesome/free-solid-svg-icons';
+import {faHome} from '@fortawesome/free-solid-svg-icons/faHome';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
+import {faUserFriends} from '@fortawesome/free-solid-svg-icons/faUserFriends';
+import {faPeopleArrows} from '@fortawesome/free-solid-svg-icons/faPeopleArrows';
 import Toast from 'react-native-toast-message';
 
 const DarkTheme = {
@@ -100,7 +98,7 @@ const App = () => {
             tabBarIcon: () => (
               <FontAwesomeIcon
                 color={'white'}
-                icon={faPerson}
+                icon={faPeopleArrows}
                 style={{width: 20, height: 20}}
               />
             ),

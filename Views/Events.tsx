@@ -8,19 +8,28 @@ import {
   Dimensions,
   Text,
   TextInput,
-  Keyboard,
-  Pressable,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Event} from '../models/types';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
 import {useTheme} from '@react-navigation/native';
+import DropDownPicker from 'react-native-dropdown-picker';
+
+const width = Dimensions.get('window').width;
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   const [search, setSearch] = useState('');
   const [searchEvents, setSearchEvents] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('helsinki');
+  const [items, setItems] = useState([
+    {label: 'Helsinki', value: 'helsinki'},
+    {label: 'Tampere', value: 'tampere'},
+    {label: 'Turku', value: 'turku'},
+    {label: 'Oulu', value: 'oulu'},
+  ]);
   const [events, setEvents] = useState(
     useAppSelector(state => state.events.value),
   );
@@ -28,7 +37,7 @@ export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const filterEvents = () => {
-    Keyboard.dismiss();
+    /*     Keyboard.dismiss(); */
     if (search === '') {
       setSearchEvents(events);
     } else {
@@ -45,25 +54,28 @@ export default ({navigation}: any): JSX.Element => {
 
   useEffect(() => {
     let unmounted = false;
+    console.log('useEffect');
     const getAllEvents = async () => {
+      console.log('getAllEvents');
       setLoading(true);
-      if (events === null || events === undefined) {
-        try {
-          const url =
-            'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/';
-          const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          const data = await response.json();
-          setEvents(data);
-          setSearchEvents(data);
-        } catch (error) {
-          setLoading(false);
-        }
+      try {
+        const url =
+          'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/' +
+          value;
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setEvents(data);
+        setSearchEvents(data);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
       }
+
       setLoading(false);
     };
     if (!unmounted) {
@@ -72,14 +84,13 @@ export default ({navigation}: any): JSX.Element => {
     return () => {
       unmounted = true;
     };
-  }, [events]);
+  }, [value]);
 
   const goToEventDetails = event => {
     dispatch(changeEvent(event));
     navigation.navigate('Eventdetails');
   };
 
-  const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
 
   const EventListItem = ({item}: {item: Event}) => {
@@ -138,49 +149,37 @@ export default ({navigation}: any): JSX.Element => {
 
   return (
     <View>
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+        placeholder="Valitse kaupunki"
+        placeholderStyle={{
+          color: 'black',
+          fontWeight: 'bold',
+        }}
+        style={{width: width * 0.8, margin: 10, alignSelf: 'center'}}
+      />
       <View
         style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-around',
         }}>
-        <Pressable
-          onPress={() => {
-            setSearch('');
-            filterEvents();
-          }}>
-          <View
-            style={{
-              backgroundColor: colors.primary,
-              padding: 10,
-              borderRadius: 10,
-              marginTop: 10,
-            }}>
-            <Text style={styles.buttonText}>Päivitä</Text>
-          </View>
-        </Pressable>
-
         <TextInput
           style={styles.input}
           onChangeText={e => {
             setSearch(e);
+            filterEvents();
           }}
           value={search}
           placeholder="Haku"
           selectTextOnFocus={true}
           maxLength={20}
         />
-        <Pressable onPress={filterEvents}>
-          <View
-            style={{
-              backgroundColor: colors.primary,
-              padding: 10,
-              borderRadius: 10,
-              marginTop: 10,
-            }}>
-            <Text style={styles.buttonText}>Hae</Text>
-          </View>
-        </Pressable>
       </View>
       <View>
         {loading ? (
@@ -254,6 +253,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#a0a1a3',
     borderRadius: 20,
-    width: '50%',
+    width: width - 40,
   },
 });

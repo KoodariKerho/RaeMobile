@@ -44,6 +44,7 @@ export default ({navigation}: any): JSX.Element => {
           });
           const data = await response.json();
           setFriends(data.reverse());
+          console.log(data);
         } catch (error) {
           setLoading(false);
         }
@@ -56,7 +57,7 @@ export default ({navigation}: any): JSX.Element => {
     return () => {
       unmounted = true;
     };
-  }, [user.uid]);
+  }, [user.uid, friends]);
 
   const goToFriendDetails = friend => {
     dispatch(changeFriend(friend));
@@ -88,7 +89,6 @@ export default ({navigation}: any): JSX.Element => {
             source={{uri: item.attribute_values.photo}}
           />
           <View>
-            <Text>{item.attribute_values.email}</Text>
             <Text>{item.attribute_values?.username}</Text>
           </View>
         </View>

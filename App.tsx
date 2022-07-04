@@ -15,6 +15,7 @@ import {store} from './store';
 import EventDetails from './Views/EventDetails';
 import {useColorScheme} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import OwnEvents from './Views/OwnEvents';
 import {
   faHome,
   faCalendar,
@@ -123,6 +124,7 @@ const App = () => {
             component={Frontpage}
           />
           <Stack.Screen name="Friend" component={Friend} />
+          <Stack.Screen name="OwnEvents" component={OwnEvents} />
           <Stack.Screen name="Eventdetails" component={EventDetails} />
           <Stack.Screen name="QrReader" component={QrReader} />
           <Stack.Screen name="QR" component={GenerateQr} />

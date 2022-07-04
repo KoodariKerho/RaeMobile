@@ -4,6 +4,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useTheme} from '@react-navigation/native';
@@ -11,7 +12,7 @@ import Text from '../Components/CustomText';
 import {useAppSelector} from '../hooks';
 import showToast from '../utils/toaster';
 
-export default (): JSX.Element => {
+export default ({navigation}: any): JSX.Element => {
   const user = useAppSelector(state => state.user.value);
   const [username, setUsername] = useState(user.username);
 
@@ -75,6 +76,15 @@ export default (): JSX.Element => {
         onPress={() => updateUserData()}>
         <Text>Vaihda</Text>
       </TouchableOpacity>
+      <Pressable
+        style={{
+          alignSelf: 'center',
+          borderBottomColor: colors.primary,
+          borderBottomWidth: 1,
+        }}
+        onPress={() => navigation.navigate('OwnEvents')}>
+        <Text style={{color: 'white'}}>Omat tapahtumat</Text>
+      </Pressable>
     </View>
   );
 };

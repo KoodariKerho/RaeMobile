@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.raemobile"
-4    android:versionCode="1"
-5    android:versionName="1.0" >
+4    android:versionCode="2"
+5    android:versionName="2.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
@@ -98,26 +98,26 @@
 52        </activity>
 53
 54        <meta-data
-54-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:36
+54-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-13:36
 55            android:name="app_data_collection_default_enabled"
-55-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
+55-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-63
 56            android:value="true" />
-56-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-33
+56-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-33
 57
 58        <service
-58-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:19
+58-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-23:19
 59            android:name="com.google.firebase.components.ComponentDiscoveryService"
-59-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:18-89
+59-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-84
 60            android:directBootAware="true"
-60-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:35:13-43
+60-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-43
 61            android:exported="false" >
-61-->[com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:66:13-37
+61-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
 62            <meta-data
-62-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:85
+62-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:85
 63                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-63-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-120
+63-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-120
 64                android:value="com.google.firebase.components.ComponentRegistrar" />
-64-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-82
+64-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:17-82
 65            <meta-data
 65-->[com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:67:13-69:85
 66                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
@@ -133,15 +133,15 @@
 71        </service>
 72
 73        <provider
-73-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-24:38
+73-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-29:38
 74            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-74-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-88
+74-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-88
 75            android:authorities="com.raemobile.reactnativefirebaseappinitprovider"
-75-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-86
+75-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-86
 76            android:exported="false"
-76-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-37
+76-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-37
 77            android:initOrder="99" />
-77-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-35
+77-->[:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-35
 78
 79        <activity
 79-->[com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:27:9-44:20
@@ -214,159 +214,141 @@
 113            </intent-filter>
 114        </activity>
 115
-116        <provider
-116-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
-117            android:name="com.imagepicker.ImagePickerProvider"
-117-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
-118            android:authorities="com.raemobile.imagepickerprovider"
-118-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-71
-119            android:exported="false"
-119-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
-120            android:grantUriPermissions="true" >
-120-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
-121            <meta-data
-121-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:70
-122                android:name="android.support.FILE_PROVIDER_PATHS"
-122-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
-123                android:resource="@xml/imagepicker_provider_paths" />
-123-->[:react-native-image-picker] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-67
-124        </provider>
-125
-126        <service
-126-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:9:9-15:19
-127            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
-127-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:10:13-91
-128            android:directBootAware="true"
-128-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:17:13-43
-129            android:exported="false" >
-129-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:11:13-37
-130            <meta-data
-130-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:12:13-14:85
-131                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
-131-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:13:17-120
-132                android:value="com.google.firebase.components.ComponentRegistrar" />
-132-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:14:17-82
-133            <meta-data
-133-->[com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:12:13-14:85
-134                android:name="com.google.firebase.components:com.google.mlkit.vision.face.internal.FaceRegistrar"
-134-->[com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:13:17-114
-135                android:value="com.google.firebase.components.ComponentRegistrar" />
-135-->[com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:14:17-82
-136            <meta-data
-136-->[com.google.android.gms:play-services-mlkit-text-recognition:16.3.0] /Users/jonijuntto/.gradle/caches/transforms-3/bb483e7fdedea610153ba652176ebde7/transformed/jetified-play-services-mlkit-text-recognition-16.3.0/AndroidManifest.xml:12:13-14:85
-137                android:name="com.google.firebase.components:com.google.mlkit.vision.text.internal.TextRegistrar"
-137-->[com.google.android.gms:play-services-mlkit-text-recognition:16.3.0] /Users/jonijuntto/.gradle/caches/transforms-3/bb483e7fdedea610153ba652176ebde7/transformed/jetified-play-services-mlkit-text-recognition-16.3.0/AndroidManifest.xml:13:17-114
-138                android:value="com.google.firebase.components.ComponentRegistrar" />
-138-->[com.google.android.gms:play-services-mlkit-text-recognition:16.3.0] /Users/jonijuntto/.gradle/caches/transforms-3/bb483e7fdedea610153ba652176ebde7/transformed/jetified-play-services-mlkit-text-recognition-16.3.0/AndroidManifest.xml:14:17-82
-139            <meta-data
-139-->[com.google.mlkit:vision-common:16.5.0] /Users/jonijuntto/.gradle/caches/transforms-3/6ded9b9d65e263c791ccbfec10642883/transformed/jetified-vision-common-16.5.0/AndroidManifest.xml:12:13-14:85
-140                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
-140-->[com.google.mlkit:vision-common:16.5.0] /Users/jonijuntto/.gradle/caches/transforms-3/6ded9b9d65e263c791ccbfec10642883/transformed/jetified-vision-common-16.5.0/AndroidManifest.xml:13:17-124
-141                android:value="com.google.firebase.components.ComponentRegistrar" />
-141-->[com.google.mlkit:vision-common:16.5.0] /Users/jonijuntto/.gradle/caches/transforms-3/6ded9b9d65e263c791ccbfec10642883/transformed/jetified-vision-common-16.5.0/AndroidManifest.xml:14:17-82
-142            <meta-data
-142-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:20:13-22:85
-143                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
-143-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:21:17-120
-144                android:value="com.google.firebase.components.ComponentRegistrar" />
-144-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:22:17-82
-145        </service>
-146
-147        <provider
-147-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:9:9-13:38
-148            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
-148-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:10:13-78
-149            android:authorities="com.raemobile.mlkitinitprovider"
-149-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:11:13-69
-150            android:exported="false"
-150-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:12:13-37
-151            android:initOrder="99" />
-151-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:13:13-35
-152
-153        <service
-153-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
-154            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-154-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
-155            android:exported="false" >
-155-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
-156            <meta-data
-156-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
-157                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-157-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
-158                android:value="cct" />
-158-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
-159        </service>
-160
-161        <provider
-161-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
-162            android:name="com.google.firebase.provider.FirebaseInitProvider"
-162-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
-163            android:authorities="com.raemobile.firebaseinitprovider"
-163-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
-164            android:directBootAware="true"
-164-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
-165            android:exported="false"
-165-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:30:13-37
-166            android:initOrder="100" />
-166-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:31:13-36
+116        <service
+116-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:9:9-15:19
+117            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+117-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:10:13-91
+118            android:directBootAware="true"
+118-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:17:13-43
+119            android:exported="false" >
+119-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:11:13-37
+120            <meta-data
+120-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:12:13-14:85
+121                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
+121-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:13:17-120
+122                android:value="com.google.firebase.components.ComponentRegistrar" />
+122-->[com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:14:17-82
+123            <meta-data
+123-->[com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:12:13-14:85
+124                android:name="com.google.firebase.components:com.google.mlkit.vision.face.internal.FaceRegistrar"
+124-->[com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:13:17-114
+125                android:value="com.google.firebase.components.ComponentRegistrar" />
+125-->[com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:14:17-82
+126            <meta-data
+126-->[com.google.android.gms:play-services-mlkit-text-recognition:16.3.0] /Users/jonijuntto/.gradle/caches/transforms-3/bb483e7fdedea610153ba652176ebde7/transformed/jetified-play-services-mlkit-text-recognition-16.3.0/AndroidManifest.xml:12:13-14:85
+127                android:name="com.google.firebase.components:com.google.mlkit.vision.text.internal.TextRegistrar"
+127-->[com.google.android.gms:play-services-mlkit-text-recognition:16.3.0] /Users/jonijuntto/.gradle/caches/transforms-3/bb483e7fdedea610153ba652176ebde7/transformed/jetified-play-services-mlkit-text-recognition-16.3.0/AndroidManifest.xml:13:17-114
+128                android:value="com.google.firebase.components.ComponentRegistrar" />
+128-->[com.google.android.gms:play-services-mlkit-text-recognition:16.3.0] /Users/jonijuntto/.gradle/caches/transforms-3/bb483e7fdedea610153ba652176ebde7/transformed/jetified-play-services-mlkit-text-recognition-16.3.0/AndroidManifest.xml:14:17-82
+129            <meta-data
+129-->[com.google.mlkit:vision-common:16.5.0] /Users/jonijuntto/.gradle/caches/transforms-3/6ded9b9d65e263c791ccbfec10642883/transformed/jetified-vision-common-16.5.0/AndroidManifest.xml:12:13-14:85
+130                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+130-->[com.google.mlkit:vision-common:16.5.0] /Users/jonijuntto/.gradle/caches/transforms-3/6ded9b9d65e263c791ccbfec10642883/transformed/jetified-vision-common-16.5.0/AndroidManifest.xml:13:17-124
+131                android:value="com.google.firebase.components.ComponentRegistrar" />
+131-->[com.google.mlkit:vision-common:16.5.0] /Users/jonijuntto/.gradle/caches/transforms-3/6ded9b9d65e263c791ccbfec10642883/transformed/jetified-vision-common-16.5.0/AndroidManifest.xml:14:17-82
+132            <meta-data
+132-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:20:13-22:85
+133                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+133-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:21:17-120
+134                android:value="com.google.firebase.components.ComponentRegistrar" />
+134-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:22:17-82
+135        </service>
+136
+137        <provider
+137-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:9:9-13:38
+138            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+138-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:10:13-78
+139            android:authorities="com.raemobile.mlkitinitprovider"
+139-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:11:13-69
+140            android:exported="false"
+140-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:12:13-37
+141            android:initOrder="99" />
+141-->[com.google.mlkit:common:17.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/a0bcb93e79798302d0ae9074f2353033/transformed/jetified-common-17.2.0/AndroidManifest.xml:13:13-35
+142
+143        <service
+143-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+144            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+144-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+145            android:exported="false" >
+145-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+146            <meta-data
+146-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+147                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+147-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+148                android:value="cct" />
+148-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jonijuntto/.gradle/caches/transforms-3/85dc8a140dcfc48e4eeee5c39af2380b/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+149        </service>
+150
+151        <provider
+151-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
+152            android:name="com.google.firebase.provider.FirebaseInitProvider"
+152-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
+153            android:authorities="com.raemobile.firebaseinitprovider"
+153-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
+154            android:directBootAware="true"
+154-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
+155            android:exported="false"
+155-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:30:13-37
+156            android:initOrder="100" />
+156-->[com.google.firebase:firebase-common:20.1.1] /Users/jonijuntto/.gradle/caches/transforms-3/90b0264a270d302f6511f9161eff0e3e/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:31:13-36
+157
+158        <service
+158-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
+159            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+159-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
+160            android:exported="false"
+160-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
+161            android:permission="android.permission.BIND_JOB_SERVICE" >
+161-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
+162        </service>
+163
+164        <receiver
+164-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
+165            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+165-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:33:13-132
+166            android:exported="false" />
+166-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
 167
-168        <service
-168-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
-169            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-169-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
-170            android:exported="false"
-170-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
-171            android:permission="android.permission.BIND_JOB_SERVICE" >
-171-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
-172        </service>
-173
-174        <receiver
-174-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
-175            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-175-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:33:13-132
-176            android:exported="false" />
-176-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jonijuntto/.gradle/caches/transforms-3/67f330eb73f8ced78f0f07abc4e1aa29/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
-177
-178        <activity
-178-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:23:9-27:75
-179            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-179-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:24:13-93
-180            android:excludeFromRecents="true"
-180-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:25:13-46
-181            android:exported="false"
-181-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:26:13-37
-182            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-182-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:27:13-72
-183        <!--
-184            Service handling Google Sign-In user revocation. For apps that do not integrate with
-185            Google Sign-In, this service will never be started.
-186        -->
-187        <service
-187-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:33:9-37:51
-188            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-188-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:34:13-89
-189            android:exported="true"
-189-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:35:13-36
-190            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-190-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:36:13-107
-191            android:visibleToInstantApps="true" />
-191-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:37:13-48
+168        <activity
+168-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:23:9-27:75
+169            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+169-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:24:13-93
+170            android:excludeFromRecents="true"
+170-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:25:13-46
+171            android:exported="false"
+171-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:26:13-37
+172            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+172-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:27:13-72
+173        <!--
+174            Service handling Google Sign-In user revocation. For apps that do not integrate with
+175            Google Sign-In, this service will never be started.
+176        -->
+177        <service
+177-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:33:9-37:51
+178            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+178-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:34:13-89
+179            android:exported="true"
+179-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:35:13-36
+180            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+180-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:36:13-107
+181            android:visibleToInstantApps="true" />
+181-->[com.google.android.gms:play-services-auth:20.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/64af2e4e85e9081926687a4df3deb2b6/transformed/jetified-play-services-auth-20.2.0/AndroidManifest.xml:37:13-48
+182
+183        <activity
+183-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+184            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+184-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+185            android:exported="false"
+185-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+186            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+186-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+187
+188        <meta-data
+188-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/6dadbc8dcf8ca64485f05cdeae89eefb/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+189            android:name="com.google.android.gms.version"
+189-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/6dadbc8dcf8ca64485f05cdeae89eefb/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+190            android:value="@integer/google_play_services_version" />
+190-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/6dadbc8dcf8ca64485f05cdeae89eefb/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+191    </application>
 192
-193        <activity
-193-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-194            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-194-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-195            android:exported="false"
-195-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-196            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-196-->[com.google.android.gms:play-services-base:18.0.1] /Users/jonijuntto/.gradle/caches/transforms-3/a7da0ffaf9626d3a8436822864204695/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-197
-198        <meta-data
-198-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/6dadbc8dcf8ca64485f05cdeae89eefb/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-199            android:name="com.google.android.gms.version"
-199-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/6dadbc8dcf8ca64485f05cdeae89eefb/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
-200            android:value="@integer/google_play_services_version" />
-200-->[com.google.android.gms:play-services-basement:18.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/6dadbc8dcf8ca64485f05cdeae89eefb/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-201    </application>
-202
-203</manifest>
+193</manifest>

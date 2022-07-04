@@ -11,7 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-// @react-native-clipboard/clipboard
+// @react-native-community/clipboard
 import com.reactnativecommunity.clipboard.ClipboardPackage;
 // @react-native-firebase/app
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
@@ -23,8 +23,6 @@ import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // react-native-camera
 import org.reactnative.camera.RNCameraPackage;
-// react-native-image-picker
-import com.imagepicker.ImagePickerPackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-safe-area-context
@@ -33,8 +31,6 @@ import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
-// react-native-vector-icons
-import com.oblador.vectoricons.VectorIconsPackage;
 
 public class PackageList {
   private Application application;
@@ -86,12 +82,10 @@ public class PackageList {
       new ReactNativeFirebaseStoragePackage(),
       new RNGoogleSigninPackage(),
       new RNCameraPackage(),
-      new ImagePickerPackage(),
       new RNPermissionsPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
-      new SvgPackage(),
-      new VectorIconsPackage()
+      new SvgPackage()
     ));
   }
 }

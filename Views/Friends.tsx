@@ -4,7 +4,6 @@ import {
   ActivityIndicator,
   FlatList,
   StyleSheet,
-  Clipboard,
   Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -14,6 +13,7 @@ import {useAppDispatch, useAppSelector} from '../hooks';
 import {Friend} from '../models/types';
 import {changeFriend} from '../features/friendSlice';
 import Text from '../Components/CustomText';
+import Clipboard from '@react-native-community/clipboard';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCamera, faQrcode, faShare} from '@fortawesome/free-solid-svg-icons';
 import showToast from '../utils/toaster';

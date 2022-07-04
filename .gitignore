@@ -26,7 +26,6 @@ DerivedData
 local.properties
 *.iml
 *.hprof
-build/
 
 
 # node.js

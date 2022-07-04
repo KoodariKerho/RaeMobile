@@ -8,6 +8,7 @@ import {
   Dimensions,
   Text,
   TextInput,
+  Pressable,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Event} from '../models/types';

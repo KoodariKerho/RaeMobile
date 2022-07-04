@@ -10,6 +10,7 @@ import GenerateQr from './Views/GenerateQr';
 import Profile from './Views/Profile';
 import Friend from './Views/Friend';
 import QrReader from './Views/QrReader';
+import OwnEvents from './Views/OwnEvents';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import EventDetails from './Views/EventDetails';
@@ -124,6 +125,7 @@ const App = () => {
           <Stack.Screen name="Eventdetails" component={EventDetails} />
           <Stack.Screen name="QrReader" component={QrReader} />
           <Stack.Screen name="QR" component={GenerateQr} />
+          <Stack.Screen name="OwnEvents" component={OwnEvents} />
           <Stack.Screen
             options={{headerShown: false}}
             name="AppTabs"

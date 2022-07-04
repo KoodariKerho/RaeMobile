@@ -4,6 +4,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useTheme} from '@react-navigation/native';
@@ -11,7 +12,7 @@ import Text from '../Components/CustomText';
 import {useAppSelector} from '../hooks';
 import showToast from '../utils/toaster';
 
-export default (): JSX.Element => {
+export default ({navigation}: any): JSX.Element => {
   const user = useAppSelector(state => state.user.value);
   const [username, setUsername] = useState(user.username);
 
@@ -47,6 +48,9 @@ export default (): JSX.Element => {
   return (
     <View>
       <View style={styles.container}>
+        <Pressable onPress={() => navigation.navigate('OwnEvents')}>
+          <Text>Omat tapahtumat</Text>
+        </Pressable>
         <Image
           source={{uri: user.photo}}
           style={{width: 120, height: 120, borderRadius: 180, marginBottom: 50}}

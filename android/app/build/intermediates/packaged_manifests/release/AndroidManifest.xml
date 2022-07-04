@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.raemobile"
     android:versionCode="2"
-    android:versionName="2.0" >
+    android:versionName="3.0" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -104,16 +104,6 @@
                     android:scheme="recaptcha" />
             </intent-filter>
         </activity>
-
-        <provider
-            android:name="com.imagepicker.ImagePickerProvider"
-            android:authorities="com.raemobile.imagepickerprovider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/imagepicker_provider_paths" />
-        </provider>
 
         <service
             android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"

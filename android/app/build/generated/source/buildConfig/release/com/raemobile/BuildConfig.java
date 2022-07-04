@@ -8,7 +8,7 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "com.raemobile";
   public static final String BUILD_TYPE = "release";
   public static final int VERSION_CODE = 2;
-  public static final String VERSION_NAME = "2.0";
+  public static final String VERSION_NAME = "3.0";
   // Field from default config.
   public static final boolean IS_NEW_ARCHITECTURE_ENABLED = false;
 }

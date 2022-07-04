@@ -13,6 +13,8 @@ import {useAppSelector} from '../hooks';
 import {Event} from '../models/types';
 import {useAppDispatch} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -55,58 +57,91 @@ export default ({navigation}: any): JSX.Element => {
     dispatch(changeEvent(event));
     navigation.navigate('Eventdetails');
   };
+  const deleteEvent = async event => {
+    const url =
+      'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/delete-user-post/' +
+      user.uid +
+      '/' +
+      event;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(response);
+    //delete event from events array
+    const newEvents = events.filter(e => e.id !== event);
+    setEvents(newEvents);
+  };
 
   const EventListItem = ({item}: {item: Event}) => {
     const url = `https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/${item.mediaFilename}`;
     return (
-      <TouchableOpacity onPress={() => goToEventDetails(item)}>
-        <View
-          style={{
-            borderWidth: 1,
-            borderColor: '#ccc',
-            backgroundColor: colors.card,
-            borderRadius: 10,
-            width: width - 20,
-            margin: 10,
-            height: height * 0.43,
-            shadowColor: '#FFFFFF',
-            shadowOffset: {
-              width: 1,
-              height: 4,
-            },
-            shadowOpacity: 0.45,
-            shadowRadius: 3.84,
-            elevation: 5,
-          }}>
-          <View style={{}}>
-            <View style={{display: 'flex', flexDirection: 'column'}}>
-              <Text style={styles.headerText}>{item.name}</Text>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  marginBottom: 10,
-                }}>
-                <Text style={styles.descText}>{item.companyName}</Text>
-                <Text style={styles.descText}> @ {item.place}</Text>
-              </View>
+      <View
+        style={{
+          borderWidth: 1,
+          borderColor: '#ccc',
+          backgroundColor: colors.card,
+          borderRadius: 10,
+          width: width - 20,
+          margin: 10,
+          height: height * 0.43,
+          shadowColor: '#FFFFFF',
+          shadowOffset: {
+            width: 1,
+            height: 4,
+          },
+          shadowOpacity: 0.45,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+        <TouchableOpacity onPress={() => deleteEvent(item.id)}>
+          <FontAwesomeIcon
+            color={'red'}
+            icon={faTrash}
+            style={{alignSelf: 'flex-end', marginRight: 10, marginTop: 10}}
+          />
+        </TouchableOpacity>
+        <View style={{}}>
+          <View style={{display: 'flex', flexDirection: 'column'}}>
+            <Text style={styles.headerText}>{item.name}</Text>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginBottom: 10,
+              }}>
+              <Text style={styles.descText}>{item.companyName}</Text>
+              <Text style={styles.descText}> @ {item.place}</Text>
             </View>
           </View>
-          <View style={{alignItems: 'center'}}>
-            <Image
-              style={{
-                width: width - 40,
-                borderRadius: 10,
-                aspectRatio: 16 / 9,
-              }}
-              source={{
-                uri: url,
-              }}
-            />
-          </View>
         </View>
-      </TouchableOpacity>
+        <View style={{alignItems: 'center'}}>
+          <Image
+            style={{
+              width: width - 40,
+              borderRadius: 10,
+              aspectRatio: 16 / 9,
+            }}
+            source={{
+              uri: url,
+            }}
+          />
+        </View>
+        <TouchableOpacity onPress={() => goToEventDetails(item)}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 22,
+              textDecorationLine: 'underline',
+              alignSelf: 'center',
+            }}>
+            Lisätietoja
+          </Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -121,6 +156,12 @@ export default ({navigation}: any): JSX.Element => {
               data={events}
               renderItem={({item}: any) => <EventListItem item={item} />}
               keyExtractor={(item: any) => item.id}
+              ListEmptyComponent={() => (
+                <Text
+                  style={{alignSelf: 'center', fontSize: 22, color: 'white'}}>
+                  Ei omia tapahtumia, lisää tapahtumia Events välilehdeltä
+                </Text>
+              )}
             />
           </View>
         )}

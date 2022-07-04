@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {useAppSelector} from '../hooks';
@@ -146,27 +147,29 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <View>
-        {loading ? (
-          <></>
-        ) : (
-          <View>
-            <FlatList
-              data={events}
-              renderItem={({item}: any) => <EventListItem item={item} />}
-              keyExtractor={(item: any) => item.id}
-              ListEmptyComponent={() => (
-                <Text
-                  style={{alignSelf: 'center', fontSize: 22, color: 'white'}}>
-                  Ei omia tapahtumia, lisää tapahtumia Events välilehdeltä
-                </Text>
-              )}
-            />
-          </View>
-        )}
+        <View>
+          {loading ? (
+            <></>
+          ) : (
+            <View>
+              <FlatList
+                data={events}
+                renderItem={({item}: any) => <EventListItem item={item} />}
+                keyExtractor={(item: any) => item.id}
+                ListEmptyComponent={() => (
+                  <Text
+                    style={{alignSelf: 'center', fontSize: 22, color: 'white'}}>
+                    Ei omia tapahtumia, lisää tapahtumia Events välilehdeltä
+                  </Text>
+                )}
+              />
+            </View>
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

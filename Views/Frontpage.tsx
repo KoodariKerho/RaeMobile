@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   Text,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
 import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
@@ -177,155 +178,157 @@ export default ({navigation}: any): JSX.Element => {
   const height = Dimensions.get('window').height;
 
   return (
-    <View style={styles.container}>
-      <View>
-        {loading ? (
-          <View>
-            <ActivityIndicator size="large" color={colors.primary} />
-          </View>
-        ) : (
-          <View style={{height: height}}>
-            <Image
-              source={{
-                uri: 'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
-              }}
-              style={styles.image}
-            />
-            <View style={styles.fields}>
-              <TextInput
-                style={styles.input}
-                onChangeText={e => setEmail(e)}
-                value={email}
-                placeholder="Email"
-                keyboardType="email-address"
-                textContentType="emailAddress"
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View>
+          {loading ? (
+            <View>
+              <ActivityIndicator size="large" color={colors.primary} />
+            </View>
+          ) : (
+            <View style={{height: height}}>
+              <Image
+                source={{
+                  uri: 'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
+                }}
+                style={styles.image}
               />
-              <TextInput
-                style={styles.input}
-                onChangeText={e => setPassword(e)}
-                value={password}
-                placeholder="Password"
-                textContentType="password"
-                secureTextEntry={true}
-              />
-              <TouchableOpacity onPress={handleLogin}>
-                <Text
-                  style={{
-                    color: '#14B8A6',
-                    fontSize: 18,
-                    textDecorationLine: 'underline',
-                  }}>
-                  Kirjaudu sisään
-                </Text>
-              </TouchableOpacity>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View
-                  style={{
-                    flex: 1,
-                    height: 1,
-                    backgroundColor: 'white',
-                    marginLeft: 20,
-                  }}
+              <View style={styles.fields}>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={e => setEmail(e)}
+                  value={email}
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
                 />
-                <View>
-                  <Text
-                    style={{
-                      color: 'white',
-                      marginVertical: 30,
-                      width: 50,
-                      textAlign: 'center',
-                    }}>
-                    Tai
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    height: 1,
-                    backgroundColor: 'white',
-                    marginRight: 20,
-                  }}
+                <TextInput
+                  style={styles.input}
+                  onChangeText={e => setPassword(e)}
+                  value={password}
+                  placeholder="Password"
+                  textContentType="password"
+                  secureTextEntry={true}
                 />
-              </View>
-              <TouchableOpacity
-                style={styles.googleButton}
-                onPress={() => signInWithGoogle()}>
-                <Image source={require('../pics/google_signin_light.png')} />
-              </TouchableOpacity>
-
-              <Modal
-                isVisible={modalVisible}
-                backdropOpacity={0.9}
-                onBackdropPress={() => setModalVisible(false)}
-                hasBackdrop={true}
-                backdropColor={colors.card}
-                onBackButtonPress={toggleModal}>
-                <Toast />
-                <View
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={e => setUserName(e)}
-                    value={username}
-                    placeholder="Username"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={e => setEmail(e)}
-                    value={email}
-                    placeholder="Email"
-                    textContentType="emailAddress"
-                    keyboardType="email-address"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={e => setPassword(e)}
-                    value={password}
-                    placeholder="Password"
-                    textContentType="password"
-                    secureTextEntry={true}
-                  />
-
-                  <Button
-                    title="Register"
-                    onPress={signInWithEmailAndPassword}
-                  />
-                </View>
-              </Modal>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  marginTop: 20,
-                }}>
-                <Text
-                  style={{
-                    color: colors.text,
-                    marginRight: 10,
-                    fontSize: 18,
-                  }}>
-                  Ei vielä tiliä?
-                </Text>
-                <TouchableOpacity onPress={toggleModal}>
+                <TouchableOpacity onPress={handleLogin}>
                   <Text
                     style={{
                       color: '#14B8A6',
                       fontSize: 18,
                       textDecorationLine: 'underline',
                     }}>
-                    Rekisteröidy
+                    Kirjaudu sisään
                   </Text>
                 </TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <View
+                    style={{
+                      flex: 1,
+                      height: 1,
+                      backgroundColor: 'white',
+                      marginLeft: 20,
+                    }}
+                  />
+                  <View>
+                    <Text
+                      style={{
+                        color: 'white',
+                        marginVertical: 30,
+                        width: 50,
+                        textAlign: 'center',
+                      }}>
+                      Tai
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      height: 1,
+                      backgroundColor: 'white',
+                      marginRight: 20,
+                    }}
+                  />
+                </View>
+                <TouchableOpacity
+                  style={styles.googleButton}
+                  onPress={() => signInWithGoogle()}>
+                  <Image source={require('../pics/google_signin_light.png')} />
+                </TouchableOpacity>
+
+                <Modal
+                  isVisible={modalVisible}
+                  backdropOpacity={0.9}
+                  onBackdropPress={() => setModalVisible(false)}
+                  hasBackdrop={true}
+                  backdropColor={colors.card}
+                  onBackButtonPress={toggleModal}>
+                  <Toast />
+                  <View
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={e => setUserName(e)}
+                      value={username}
+                      placeholder="Username"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={e => setEmail(e)}
+                      value={email}
+                      placeholder="Email"
+                      textContentType="emailAddress"
+                      keyboardType="email-address"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={e => setPassword(e)}
+                      value={password}
+                      placeholder="Password"
+                      textContentType="password"
+                      secureTextEntry={true}
+                    />
+
+                    <Button
+                      title="Register"
+                      onPress={signInWithEmailAndPassword}
+                    />
+                  </View>
+                </Modal>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginTop: 20,
+                  }}>
+                  <Text
+                    style={{
+                      color: colors.text,
+                      marginRight: 10,
+                      fontSize: 18,
+                    }}>
+                    Ei vielä tiliä?
+                  </Text>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <Text
+                      style={{
+                        color: '#14B8A6',
+                        fontSize: 18,
+                        textDecorationLine: 'underline',
+                      }}>
+                      Rekisteröidy
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        )}
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

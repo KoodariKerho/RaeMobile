@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Pressable,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useTheme} from '@react-navigation/native';
@@ -46,46 +47,53 @@ export default ({navigation}: any): JSX.Element => {
     }
   };
   return (
-    <View>
-      <View style={styles.container}>
-        <Image
-          source={{uri: user.photo}}
-          style={{width: 120, height: 120, borderRadius: 180, marginBottom: 50}}
-        />
-        <Text>Vaihda käyttäjänimi</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={e => setUsername(e)}
-          value={username}
-          placeholder="Username"
-          selectTextOnFocus={true}
-          autoComplete={'username'}
-          maxLength={20}
-          onKeyPress={() => updateUserData()}
-        />
+    <SafeAreaView>
+      <View>
+        <View style={styles.container}>
+          <Image
+            source={{uri: user.photo}}
+            style={{
+              width: 120,
+              height: 120,
+              borderRadius: 180,
+              marginBottom: 50,
+            }}
+          />
+          <Text>Vaihda käyttäjänimi</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={e => setUsername(e)}
+            value={username}
+            placeholder="Username"
+            selectTextOnFocus={true}
+            autoComplete={'username'}
+            maxLength={20}
+            onKeyPress={() => updateUserData()}
+          />
+        </View>
+        <TouchableOpacity
+          style={{
+            alignSelf: 'flex-end',
+            marginRight: 40,
+            marginTop: 5,
+            backgroundColor: colors.primary,
+            padding: 10,
+            borderRadius: 10,
+          }}
+          onPress={() => updateUserData()}>
+          <Text>Vaihda</Text>
+        </TouchableOpacity>
+        <Pressable
+          style={{
+            alignSelf: 'center',
+            borderBottomColor: colors.primary,
+            borderBottomWidth: 1,
+          }}
+          onPress={() => navigation.navigate('OwnEvents')}>
+          <Text style={{color: 'white'}}>Omat tapahtumat</Text>
+        </Pressable>
       </View>
-      <TouchableOpacity
-        style={{
-          alignSelf: 'flex-end',
-          marginRight: 40,
-          marginTop: 5,
-          backgroundColor: colors.primary,
-          padding: 10,
-          borderRadius: 10,
-        }}
-        onPress={() => updateUserData()}>
-        <Text>Vaihda</Text>
-      </TouchableOpacity>
-      <Pressable
-        style={{
-          alignSelf: 'center',
-          borderBottomColor: colors.primary,
-          borderBottomWidth: 1,
-        }}
-        onPress={() => navigation.navigate('OwnEvents')}>
-        <Text style={{color: 'white'}}>Omat tapahtumat</Text>
-      </Pressable>
-    </View>
+    </SafeAreaView>
   );
 };
 

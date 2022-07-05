@@ -7,6 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   FlatList,
+  SafeAreaView,
 } from 'react-native';
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
@@ -112,33 +113,35 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <View>
-        {loading ? (
-          <></>
-        ) : (
-          <View>
-            <Image
-              source={{uri: friend.photo}}
-              style={{
-                width: 150,
-                height: 150,
-                borderRadius: 110,
-                alignSelf: 'center',
-              }}
-            />
-            <Text style={{color: 'white', fontSize: 22, alignSelf: 'center'}}>
-              {friend.username}
-            </Text>
-            <FlatList
-              data={events}
-              renderItem={({item}: any) => <EventListItem item={item} />}
-              keyExtractor={(item: any) => item.id}
-            />
-          </View>
-        )}
+        <View>
+          {loading ? (
+            <></>
+          ) : (
+            <View>
+              <Image
+                source={{uri: friend.photo}}
+                style={{
+                  width: 150,
+                  height: 150,
+                  borderRadius: 110,
+                  alignSelf: 'center',
+                }}
+              />
+              <Text style={{color: 'white', fontSize: 22, alignSelf: 'center'}}>
+                {friend.username}
+              </Text>
+              <FlatList
+                data={events}
+                renderItem={({item}: any) => <EventListItem item={item} />}
+                keyExtractor={(item: any) => item.id}
+              />
+            </View>
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

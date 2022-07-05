@@ -20,6 +20,7 @@ export interface Friend {
 }
 
 export interface Event {
+  id: string;
   event_id: string;
   attendees: string[];
   availability: number[];

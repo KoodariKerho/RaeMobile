@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {useAppSelector} from '../hooks';
@@ -82,57 +82,59 @@ export default ({navigation}: any): JSX.Element => {
     }
   };
   return (
-    <View>
+    <SafeAreaView>
       <View>
-        {errorVisible ? (
-          <Text>ALREADY A FRIEND</Text>
-        ) : (
-          <View>
-            <QRCodeScanner
-              onRead={onSuccess}
-              topContent={
-                <Text style={styles.centerText}>
-                  Go to{' '}
-                  <Text style={styles.textBold}>
-                    wikipedia.org/wiki/QR_code
-                  </Text>{' '}
-                  on your computer and scan the QR code.
-                </Text>
-              }
-              bottomContent={
-                <TouchableOpacity style={styles.buttonTouchable}>
-                  <Text style={styles.buttonText}>OK. Got it!</Text>
-                </TouchableOpacity>
-              }
-            />
-          </View>
-        )}
-      </View>
-      <View>
-        <Modal
-          isVisible={modalVisible}
-          backdropOpacity={0.8}
-          hasBackdrop={true}
-          backdropColor={'green'}
-          onBackButtonPress={toggleModal}>
-          {alreadyFriend ? (
-            <Text>Already friend</Text>
+        <View>
+          {errorVisible ? (
+            <Text>ALREADY A FRIEND</Text>
           ) : (
             <View>
-              <Text>Kaveri lisätty!</Text>
-              <Image
-                source={{uri: friendData?.photo}}
-                style={{width: 50, height: 50, borderRadius: 100}}
+              <QRCodeScanner
+                onRead={onSuccess}
+                topContent={
+                  <Text style={styles.centerText}>
+                    Go to{' '}
+                    <Text style={styles.textBold}>
+                      wikipedia.org/wiki/QR_code
+                    </Text>{' '}
+                    on your computer and scan the QR code.
+                  </Text>
+                }
+                bottomContent={
+                  <TouchableOpacity style={styles.buttonTouchable}>
+                    <Text style={styles.buttonText}>OK. Got it!</Text>
+                  </TouchableOpacity>
+                }
               />
-              <Text>{friendData.username}</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Text>Takaisin kotiin</Text>
-              </TouchableOpacity>
             </View>
           )}
-        </Modal>
+        </View>
+        <View>
+          <Modal
+            isVisible={modalVisible}
+            backdropOpacity={0.8}
+            hasBackdrop={true}
+            backdropColor={'green'}
+            onBackButtonPress={toggleModal}>
+            {alreadyFriend ? (
+              <Text>Already friend</Text>
+            ) : (
+              <View>
+                <Text>Kaveri lisätty!</Text>
+                <Image
+                  source={{uri: friendData?.photo}}
+                  style={{width: 50, height: 50, borderRadius: 100}}
+                />
+                <Text>{friendData.username}</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                  <Text>Takaisin kotiin</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </Modal>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

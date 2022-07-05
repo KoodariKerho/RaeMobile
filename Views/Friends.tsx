@@ -5,6 +5,7 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
@@ -98,63 +99,66 @@ export default ({navigation}: any): JSX.Element => {
 
   const {colors} = useTheme();
   return (
-    <View>
+    <SafeAreaView>
       <View>
-        {loading ? (
-          <ActivityIndicator size="large" color="#00ff00" />
-        ) : (
-          <View>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                borderBottomColor: '#ccc',
-                borderBottomWidth: 1,
-                padding: 20,
-              }}>
-              <TouchableOpacity onPress={() => navigation.navigate('QR')}>
-                <View style={{width: 100, alignItems: 'center'}}>
-                  <FontAwesomeIcon icon={faQrcode} size={30} color="#FFF" />
-                  <Text>Avaa sinun QR</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('QrReader')}>
-                <View style={{width: 100, alignItems: 'center'}}>
-                  <FontAwesomeIcon icon={faCamera} size={30} color="#FFF" />
-                  <Text>Skannaa QR</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => copyFriendLink()}>
-                <View style={{width: 100, alignItems: 'center'}}>
-                  <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
-                  <Text>Jaa kaverilinkki</Text>
-                </View>
-              </TouchableOpacity>
+        <View>
+          {loading ? (
+            <ActivityIndicator size="large" color="#00ff00" />
+          ) : (
+            <View>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  borderBottomColor: '#ccc',
+                  borderBottomWidth: 1,
+                  padding: 20,
+                }}>
+                <TouchableOpacity onPress={() => navigation.navigate('QR')}>
+                  <View style={{width: 100, alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faQrcode} size={30} color="#FFF" />
+                    <Text>Avaa sinun QR</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('QrReader')}>
+                  <View style={{width: 100, alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faCamera} size={30} color="#FFF" />
+                    <Text>Skannaa QR</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => copyFriendLink()}>
+                  <View style={{width: 100, alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
+                    <Text>Jaa kaverilinkki</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <FlatList
+                data={friends}
+                keyExtractor={item => item.attribute_values.id}
+                renderItem={FriendListItem}
+                ListEmptyComponent={() => (
+                  <View
+                    style={{
+                      flex: 1,
+                      marginTop: 20,
+                    }}>
+                    <Text style={styles.emptyText}>
+                      Sinulla ei ole vielä yhtään kavereita 🥺
+                    </Text>
+                    <Text style={styles.emptyText}>
+                      Lisää kaverisi klikkaamalla yläpuolelta olevaa painiketta
+                    </Text>
+                  </View>
+                )}
+              />
             </View>
-            <FlatList
-              data={friends}
-              keyExtractor={item => item.attribute_values.id}
-              renderItem={FriendListItem}
-              ListEmptyComponent={() => (
-                <View
-                  style={{
-                    flex: 1,
-                    marginTop: 20,
-                  }}>
-                  <Text style={styles.emptyText}>
-                    Sinulla ei ole vielä yhtään kavereita 🥺
-                  </Text>
-                  <Text style={styles.emptyText}>
-                    Lisää kaverisi klikkaamalla yläpuolelta olevaa painiketta
-                  </Text>
-                </View>
-              )}
-            />
-          </View>
-        )}
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

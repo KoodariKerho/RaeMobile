@@ -7,6 +7,7 @@ import {
   useColorScheme,
   Text,
   Linking,
+  SafeAreaView,
 } from 'react-native';
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
@@ -140,108 +141,72 @@ export default ({navigation}: any): JSX.Element => {
   const ticketUrl = 'https://kide.app/events/' + event.id;
 
   return (
-    <View style={{}}>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          style={{
-            width: width - 40,
-            height: height * 0.25 - 20,
-            borderRadius: 10,
-            marginTop: 10,
-          }}
-          source={{
-            uri: url,
-          }}
-        />
-      </View>
-      <View style={{alignItems: 'center', marginTop: 15}}>
-        <Text style={{color: colors.text, fontSize: 20}}>{event.name}</Text>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          marginTop: 30,
-          marginHorizontal: 20,
-          paddingTop: 10,
-          paddingBottom: 10,
-        }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#292828',
-            borderRadius: 10,
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            width: 100,
-          }}
-          onPress={() => intrestedInEvent()}>
-          <View
+    <SafeAreaView>
+      <View style={{}}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image
             style={{
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-            <FontAwesomeIcon icon={faStar} color={'white'} size={32} />
+              width: width - 40,
+              height: height * 0.25 - 20,
+              borderRadius: 10,
+              marginTop: 10,
+            }}
+            source={{
+              uri: url,
+            }}
+          />
+        </View>
+        <View style={{alignItems: 'center', marginTop: 15}}>
+          <Text style={{color: colors.text, fontSize: 20}}>{event.name}</Text>
+        </View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            marginTop: 30,
+            marginHorizontal: 20,
+            paddingTop: 10,
+            paddingBottom: 10,
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#292828',
+              borderRadius: 10,
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              width: 100,
+            }}
+            onPress={() => intrestedInEvent()}>
+            <View
+              style={{
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}>
+              <FontAwesomeIcon icon={faStar} color={'white'} size={32} />
 
-            <Text style={{color: colors.text}}>Intrested</Text>
-            <Text style={{color: colors.text, fontSize: 18}}>{interested}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#292828',
-            borderRadius: 10,
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            width: 100,
-          }}
-          onPress={() => attendToEvent()}>
-          <View style={{flexDirection: 'column', alignItems: 'center'}}>
-            <FontAwesomeIcon icon={faCheck} color={'white'} size={32} />
-            <Text style={{color: colors.text}}>Going</Text>
-            <Text style={{color: colors.text, fontSize: 18}}>{going}</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: 20,
-          marginLeft: 10,
-        }}>
-        <FontAwesomeIcon icon={faCalendar} color={colors.text} size={32} />
-        <Text
-          style={{
-            color: colors.text,
-            fontSize: 18,
-            marginLeft: 10,
-            alignSelf: 'flex-end',
-          }}>
-          {dateActualFrom}-{dateActualUntil}
-        </Text>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: 20,
-          marginLeft: 10,
-        }}>
-        <FontAwesomeIcon icon={faLocationDot} color={colors.text} size={32} />
-        <Text
-          style={{
-            color: colors.text,
-            fontSize: 18,
-            marginLeft: 10,
-            alignSelf: 'flex-end',
-          }}>
-          {event.place}
-        </Text>
-      </View>
-      <TouchableOpacity onPress={() => Linking.openURL(ticketUrl)}>
+              <Text style={{color: colors.text}}>Intrested</Text>
+              <Text style={{color: colors.text, fontSize: 18}}>
+                {interested}
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#292828',
+              borderRadius: 10,
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              width: 100,
+            }}
+            onPress={() => attendToEvent()}>
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <FontAwesomeIcon icon={faCheck} color={'white'} size={32} />
+              <Text style={{color: colors.text}}>Going</Text>
+              <Text style={{color: colors.text, fontSize: 18}}>{going}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
         <View
           style={{
             display: 'flex',
@@ -250,66 +215,108 @@ export default ({navigation}: any): JSX.Element => {
             marginTop: 20,
             marginLeft: 10,
           }}>
-          <FontAwesomeIcon icon={faTicket} color={colors.text} size={32} />
+          <FontAwesomeIcon icon={faCalendar} color={colors.text} size={32} />
           <Text
             style={{
               color: colors.text,
               fontSize: 18,
               marginLeft: 10,
               alignSelf: 'flex-end',
-              borderBottomColor: '#ccc',
-              borderBottomWidth: 1,
             }}>
-            Liput
+            {dateActualFrom}-{dateActualUntil}
           </Text>
         </View>
-      </TouchableOpacity>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 30,
-          marginHorizontal: 10,
-          padding: 10,
-        }}>
-        <View style={{width: 90}}>
-          <Text style={{color: colors.text, fontSize: 15}}>
-            Myynti käynnissä?
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 20,
+            marginLeft: 10,
+          }}>
+          <FontAwesomeIcon icon={faLocationDot} color={colors.text} size={32} />
+          <Text
+            style={{
+              color: colors.text,
+              fontSize: 18,
+              marginLeft: 10,
+              alignSelf: 'flex-end',
+            }}>
+            {event.place}
           </Text>
-          <View>
-            {event.salesOnGoing ? (
-              <Text style={{color: colors.text, fontSize: 18}}>Kyllä</Text>
-            ) : (
-              <Text
-                style={{
-                  color: colors.text,
-                  fontSize: 22,
-                  fontWeight: 'bold',
-                }}>
-                Ei
-              </Text>
-            )}
+        </View>
+        <TouchableOpacity onPress={() => Linking.openURL(ticketUrl)}>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 20,
+              marginLeft: 10,
+            }}>
+            <FontAwesomeIcon icon={faTicket} color={colors.text} size={32} />
+            <Text
+              style={{
+                color: colors.text,
+                fontSize: 18,
+                marginLeft: 10,
+                alignSelf: 'flex-end',
+                borderBottomColor: '#ccc',
+                borderBottomWidth: 1,
+              }}>
+              Liput
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 30,
+            marginHorizontal: 10,
+            padding: 10,
+          }}>
+          <View style={{width: 90}}>
+            <Text style={{color: colors.text, fontSize: 15}}>
+              Myynti käynnissä?
+            </Text>
+            <View>
+              {event.salesOnGoing ? (
+                <Text style={{color: colors.text, fontSize: 18}}>Kyllä</Text>
+              ) : (
+                <Text
+                  style={{
+                    color: colors.text,
+                    fontSize: 22,
+                    fontWeight: 'bold',
+                  }}>
+                  Ei
+                </Text>
+              )}
+            </View>
+          </View>
+          <View style={{width: 90}}>
+            <Text style={{color: colors.text, fontSize: 15}}>
+              Päiviä tapahtumaan
+            </Text>
+            <Text
+              style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>
+              {timeUntilActual}
+            </Text>
+          </View>
+          <View style={{width: 90}}>
+            <Text style={{color: colors.text, fontSize: 15}}>
+              Päiviä myynnin aloitukseen
+            </Text>
+            <Text
+              style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>
+              {timeUntilSalesStart}
+            </Text>
           </View>
         </View>
-        <View style={{width: 90}}>
-          <Text style={{color: colors.text, fontSize: 15}}>
-            Päiviä tapahtumaan
-          </Text>
-          <Text style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>
-            {timeUntilActual}
-          </Text>
-        </View>
-        <View style={{width: 90}}>
-          <Text style={{color: colors.text, fontSize: 15}}>
-            Päiviä myynnin aloitukseen
-          </Text>
-          <Text style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>
-            {timeUntilSalesStart}
-          </Text>
-        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };

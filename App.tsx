@@ -16,12 +16,12 @@ import EventDetails from './Views/EventDetails';
 import {useColorScheme} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import OwnEvents from './Views/OwnEvents';
-import {
-  faHome,
-  faCalendar,
-  faUserFriends,
-  faPerson,
-} from '@fortawesome/free-solid-svg-icons';
+
+import {faHome} from '@fortawesome/free-solid-svg-icons/faHome';
+import {faUserFriends} from '@fortawesome/free-solid-svg-icons/faUserFriends';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
+import {faPerson} from '@fortawesome/free-solid-svg-icons/faPerson';
+
 import Toast from 'react-native-toast-message';
 
 const DarkTheme = {

@@ -9,6 +9,7 @@ import {
   Text,
   TextInput,
   Pressable,
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Event} from '../models/types';
@@ -150,53 +151,55 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   return (
-    <View>
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        placeholder="Valitse kaupunki"
-        placeholderStyle={{
-          color: 'black',
-          fontWeight: 'bold',
-        }}
-        style={{width: width * 0.8, margin: 10, alignSelf: 'center'}}
-      />
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}>
-        <TextInput
-          style={styles.input}
-          onChangeText={e => {
-            setSearch(e);
-            filterEvents();
-          }}
-          value={search}
-          placeholder="Haku"
-          selectTextOnFocus={true}
-          maxLength={20}
-        />
-      </View>
+    <SafeAreaView>
       <View>
-        {loading ? (
-          <ActivityIndicator size="large" color="#00ff00" />
-        ) : (
-          <View>
-            <FlatList
-              data={searchEvents}
-              keyExtractor={item => item.event_id}
-              renderItem={EventListItem}
-            />
-          </View>
-        )}
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          placeholder="Valitse kaupunki"
+          placeholderStyle={{
+            color: 'black',
+            fontWeight: 'bold',
+          }}
+          style={{width: width * 0.8, margin: 10, alignSelf: 'center'}}
+        />
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+          }}>
+          <TextInput
+            style={styles.input}
+            onChangeText={e => {
+              setSearch(e);
+              filterEvents();
+            }}
+            value={search}
+            placeholder="Haku"
+            selectTextOnFocus={true}
+            maxLength={20}
+          />
+        </View>
+        <View>
+          {loading ? (
+            <ActivityIndicator size="large" color="#00ff00" />
+          ) : (
+            <View>
+              <FlatList
+                data={searchEvents}
+                keyExtractor={item => item.event_id}
+                renderItem={EventListItem}
+              />
+            </View>
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

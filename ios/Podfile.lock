@@ -381,7 +381,7 @@ PODS:
     - React-Core
   - RNPermissions (3.3.1):
     - React-Core
-  - RNScreens (3.13.1):
+  - RNScreens (3.14.1):
     - React-Core
     - React-RCTImage
   - RNSVG (12.3.0):
@@ -592,10 +592,10 @@ SPEC CHECKSUMS:
   RNFBStorage: 207bbdbc7a39a19ded5e0953710de21fa9d4fa56
   RNGoogleSignin: d7f8368b82d94f1dec964785d496387ca7f19092
   RNPermissions: 34d678157c800b25b22a488e4d8babb57456e796
-  RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
+  RNScreens: aa9a97835afbbdc18a4757870b2b59b7d9fae16a
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   Yoga: 17cd9a50243093b547c1e539c749928dd68152da
 
-PODFILE CHECKSUM: 2af5ddd466a11003a94a5f564a27ace5eb71a3b3
+PODFILE CHECKSUM: a9cfef0aefa8dc0d06d84594560e4013def95c24
 
 COCOAPODS: 1.11.3

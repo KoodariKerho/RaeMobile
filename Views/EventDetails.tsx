@@ -53,15 +53,20 @@ export default ({navigation}: any): JSX.Element => {
     let unmounted = false;
     const getIntrestedAndGoing = async () => {
       const getUrl = `https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/event_attendees_and_interested/${event.id}`;
-      const response = await fetch(getUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setIntrested(data.total_intrested);
-      setGoing(data.total_attendees);
+      try {
+        const response = await fetch(getUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setIntrested(data.total_intrested);
+        setGoing(data.total_attendees);
+      } catch (error) {
+        console.log(error);
+        showToast("Couldn't get event attendees and interested", 'error');
+      }
     };
     if (!unmounted) {
       getIntrestedAndGoing();
@@ -97,6 +102,7 @@ export default ({navigation}: any): JSX.Element => {
         setGoing(going + 1);
       }
     } catch (error) {
+      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };
@@ -126,6 +132,7 @@ export default ({navigation}: any): JSX.Element => {
         setIntrested(interested + 1);
       }
     } catch (error) {
+      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };

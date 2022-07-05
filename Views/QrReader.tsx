@@ -11,6 +11,7 @@ import {useAppSelector} from '../hooks';
 import Modal from 'react-native-modal';
 import {useTheme} from '@react-navigation/native';
 import Text from '../Components/CustomText';
+import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
@@ -31,15 +32,21 @@ export default ({navigation}: any): JSX.Element => {
     const url =
       'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
       friendId;
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    setFriend(data.attribute_values);
-    return data;
+    try {
+      console.log('url', url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      setFriend(data.attribute_values);
+      return data;
+    } catch (e) {
+      console.log(e);
+      showToast('Error getting user data', 'error');
+    }
   };
 
   const addFriend = async (friendId: string) => {
@@ -48,18 +55,24 @@ export default ({navigation}: any): JSX.Element => {
       user.uid +
       '/' +
       friendId;
-    const response = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    //This status code is harcoded in the backend :D for luls
-    if (data.status_code === 418) {
-      return true;
+    try {
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+
+      //This status code is harcoded in the backend :D for luls
+      if (data.status_code === 418) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      console.log(e);
+      showToast('Error adding friend', 'error');
     }
-    return false;
     //Show toast if succes and if error
   };
 

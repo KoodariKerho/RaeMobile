@@ -23,19 +23,24 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/update-user/' +
         user.uid;
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: user.uid,
-          username: username,
-          email: user.email,
-          photo: user.photo,
-        }),
-      });
-      const data = await response.json();
+      try {
+        const response = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: user.uid,
+            username: username,
+            email: user.email,
+            photo: user.photo,
+          }),
+        });
+        const data = await response.json();
+      } catch (e) {
+        console.log(e);
+        showToast('Error updating user', 'error');
+      }
       if (data.status_code !== 200) {
         showToast('Cannot update username', 'error');
       } else {

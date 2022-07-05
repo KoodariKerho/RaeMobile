@@ -55,9 +55,7 @@ export default ({navigation}: any): JSX.Element => {
 
   useEffect(() => {
     let unmounted = false;
-    console.log('useEffect');
     const getAllEvents = async () => {
-      console.log('getAllEvents');
       setLoading(true);
       try {
         const url =

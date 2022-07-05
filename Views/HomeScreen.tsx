@@ -15,27 +15,37 @@ import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {useTheme} from '@react-navigation/native';
 import {changeEvent} from '../features/eventSlice';
+import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
   const [friendsEvents, setFriendsEvents] = useState([]);
+  const [refreshing, setRefreshing] = useState(true);
 
   const {colors} = useTheme();
   useEffect(() => {
     let unmounted = false;
     const getFriendEvents = async () => {
+      setRefreshing(true);
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/friends-events/' +
         user.uid;
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setFriendsEvents(data.reverse());
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setFriendsEvents(data.reverse());
+        setRefreshing(false);
+      } catch (e) {
+        console.log(e);
+        showToast('Error fetching events', 'error');
+        setRefreshing(false);
+      }
     };
     if (!unmounted) {
       getFriendEvents();

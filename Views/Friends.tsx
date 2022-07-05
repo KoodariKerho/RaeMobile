@@ -5,6 +5,11 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
+<<<<<<< Updated upstream
+=======
+  SafeAreaView,
+  RefreshControl,
+>>>>>>> Stashed changes
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
@@ -25,12 +30,14 @@ export default ({navigation}: any): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [linkShown, setLinkShown] = useState(false);
   const user = useAppSelector(state => state.user.value);
+  const [refreshing, setRefreshing] = useState(true);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     let unmounted = false;
 
     const getAllFriends = async () => {
+      setRefreshing(true);
       setLoading(true);
       if (friends === null || friends === undefined) {
         try {
@@ -50,6 +57,7 @@ export default ({navigation}: any): JSX.Element => {
         }
       }
       setLoading(false);
+      setRefreshing(false);
     };
     if (!unmounted) {
       getAllFriends();
@@ -108,6 +116,7 @@ export default ({navigation}: any): JSX.Element => {
 
   const {colors} = useTheme();
   return (
+<<<<<<< Updated upstream
     <View>
       <View>
         {loading ? (
@@ -141,6 +150,65 @@ export default ({navigation}: any): JSX.Element => {
                   <Text>Jaa kaverilinkki</Text>
                 </View>
               </TouchableOpacity>
+=======
+    <SafeAreaView>
+      {refreshing ? <ActivityIndicator /> : null}
+      <View>
+        <View>
+          {loading ? (
+            <ActivityIndicator size="large" color="#00ff00" />
+          ) : (
+            <View>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  borderBottomColor: '#ccc',
+                  borderBottomWidth: 1,
+                  padding: 20,
+                }}>
+                <TouchableOpacity onPress={() => navigation.navigate('QR')}>
+                  <View style={{width: 100, alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faQrcode} size={30} color="#FFF" />
+                    <Text>Avaa sinun QR</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('QrReader')}>
+                  <View style={{width: 100, alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faCamera} size={30} color="#FFF" />
+                    <Text>Skannaa QR</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => copyFriendLink()}>
+                  <View style={{width: 100, alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
+                    <Text>Jaa kaverilinkki</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <FlatList
+                data={friends}
+                keyExtractor={item => item.attribute_values.id}
+                renderItem={FriendListItem}
+                refreshControl={<RefreshControl refreshing={refreshing} />}
+                ListEmptyComponent={() => (
+                  <View
+                    style={{
+                      flex: 1,
+                      marginTop: 20,
+                    }}>
+                    <Text style={styles.emptyText}>
+                      Sinulla ei ole vielä yhtään kavereita 🥺
+                    </Text>
+                    <Text style={styles.emptyText}>
+                      Lisää kaverisi klikkaamalla yläpuolelta olevaa painiketta
+                    </Text>
+                  </View>
+                )}
+              />
+>>>>>>> Stashed changes
             </View>
             {linkShown ? (
               <Text style={{color: 'white', fontSize: 22}}>{friendLink}</Text>

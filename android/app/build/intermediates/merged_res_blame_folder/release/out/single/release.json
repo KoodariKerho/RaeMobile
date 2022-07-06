@@ -36,16 +36,24 @@
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
     },
     {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-ldpi_ic_launcher.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-ldpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_tick.png.flat",
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_tick.png"
     },
     {
-        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
-    },
-    {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     },
     {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
@@ -64,6 +72,14 @@
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },
@@ -80,8 +96,16 @@
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowup.png.flat",
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowup.png"
+    },
+    {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowdown.png.flat",
@@ -92,12 +116,20 @@
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
     {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/drawable-mdpi_pics_google_signin_light.png.flat",
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/generated/res/react/release/drawable-mdpi/pics_google_signin_light.png"
     },
     {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "/Users/jonijuntto/projects/omat/RaeMobile/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_close.png.flat",

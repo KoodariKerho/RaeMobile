@@ -63,3 +63,11 @@ export interface Friends {
 export interface Language {
   language: string;
 }
+
+export interface CommentItem {
+  comment: string;
+  photo: string;
+  userId: string;
+  username: string;
+  item: any;
+}

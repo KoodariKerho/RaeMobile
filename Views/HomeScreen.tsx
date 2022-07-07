@@ -17,7 +17,7 @@ import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {changeEvent} from '../features/eventSlice';
-import {CommentItem} from '../models/types';
+import {faTaxi} from '@fortawesome/free-solid-svg-icons';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -26,9 +26,10 @@ export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
   const [friendsEvents, setFriendsEvents] = useState([]);
-  const [comment, setComment] = useState('');
 
   useEffect(() => {
+    console.log('user');
+    console.log(user);
     let unmounted = false;
     const getFriendEvents = async () => {
       const url =
@@ -50,7 +51,7 @@ export default ({navigation}: any): JSX.Element => {
     return () => {
       unmounted = true;
     };
-  }, [user.uid]);
+  }, [user.uid, user]);
 
   const goToFriendProfile = (friend: Friend) => {
     dispatch(changeFriend(friend));
@@ -62,13 +63,25 @@ export default ({navigation}: any): JSX.Element => {
     navigation.navigate('Eventdetails');
   };
 
-  const postComment = async post => {
-    const awsPostUrl =
-      'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/post-comment/' +
-      post.user.attribute_values.id +
-      '/' +
-      post.event.id;
+  const postComment = async (post, comment, setComment) => {
     try {
+      const url2 =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
+        user.uid;
+      const responseUser = await fetch(url2, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const dataUser = await responseUser.json();
+
+      const awsPostUrl =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/post-comment/' +
+        post.user.attribute_values.id +
+        '/' +
+        post.event.id;
+
       const response = await fetch(awsPostUrl, {
         method: 'POST',
         headers: {
@@ -76,8 +89,8 @@ export default ({navigation}: any): JSX.Element => {
         },
         body: JSON.stringify({
           comment: comment,
-          username: user.username,
-          photo: user.photo,
+          username: dataUser.attribute_values.username,
+          photo: dataUser.attribute_values.photo,
           userId: user.uid,
         }),
       });
@@ -97,6 +110,8 @@ export default ({navigation}: any): JSX.Element => {
     const [commentCount, setCommentCount] = useState(0);
     const [toggleText, setToggleText] = useState('Näytä kaikki kommentit');
     const [commentersText, setCommentersText] = useState<string>('');
+    const [comment, setComment] = useState<string>('');
+    const [sendCount, setSendCount] = useState(0);
     useEffect(() => {
       let unmounted = false;
       const getComments = async post => {
@@ -131,7 +146,7 @@ export default ({navigation}: any): JSX.Element => {
       return () => {
         unmounted = true;
       };
-    }, [post]);
+    }, [post, sendCount]);
     return (
       <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
         <View style={styles.mainContainer}>
@@ -206,16 +221,22 @@ export default ({navigation}: any): JSX.Element => {
                   }}>
                   <TextInput
                     style={styles.comment}
-                    placeholder="Comment"
-                    placeholderTextColor="#fff"
-                    underlineColorAndroid="transparent"
-                    onChangeText={text => setComment(text)}
-                    value={comment}
+                    onChangeText={e => {
+                      setComment(e);
+                      console.log(e);
+                    }}
+                    placeholder="Kommentoi"
+                    placeholderTextColor="white"
+                    returnKeyType="send"
+                    onSubmitEditing={() =>
+                      postComment(post, comment, setComment)
+                    }
                   />
                   <TouchableOpacity
                     onPress={() => {
-                      postComment(post);
+                      postComment(post, comment, setComment);
                       console.log(post);
+                      setSendCount(sendCount + 1);
                     }}
                     style={styles.sendButton}>
                     <Text style={{color: 'white'}}>Lähetä</Text>
@@ -224,18 +245,27 @@ export default ({navigation}: any): JSX.Element => {
                 <FlatList
                   data={comments}
                   renderItem={({item}: any) => (
-                    <View>
-                      <Image
-                        style={styles.profilepic}
-                        source={{uri: item.photo}}
-                      />
-
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        borderColor: '#4a4949',
+                        borderWidth: 1,
+                        margin: 3,
+                        padding: 7,
+                      }}>
+                      <View>
+                        <Image
+                          style={styles.profilepic}
+                          source={{uri: item.photo}}
+                        />
+                        <Text>{item.username}</Text>
+                      </View>
                       <View style={styles.justifycenter}>
                         <Text style={styles.userText}>{item.comment}</Text>
                       </View>
                     </View>
                   )}
-                  keyExtractor={item => item}
+                  keyExtractor={item => item.comment}
                 />
               </View>
             )}
@@ -345,9 +375,11 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   userText: {
-    fontSize: 18,
+    fontSize: 14,
     color: '#FFF',
-    fontWeight: 'bold',
+    width: width * 0.7,
+    marginLeft: 5,
+    marginRight: 5,
   },
   timestampText: {
     fontSize: 13,
@@ -364,7 +396,7 @@ const styles = StyleSheet.create({
     width: width - 40,
     fontSize: 16,
   },
-  justifycenter: {justifyContent: 'center'},
+  justifycenter: {justifyContent: 'center', alignSelf: 'center'},
   profilepic: {
     width: 50,
     height: 50,

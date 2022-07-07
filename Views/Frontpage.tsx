@@ -45,6 +45,7 @@ export default ({navigation}: any): JSX.Element => {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(data => {
+        console.log(data.user);
         dispatch(
           changeUser({
             uid: data.user.uid,
@@ -71,6 +72,8 @@ export default ({navigation}: any): JSX.Element => {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(data => {
+        console.log('HEEREE');
+        console.log(data.user);
         const url =
           'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
           data.user.uid;
@@ -89,6 +92,7 @@ export default ({navigation}: any): JSX.Element => {
             posts: [],
           }),
         });
+        console.log(username);
         dispatch(
           changeUser({
             uid: data.user.uid,

@@ -24,17 +24,22 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/update-user/' +
         user.uid;
+      console.log(url);
+      const body = JSON.stringify({
+        id: user.uid,
+        username: username,
+        email: user.email,
+        photo: user.photo,
+        friends: user.friends,
+        posts: user.posts,
+      });
+      console.log(body);
       const response = await fetch(url, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          id: user.uid,
-          username: username,
-          email: user.email,
-          photo: user.photo,
-        }),
+        body: body,
       });
       const data = await response.json();
       if (data.status_code !== 200) {
@@ -44,6 +49,7 @@ export default ({navigation}: any): JSX.Element => {
       }
     } catch (error) {
       showToast('Something went wrong', 'error');
+      console.log(error);
     }
   };
   return (

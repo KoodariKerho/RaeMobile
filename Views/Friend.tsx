@@ -21,7 +21,6 @@ const height = Dimensions.get('window').height;
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   const friend = useAppSelector(state => state.friend.value);
-  console.log(friend);
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -41,7 +40,6 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
-      console.log(data);
       setEvents(data);
       setLoading(false);
     };

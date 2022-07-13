@@ -108,7 +108,6 @@ export default ({navigation}: any): JSX.Element => {
     const [isFetching, setIsFetching] = useState(false);
 
     const getComments = async post => {
-      console.log(post);
       const awsUrl =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/get-comments/' +
         post.user.attribute_values.id +
@@ -124,7 +123,7 @@ export default ({navigation}: any): JSX.Element => {
         const data = await response.json();
         setComments(data);
         setCommentCount(data.length);
-        setCommentersText(data.length + ' kommentoinut');
+        setCommentersText(data.length + ' kommenttia');
       } catch (e) {
         console.log(e);
         setComments([]);
@@ -196,16 +195,16 @@ export default ({navigation}: any): JSX.Element => {
           </TouchableOpacity>
           <View style={{flexDirection: 'row'}}>
             <View>
-              <Text style={{color: 'white', marginTop: 20}}>
-                {commentersText}
-              </Text>
-              <Pressable
+              <TouchableOpacity
                 onPress={() => {
                   setShowComments(!showComments);
                   setToggleText('Piilota kommentit');
                 }}>
+                <Text style={{color: 'white', marginTop: 20}}>
+                  {commentersText}
+                </Text>
                 <Text style={{color: 'white'}}>{toggleText}</Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
             <TouchableOpacity
               onPress={() => setShowComments(!showComments)}
@@ -268,12 +267,18 @@ export default ({navigation}: any): JSX.Element => {
                         margin: 3,
                         padding: 7,
                       }}>
-                      <View>
+                      <View
+                        style={{
+                          alignContent: 'center',
+                          justifyContent: 'center',
+                        }}>
                         <Image
                           style={styles.profilepic}
                           source={{uri: item.photo}}
                         />
-                        <Text>{item.username}</Text>
+                        <Text style={{color: 'white', alignSelf: 'center'}}>
+                          {item.username}
+                        </Text>
                       </View>
                       <View style={styles.justifycenter}>
                         <Text style={styles.userText}>{item.comment}</Text>

@@ -115,7 +115,6 @@ export default ({navigation}: any): JSX.Element => {
         if (error.code === 'auth/invalid-email') {
           showToast('That email address is invalid!', 'error');
         }
-        console.error(error);
       });
   };
 

@@ -56,9 +56,7 @@ export default ({navigation}: any): JSX.Element => {
 
   useEffect(() => {
     let unmounted = false;
-    console.log('useEffect');
     const getAllEvents = async () => {
-      console.log('getAllEvents');
       setLoading(true);
       try {
         const url =
@@ -73,10 +71,8 @@ export default ({navigation}: any): JSX.Element => {
         const data = await response.json();
         setEvents(data);
         setSearchEvents(data);
-        console.log(data);
       } catch (error) {
         setLoading(false);
-        console.log(error);
       }
 
       setLoading(false);

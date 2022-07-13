@@ -42,7 +42,6 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
-      console.log(data);
       setEvents(data);
       setLoading(false);
     };
@@ -70,8 +69,6 @@ export default ({navigation}: any): JSX.Element => {
         'Content-Type': 'application/json',
       },
     });
-    console.log(response);
-    //delete event from events array
     const newEvents = events.filter(e => e.id !== event);
     setEvents(newEvents);
   };

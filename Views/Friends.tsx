@@ -45,7 +45,6 @@ export default ({navigation}: any): JSX.Element => {
           });
           const data = await response.json();
           setFriends(data.reverse());
-          console.log(data);
         } catch (error) {
           setLoading(false);
         }

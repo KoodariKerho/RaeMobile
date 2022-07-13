@@ -17,7 +17,7 @@ import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {changeEvent} from '../features/eventSlice';
-import {faTaxi} from '@fortawesome/free-solid-svg-icons';
+import {changeUser} from '../features/userSlice';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -28,8 +28,6 @@ export default ({navigation}: any): JSX.Element => {
   const [friendsEvents, setFriendsEvents] = useState([]);
 
   useEffect(() => {
-    console.log('user');
-    console.log(user);
     let unmounted = false;
     const getFriendEvents = async () => {
       const url =
@@ -42,7 +40,6 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
-      console.log(data);
       setFriendsEvents(data.reverse());
     };
     if (!unmounted) {
@@ -63,7 +60,7 @@ export default ({navigation}: any): JSX.Element => {
     navigation.navigate('Eventdetails');
   };
 
-  const postComment = async (post, comment, setComment) => {
+  const postComment = async (post, comment) => {
     try {
       const url2 =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
@@ -82,7 +79,7 @@ export default ({navigation}: any): JSX.Element => {
         '/' +
         post.event.id;
 
-      const response = await fetch(awsPostUrl, {
+      await fetch(awsPostUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,12 +91,8 @@ export default ({navigation}: any): JSX.Element => {
           userId: user.uid,
         }),
       });
-      const data = await response.json();
-      console.log(data);
-      setComment('');
     } catch (error) {
       console.log(error);
-      setComment('');
     }
   };
 
@@ -112,85 +105,95 @@ export default ({navigation}: any): JSX.Element => {
     const [commentersText, setCommentersText] = useState<string>('');
     const [comment, setComment] = useState<string>('');
     const [sendCount, setSendCount] = useState(0);
+    const [isFetching, setIsFetching] = useState(false);
+
+    const getComments = async post => {
+      console.log(post);
+      const awsUrl =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/get-comments/' +
+        post.user.attribute_values.id +
+        '/' +
+        post.event.id;
+      try {
+        const response = await fetch(awsUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setComments(data);
+        setCommentCount(data.length);
+        setCommentersText(data.length + ' kommentoinut');
+      } catch (e) {
+        console.log(e);
+        setComments([]);
+        setCommentCount(0);
+      }
+    };
+
     useEffect(() => {
       let unmounted = false;
-      const getComments = async post => {
-        console.log(post);
-        const awsUrl =
-          'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/get-comments/' +
-          post.user.attribute_values.id +
-          '/' +
-          post.event.id;
-        try {
-          const response = await fetch(awsUrl, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          console.log(response);
-          const data = await response.json();
-          console.log(data);
-          setComments(data.reverse());
-          setCommentCount(data.length);
-          setCommentersText(data.length + ' kommentoinut');
-        } catch (e) {
-          console.log(e);
-          setComments([]);
-          setCommentCount(0);
-        }
-      };
       if (!unmounted) {
         getComments(post);
       }
       return () => {
         unmounted = true;
       };
-    }, [post, sendCount]);
+    }, [post]);
+
+    const onRefresh = async () => {
+      setIsFetching(true);
+      await getComments(post);
+      setIsFetching(false);
+    };
+
     return (
-      <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
+      <View>
         <View style={styles.mainContainer}>
-          <View>
+          <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
             <View>
-              <TouchableOpacity
-                onPress={() => goToFriendProfile(post.user.attribute_values)}>
-                <View style={styles.flexrow}>
-                  <Image
-                    style={styles.profilepic}
-                    source={{uri: post.user.attribute_values.photo}}
-                  />
-                  <View style={styles.justifycenter}>
-                    <Text style={styles.userText}>
-                      {post.user.attribute_values.username}
-                    </Text>
-                    <Text style={styles.timestampText}>18.05.22</Text>
+              <View>
+                <TouchableOpacity
+                  onPress={() => goToFriendProfile(post.user.attribute_values)}>
+                  <View style={styles.flexrow}>
+                    <Image
+                      style={styles.profilepic}
+                      source={{uri: post.user.attribute_values.photo}}
+                    />
+                    <View style={styles.justifycenter}>
+                      <Text style={styles.userText}>
+                        {post.user.attribute_values.username}
+                      </Text>
+                      <Text style={styles.timestampText}>18.05.22</Text>
+                    </View>
                   </View>
+                </TouchableOpacity>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'column'}}>
+                <Text style={styles.eventName}>{post.event.name}</Text>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginBottom: 10,
+                  }}>
+                  <Text style={styles.descText}>{post.event.companyName}</Text>
+                  <Text style={styles.descText}> @ {post.event.place}</Text>
                 </View>
-              </TouchableOpacity>
-            </View>
-            <View style={{display: 'flex', flexDirection: 'column'}}>
-              <Text style={styles.eventName}>{post.event.name}</Text>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  marginBottom: 10,
-                }}>
-                <Text style={styles.descText}>{post.event.companyName}</Text>
-                <Text style={styles.descText}> @ {post.event.place}</Text>
               </View>
             </View>
-          </View>
 
-          <View style={{alignItems: 'center'}}>
-            <Image
-              style={styles.eventpic}
-              source={{
-                uri: url,
-              }}
-            />
-          </View>
+            <View style={{alignItems: 'center'}}>
+              <Image
+                style={styles.eventpic}
+                source={{
+                  uri: url,
+                }}
+              />
+            </View>
+          </TouchableOpacity>
           <View style={{flexDirection: 'row'}}>
             <View>
               <Text style={{color: 'white', marginTop: 20}}>
@@ -201,13 +204,13 @@ export default ({navigation}: any): JSX.Element => {
                   setShowComments(!showComments);
                   setToggleText('Piilota kommentit');
                 }}>
-                <Text>{toggleText}</Text>
+                <Text style={{color: 'white'}}>{toggleText}</Text>
               </Pressable>
             </View>
             <TouchableOpacity
               onPress={() => setShowComments(!showComments)}
               style={{position: 'absolute', bottom: 10, right: 15}}>
-              <Text>Kommentoi</Text>
+              <Text style={{color: 'white'}}>Kommentoi</Text>
             </TouchableOpacity>
           </View>
           <View>
@@ -228,15 +231,24 @@ export default ({navigation}: any): JSX.Element => {
                     placeholder="Kommentoi"
                     placeholderTextColor="white"
                     returnKeyType="send"
-                    onSubmitEditing={() =>
-                      postComment(post, comment, setComment)
-                    }
+                    onSubmitEditing={() => postComment(post, comment)}
+                    value={comment}
                   />
                   <TouchableOpacity
                     onPress={() => {
-                      postComment(post, comment, setComment);
-                      console.log(post);
+                      postComment(post, comment);
+                      setComment('');
                       setSendCount(sendCount + 1);
+                      var newArray = [
+                        ...comments,
+                        {
+                          comment: comment,
+                          username: user.username,
+                          photo: user.photo,
+                          userId: user.uid,
+                        },
+                      ];
+                      setComments(newArray);
                     }}
                     style={styles.sendButton}>
                     <Text style={{color: 'white'}}>Lähetä</Text>
@@ -244,6 +256,9 @@ export default ({navigation}: any): JSX.Element => {
                 </View>
                 <FlatList
                   data={comments}
+                  extraData={comments}
+                  onRefresh={onRefresh}
+                  refreshing={isFetching}
                   renderItem={({item}: any) => (
                     <View
                       style={{
@@ -271,7 +286,7 @@ export default ({navigation}: any): JSX.Element => {
             )}
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   };
 

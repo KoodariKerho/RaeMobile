@@ -42,25 +42,28 @@ export default ({navigation}: any): JSX.Element => {
       showToast('Please enter email and password', 'error');
       return;
     }
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(data => {
-        console.log(data.user);
-        dispatch(
-          changeUser({
-            uid: data.user.uid,
-            username: data.user.displayName,
-            email: data.user.email,
-            photo: data.user.photoURL,
-            friends: [],
-            posts: [],
-          }),
-        );
-        navigation.navigate('AppTabs');
-      })
-      .catch(error => {
-        showToast('Invalid username or password', 'error');
-      });
+    const data = await auth().signInWithEmailAndPassword(email, password);
+    const url =
+      'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
+      data.user.uid;
+    const responseUser = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const dataUser = await responseUser.json();
+    dispatch(
+      changeUser({
+        uid: data.user.uid,
+        username: dataUser.attribute_values.username,
+        email: data.user.email,
+        photo: dataUser.attribute_values.photo,
+        friends: [],
+        posts: [],
+      }),
+    );
+    navigation.navigate('AppTabs');
   };
 
   const signInWithEmailAndPassword = async () => {
@@ -72,8 +75,6 @@ export default ({navigation}: any): JSX.Element => {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(data => {
-        console.log('HEEREE');
-        console.log(data.user);
         const url =
           'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
           data.user.uid;
@@ -92,7 +93,6 @@ export default ({navigation}: any): JSX.Element => {
             posts: [],
           }),
         });
-        console.log(username);
         dispatch(
           changeUser({
             uid: data.user.uid,
@@ -149,7 +149,7 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
         firebaseUserCredential.user.uid;
-      const response = await fetch(url, {
+      await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

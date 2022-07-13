@@ -16,7 +16,6 @@ import showToast from '../utils/toaster';
 export default ({navigation}: any): JSX.Element => {
   const user = useAppSelector(state => state.user.value);
   const [username, setUsername] = useState(user.username);
-
   const {colors} = useTheme();
 
   const updateUserData = async () => {
@@ -24,7 +23,6 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/update-user/' +
         user.uid;
-      console.log(url);
       const body = JSON.stringify({
         id: user.uid,
         username: username,
@@ -74,7 +72,6 @@ export default ({navigation}: any): JSX.Element => {
             selectTextOnFocus={true}
             autoComplete={'username'}
             maxLength={20}
-            onKeyPress={() => updateUserData()}
           />
         </View>
         <TouchableOpacity

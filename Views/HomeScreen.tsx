@@ -8,20 +8,23 @@ import {
   Dimensions,
   Text,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {useAppSelector} from '../hooks';
-import {useAppDispatch} from '../hooks';
-import {changeFriend} from '../features/friendSlice';
-import {Friend} from '../models/types';
-import {useTheme} from '@react-navigation/native';
-import {changeEvent} from '../features/eventSlice';
+import React, { useState, useEffect } from 'react';
+import { useAppSelector } from '../hooks';
+import { useAppDispatch } from '../hooks';
+import { changeFriend } from '../features/friendSlice';
+import { Friend } from '../models/types';
+import { useTheme } from '@react-navigation/native';
+import { changeEvent } from '../features/eventSlice';
+import { changeUser } from '../features/userSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default ({navigation}: any): JSX.Element => {
+export default ({ navigation }: any): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
   const [friendsEvents, setFriendsEvents] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   useEffect(() => {
     let unmounted = false;
     const getFriendEvents = async () => {
@@ -45,6 +48,48 @@ export default ({navigation}: any): JSX.Element => {
     };
   }, [user.uid]);
 
+  const storeData = async value => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@storage_Key', jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateUserData = async () => {
+    console.log('updateUserData');
+    console.log(user.uid);
+    try {
+      const url =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' + user.uid;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      const userJson = {
+        uid: data.attribute_values.id,
+        username: data.attribute_values.username,
+        email: data.attribute_values.email,
+        photo: data.attribute_values.photo,
+        posts: data.attribute_values.posts,
+        friends: data.attribute_values.friends,
+      };
+      console.log(userJson);
+      dispatch(changeUser(userJson));
+      storeData(userJson);
+      setRefreshing(false);
+    } catch (error) {
+      console.log(error);
+      setRefreshing(false);
+    }
+
+  };
+
   const goToFriendProfile = (friend: Friend) => {
     dispatch(changeFriend(friend));
     navigation.navigate('Friend');
@@ -58,7 +103,7 @@ export default ({navigation}: any): JSX.Element => {
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
 
-  const Item = ({post}) => {
+  const Item = ({ post }) => {
     const url = `https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/${post.event.mediaFilename}`;
     return (
       <TouchableOpacity onPress={() => goToEventDetails(post.event)}>
@@ -98,9 +143,9 @@ export default ({navigation}: any): JSX.Element => {
                       borderRadius: 25,
                       margin: 5,
                     }}
-                    source={{uri: post.user.attribute_values.photo}}
+                    source={{ uri: post.user.attribute_values.photo }}
                   />
-                  <View style={{justifyContent: 'center'}}>
+                  <View style={{ justifyContent: 'center' }}>
                     <Text style={styles.userText}>
                       {post.user.attribute_values.username}
                     </Text>
@@ -109,7 +154,7 @@ export default ({navigation}: any): JSX.Element => {
                 </View>
               </TouchableOpacity>
             </View>
-            <View style={{display: 'flex', flexDirection: 'column'}}>
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
               <Text
                 style={{
                   fontWeight: 'bold',
@@ -135,7 +180,7 @@ export default ({navigation}: any): JSX.Element => {
               </View>
             </View>
           </View>
-          <View style={{alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <Image
               style={{
                 width: width - 40,
@@ -152,7 +197,7 @@ export default ({navigation}: any): JSX.Element => {
     );
   };
 
-  const renderItem = ({item}) => <Item post={item} />;
+  const renderItem = ({ item }) => <Item post={item} />;
 
   return (
     <View style={styles.container}>
@@ -186,6 +231,12 @@ export default ({navigation}: any): JSX.Element => {
                 <Text style={styles.headerText}>Kavereiden tapahtumat</Text>
               </View>
             )}
+            refreshing={refreshing}
+            onRefresh={() => {
+              setRefreshing(true);
+              updateUserData();
+            }
+            }
           />
         </SafeAreaView>
       </View>

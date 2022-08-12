@@ -8,9 +8,11 @@ import {
   Text,
   Dimensions,
   SafeAreaView,
+  Platform,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {appleAuth} from '@invertase/react-native-apple-authentication';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import Modal from 'react-native-modal';
 import {useAppDispatch} from '../hooks';
@@ -19,6 +21,7 @@ import {useTheme} from '@react-navigation/native';
 import showToast from '../utils/toaster';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AppleButton} from '@invertase/react-native-apple-authentication';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
@@ -243,11 +246,9 @@ export default ({navigation}: any): JSX.Element => {
         dispatch(changeUser(user));
         navigation.navigate('AppTabs');
       }
-
-      // this needs to be different, could be returning user... dispatch(changeUser(user));
       setLoading(false);
 
-      /* navigation.navigate('AppTabs'); */
+      navigation.navigate('AppTabs');
     } catch (error) {
       console.log(error);
       showToast('Unexpected error in Google login', 'error');
@@ -262,6 +263,36 @@ export default ({navigation}: any): JSX.Element => {
       </TouchableOpacity>
     );
   };
+
+  async function onAppleButtonPress() {
+    try {
+      // Start the sign-in request
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+      });
+
+      console.log('appleAuthRequestResponse', appleAuthRequestResponse);
+
+      // Ensure Apple returned a user identityToken
+      if (!appleAuthRequestResponse.identityToken) {
+        throw new Error('Apple Sign-In failed - no identify token returned');
+      }
+
+      // Create a Firebase credential from the response
+      const {identityToken, nonce} = appleAuthRequestResponse;
+      const appleCredential = auth.AppleAuthProvider.credential(
+        identityToken,
+        nonce,
+      );
+
+      // Sign the user in with the credential
+      const signAut = auth().signInWithCredential(appleCredential);
+      console.log('signAut', signAut);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const height = Dimensions.get('window').height;
 
@@ -342,6 +373,23 @@ export default ({navigation}: any): JSX.Element => {
                   onPress={() => signInWithGoogle()}>
                   <Image source={require('../pics/google_signin_light.png')} />
                 </TouchableOpacity>
+                <View>
+                  {Platform.OS === 'ios' && (
+                    <AppleButton
+                      buttonStyle={AppleButton.Style.WHITE}
+                      buttonType={AppleButton.Type.SIGN_IN}
+                      style={{
+                        width: 160,
+                        height: 45,
+                      }}
+                      onPress={() =>
+                        onAppleButtonPress().then(() =>
+                          navigation.navigate('AppTabs'),
+                        )
+                      }
+                    />
+                  )}
+                </View>
 
                 <Modal
                   isVisible={modalVisible}

@@ -18,6 +18,10 @@ import {changeUser} from '../features/userSlice';
 import {useTheme} from '@react-navigation/native';
 import showToast from '../utils/toaster';
 import Toast from 'react-native-toast-message';
+import {
+  AppleButton,
+  appleAuth,
+} from '@invertase/react-native-apple-authentication';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
@@ -178,6 +182,63 @@ export default ({navigation}: any): JSX.Element => {
     );
   };
 
+  async function onAppleButtonPress() {
+    try {
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+      });
+
+      // Ensure Apple returned a user identityToken
+      if (!appleAuthRequestResponse.identityToken) {
+        throw new Error('Apple Sign-In failed - no identify token returned');
+      }
+
+      // Create a Firebase credential from the response
+      const {identityToken, nonce} = appleAuthRequestResponse;
+      const appleCredential = auth.AppleAuthProvider.credential(
+        identityToken,
+        nonce,
+      );
+
+      // Create user in dynamo with apple credential
+      setUser(appleCredential.user);
+      dispatch(
+        changeUser({
+          uid: appleCredential.user.uid,
+          username: appleCredential.user.displayName,
+          email: appleCredential.user.email,
+          photo: appleCredential.user.photoURL,
+          friends: [],
+          posts: [],
+        }),
+      );
+      const url =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
+        appleCredential.user.uid;
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: appleCredential.user.uid,
+          username: appleCredential.user.displayName,
+          email: appleCredential.user.email,
+          photo: appleCredential.user.photoURL,
+          friends: [],
+          posts: [],
+        }),
+      });
+      navigation.navigate('AppTabs');
+
+      // Sign the user in with the credential
+      return auth().signInWithCredential(appleCredential);
+    } catch (error) {
+      showToast('Unexpected error in Apple login', 'error');
+      console.log(error);
+    }
+  }
   const height = Dimensions.get('window').height;
 
   return (
@@ -257,6 +318,19 @@ export default ({navigation}: any): JSX.Element => {
                   onPress={() => signInWithGoogle()}>
                   <Image source={require('../pics/google_signin_light.png')} />
                 </TouchableOpacity>
+                <AppleButton
+                  buttonStyle={AppleButton.Style.BLACK}
+                  buttonType={AppleButton.Type.SIGN_IN}
+                  style={{
+                    width: 186,
+                    height: 45,
+                  }}
+                  onPress={() => {
+                    onAppleButtonPress().then(() =>
+                      console.log('Apple sign-in complete!'),
+                    );
+                  }}
+                />
 
                 <Modal
                   isVisible={modalVisible}

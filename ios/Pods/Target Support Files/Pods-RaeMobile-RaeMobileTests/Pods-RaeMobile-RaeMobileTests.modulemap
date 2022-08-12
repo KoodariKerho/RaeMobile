@@ -1,0 +1,6 @@
+framework module Pods_RaeMobile_RaeMobileTests {
+  umbrella header "Pods-RaeMobile-RaeMobileTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -82,32 +82,37 @@ export default ({navigation}: any): JSX.Element => {
         const url =
           'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
           data.user.uid;
-        fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            id: data.user.uid,
-            username: username,
-            email: data.user.email,
-            photo:
-              'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
-            friends: [],
-            posts: [],
-          }),
-        });
-        dispatch(
-          changeUser({
-            uid: data.user.uid,
-            username: username,
-            email: data.user.email,
-            photo:
-              'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
-            friends: [],
-            posts: [],
-          }),
-        );
+        try {
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: data.user.uid,
+              username: username,
+              email: data.user.email,
+              photo:
+                'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
+              friends: [],
+              posts: [],
+            }),
+          });
+          dispatch(
+            changeUser({
+              uid: data.user.uid,
+              username: username,
+              email: data.user.email,
+              photo:
+                'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
+              friends: [],
+              posts: [],
+            }),
+          );
+        } catch (error) {
+          console.log(error);
+          showToast('Error creating user', 'error');
+        }
         showToast('Registration successful', 'success');
         navigation.navigate('AppTabs');
       })
@@ -170,6 +175,7 @@ export default ({navigation}: any): JSX.Element => {
       navigation.navigate('AppTabs');
     } catch (error) {
       showToast('Unexpected error in Google login', 'error');
+      console.log(error);
       setLoading(false);
     }
   };

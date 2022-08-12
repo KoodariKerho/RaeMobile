@@ -19,7 +19,12 @@ MERGED from [:react-native-permissions] /Users/jonijuntto/projects/omat/RaeMobil
 MERGED from [:react-native-safe-area-context] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-svg] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+<<<<<<< HEAD
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:2:1-11:12
+=======
+MERGED from [:react-native-vector-icons] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.react:react-native:0.68.2] /Users/jonijuntto/.gradle/caches/transforms-3/cf60852597d4cdef34ece634adbf18bf/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:2:1-11:12
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/88e48ebb5eca6353e6c44da5cbdf3728/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/b1c42f913b0df1359831e24b7ac030d4/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/9acab6e47f5a8bc39418078e5d48c41d/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -154,8 +159,13 @@ MERGED from [:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobi
 MERGED from [:react-native-firebase_app] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-30:19
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:26:5-71:19
 MERGED from [com.google.firebase:firebase-auth:21.0.5] /Users/jonijuntto/.gradle/caches/transforms-3/a09075b6c6c7e3cde0b6586b99041b0c/transformed/jetified-firebase-auth-21.0.5/AndroidManifest.xml:26:5-71:19
+<<<<<<< HEAD
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:9:5-20
+=======
+MERGED from [com.facebook.react:react-native:0.68.2] /Users/jonijuntto/.gradle/caches/transforms-3/cf60852597d4cdef34ece634adbf18bf/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.react:react-native:0.68.2] /Users/jonijuntto/.gradle/caches/transforms-3/cf60852597d4cdef34ece634adbf18bf/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:9:5-20
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/fe0483c27c9b22b7f4682bb5a73ae3ba/transformed/jetified-play-services-mlkit-barcode-scanning-16.2.0/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.android.gms:play-services-mlkit-face-detection:16.2.0] /Users/jonijuntto/.gradle/caches/transforms-3/0daca44f7109aa51ac07c0b3f72fdc5b/transformed/jetified-play-services-mlkit-face-detection-16.2.0/AndroidManifest.xml:8:5-16:19
@@ -280,8 +290,15 @@ MERGED from [:react-native-screens] /Users/jonijuntto/projects/omat/RaeMobile/no
 MERGED from [:react-native-screens] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+<<<<<<< HEAD
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.1] /Users/jonijuntto/.gradle/caches/transforms-3/be396ef7bf1cbc619a8258e4db33b32b/transformed/jetified-react-native-0.68.1/AndroidManifest.xml:5:5-7:41
+=======
+MERGED from [:react-native-vector-icons] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/jonijuntto/projects/omat/RaeMobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native:0.68.2] /Users/jonijuntto/.gradle/caches/transforms-3/cf60852597d4cdef34ece634adbf18bf/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native:0.68.2] /Users/jonijuntto/.gradle/caches/transforms-3/cf60852597d4cdef34ece634adbf18bf/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:5:5-7:41
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/88e48ebb5eca6353e6c44da5cbdf3728/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/88e48ebb5eca6353e6c44da5cbdf3728/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/jonijuntto/.gradle/caches/transforms-3/b1c42f913b0df1359831e24b7ac030d4/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44

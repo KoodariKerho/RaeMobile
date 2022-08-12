@@ -1,4 +1,23 @@
 $RNFirebaseAsStaticFramework = true
+<<<<<<< HEAD
+=======
+pod 'GTMSessionFetcher'
+# Convert all permission pods into static libraries
+pre_install do |installer|
+  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+
+  installer.pod_targets.each do |pod|
+    if pod.name.eql?('RNPermissions') || pod.name.start_with?('Permission-')
+      def pod.build_type;
+        # Uncomment the line corresponding to your CocoaPods version
+        Pod::BuildType.static_library # >= 1.9
+        # Pod::Target::BuildType.static_library # < 1.9
+      end
+    end
+  end
+end
+
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
@@ -23,11 +42,18 @@ end
 target 'RaeMobile' do
   use_frameworks!
   config = use_native_modules!
+<<<<<<< HEAD
   use_native_modules!
 
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
   pod 'GoogleSignIn'
+=======
+  use_frameworks!
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -40,11 +66,23 @@ target 'RaeMobile' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
   target 'RaeMobileTests' do
     inherit! :complete
     # Pods for testing
   end
 
+<<<<<<< HEAD
+=======
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable the next line.
+  # use_flipper!()
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 
   post_install do |installer|
     react_native_post_install(installer)

@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 #Wed Jul 06 14:50:43 EEST 2022
+=======
+<<<<<<< Updated upstream
+#Mon Jun 27 23:53:19 EEST 2022
+=======
+#Tue Jul 05 14:17:38 EEST 2022
+>>>>>>> Stashed changes
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 path.4=14/classes.dex
 path.3=11/classes.dex
 path.2=0/classes.dex

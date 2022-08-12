@@ -12,14 +12,11 @@ import {
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faCalendar,
-  faCalendarAlt,
-  faCheck,
-  faLocationDot,
-  faStar,
-  faTicket,
-} from '@fortawesome/free-solid-svg-icons';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
+import {faCheck} from '@fortawesome/free-solid-svg-icons/faCheck';
+import {faLocationArrow} from '@fortawesome/free-solid-svg-icons/faLocationArrow';
+import {faStar} from '@fortawesome/free-solid-svg-icons/faStar';
+import {faTicketAlt} from '@fortawesome/free-solid-svg-icons/faTicketAlt';
 import showToast from '../utils/toaster';
 
 export default ({navigation}: any): JSX.Element => {
@@ -57,15 +54,20 @@ export default ({navigation}: any): JSX.Element => {
     let unmounted = false;
     const getIntrestedAndGoing = async () => {
       const getUrl = `https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/event_attendees_and_interested/${event.id}`;
-      const response = await fetch(getUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setIntrested(data.total_intrested);
-      setGoing(data.total_attendees);
+      try {
+        const response = await fetch(getUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setIntrested(data.total_intrested);
+        setGoing(data.total_attendees);
+      } catch (error) {
+        console.log(error);
+        showToast("Couldn't get event attendees and interested", 'error');
+      }
     };
     if (!unmounted) {
       getIntrestedAndGoing();
@@ -101,6 +103,7 @@ export default ({navigation}: any): JSX.Element => {
         setGoing(going + 1);
       }
     } catch (error) {
+      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };
@@ -130,6 +133,7 @@ export default ({navigation}: any): JSX.Element => {
         setIntrested(interested + 1);
       }
     } catch (error) {
+      console.log(error);
       showToast('Something went wrong', 'error');
     }
   };
@@ -169,6 +173,7 @@ export default ({navigation}: any): JSX.Element => {
             paddingTop: 10,
             paddingBottom: 10,
           }}>
+<<<<<<< HEAD
           <TouchableOpacity
             style={{
               backgroundColor: '#292828',
@@ -208,6 +213,21 @@ export default ({navigation}: any): JSX.Element => {
           </TouchableOpacity>
         </View>
         <View
+=======
+          {dateActualFrom}-{dateActualUntil}
+        </Text>
+      </View>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: 20,
+          marginLeft: 10,
+        }}>
+        <FontAwesomeIcon icon={faLocationArrow} color={colors.text} size={32} />
+        <Text
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -234,7 +254,11 @@ export default ({navigation}: any): JSX.Element => {
             marginTop: 20,
             marginLeft: 10,
           }}>
+<<<<<<< HEAD
           <FontAwesomeIcon icon={faLocationDot} color={colors.text} size={32} />
+=======
+          <FontAwesomeIcon icon={faTicketAlt} color={colors.text} size={32} />
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
           <Text
             style={{
               color: colors.text,

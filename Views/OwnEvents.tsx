@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useEffect, useState} from 'react';
 import {
   View,
@@ -11,30 +12,56 @@ import {
 } from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {useAppSelector} from '../hooks';
+=======
+import React, {useEffect} from 'react';
+import {View, Image, Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {useAppSelector} from '../hooks';
+<<<<<<< Updated upstream
+=======
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 import {Event} from '../models/types';
 import {useAppDispatch} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
+<<<<<<< HEAD
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+=======
+import showToast from '../utils/toaster';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+>>>>>>> Stashed changes
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   const user = useAppSelector(state => state.user.value);
+<<<<<<< HEAD
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
 
   const dispatch = useAppDispatch();
+=======
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 
   useEffect(() => {
     let unmounted = false;
     const getUserEvents = async () => {
+<<<<<<< HEAD
       setLoading(true);
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/user-events/' +
         user.uid;
+=======
+      const url =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/user-events/' +
+        user.uid;
+<<<<<<< Updated upstream
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -42,8 +69,29 @@ export default ({navigation}: any): JSX.Element => {
         },
       });
       const data = await response.json();
+<<<<<<< HEAD
       setEvents(data);
       setLoading(false);
+=======
+      console.log(data);
+=======
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setEvents(data);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+        showToast('Error fetching events', 'error');
+        setLoading(false);
+      }
+>>>>>>> Stashed changes
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
     };
     if (!unmounted) {
       getUserEvents();
@@ -53,6 +101,11 @@ export default ({navigation}: any): JSX.Element => {
     };
   }, [user.uid]);
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
   const goToEventDetails = event => {
     dispatch(changeEvent(event));
     navigation.navigate('Eventdetails');
@@ -63,12 +116,27 @@ export default ({navigation}: any): JSX.Element => {
       user.uid +
       '/' +
       event;
+<<<<<<< HEAD
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
     });
+=======
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      showToast('Error deleting event', 'error');
+    }
+    //delete event from events array
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
     const newEvents = events.filter(e => e.id !== event);
     setEvents(newEvents);
   };
@@ -143,6 +211,7 @@ export default ({navigation}: any): JSX.Element => {
     );
   };
 
+<<<<<<< HEAD
   return (
     <SafeAreaView>
       <View>
@@ -228,3 +297,12 @@ const styles = StyleSheet.create({
     width: width - 40,
   },
 });
+=======
+>>>>>>> Stashed changes
+  return (
+    <View>
+      <Text style={{color: 'white'}}>Hei!</Text>
+    </View>
+  );
+};
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266

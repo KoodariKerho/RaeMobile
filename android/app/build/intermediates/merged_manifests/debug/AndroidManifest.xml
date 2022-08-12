@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.raemobile"
+<<<<<<< HEAD
     android:versionCode="4"
     android:versionName="4" >
+=======
+    android:versionCode="3"
+    android:versionName="3.0" >
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 
     <uses-sdk
         android:minSdkVersion="21"

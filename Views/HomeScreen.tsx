@@ -17,30 +17,43 @@ import {useAppDispatch} from '../hooks';
 import {changeFriend} from '../features/friendSlice';
 import {Friend} from '../models/types';
 import {changeEvent} from '../features/eventSlice';
+<<<<<<< HEAD
 import {changeUser} from '../features/userSlice';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+=======
+import showToast from '../utils/toaster';
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 
 export default ({navigation}: any): JSX.Element => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.value);
   const [friendsEvents, setFriendsEvents] = useState([]);
+  const [refreshing, setRefreshing] = useState(true);
 
   useEffect(() => {
     let unmounted = false;
     const getFriendEvents = async () => {
+      setRefreshing(true);
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/friends-events/' +
         user.uid;
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setFriendsEvents(data.reverse());
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setFriendsEvents(data.reverse());
+        setRefreshing(false);
+      } catch (e) {
+        console.log(e);
+        showToast('Error fetching events', 'error');
+        setRefreshing(false);
+      }
     };
     if (!unmounted) {
       getFriendEvents();

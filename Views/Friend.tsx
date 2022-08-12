@@ -11,16 +11,34 @@ import {
 } from 'react-native';
 import {useAppSelector} from '../hooks';
 import {useTheme} from '@react-navigation/native';
+<<<<<<< HEAD
 import {useAppDispatch} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
 import {Event} from '../models/types';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+=======
+<<<<<<< Updated upstream
+=======
+import {useAppDispatch} from '../hooks';
+import {changeEvent} from '../features/eventSlice';
+import {Event} from '../models/types';
+import showToast from '../utils/toaster';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+>>>>>>> Stashed changes
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   const friend = useAppSelector(state => state.friend.value);
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -33,6 +51,7 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/user-events/' +
         friend.id;
+<<<<<<< HEAD
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -42,6 +61,23 @@ export default ({navigation}: any): JSX.Element => {
       const data = await response.json();
       setEvents(data);
       setLoading(false);
+=======
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setEvents(data);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+        showToast('Error fetching events', 'error');
+        setLoading(false);
+      }
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
     };
     if (!unmounted) {
       getUserEvents();
@@ -110,6 +146,10 @@ export default ({navigation}: any): JSX.Element => {
     );
   };
 
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
   return (
     <SafeAreaView>
       <View>

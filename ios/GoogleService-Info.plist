@@ -15,12 +15,17 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
+<<<<<<< HEAD
 	<string>com.rae.Rae</string>
+=======
+	<string>com.rae.RaeMobile</string>
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 	<key>PROJECT_ID</key>
 	<string>opiskelija-appi</string>
 	<key>STORAGE_BUCKET</key>
 	<string>opiskelija-appi.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
+<<<<<<< HEAD
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
@@ -34,3 +39,18 @@
 	<string>1:401983017906:ios:7d737a704985b835f08aab</string>
 </dict>
 </plist>
+=======
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:401983017906:ios:7d737a704985b835f08aab</string>
+</dict>
+</plist>
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266

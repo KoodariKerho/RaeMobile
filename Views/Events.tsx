@@ -60,7 +60,11 @@ export default ({navigation}: any): JSX.Element => {
       setLoading(true);
       try {
         const url =
+<<<<<<< HEAD
           'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/?city=' +
+=======
+          'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/events/' +
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
           value;
         const response = await fetch(url, {
           method: 'GET',
@@ -73,6 +77,10 @@ export default ({navigation}: any): JSX.Element => {
         setSearchEvents(data);
       } catch (error) {
         setLoading(false);
+<<<<<<< HEAD
+=======
+        console.log(error);
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
       }
 
       setLoading(false);
@@ -147,6 +155,7 @@ export default ({navigation}: any): JSX.Element => {
   };
 
   return (
+<<<<<<< HEAD
     <SafeAreaView>
       <View>
         <DropDownPicker
@@ -160,9 +169,38 @@ export default ({navigation}: any): JSX.Element => {
           placeholderStyle={{
             color: 'black',
             fontWeight: 'bold',
+=======
+    <View>
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+        placeholder="Valitse kaupunki"
+        placeholderStyle={{
+          color: 'black',
+          fontWeight: 'bold',
+        }}
+        style={{width: width * 0.8, margin: 10, alignSelf: 'center'}}
+      />
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}>
+        <TextInput
+          style={styles.input}
+          onChangeText={e => {
+            setSearch(e);
+            filterEvents();
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
           }}
           style={{width: width * 0.8, margin: 10, alignSelf: 'center'}}
         />
+<<<<<<< HEAD
         <View
           style={{
             display: 'flex',
@@ -194,6 +232,21 @@ export default ({navigation}: any): JSX.Element => {
             </View>
           )}
         </View>
+=======
+      </View>
+      <View>
+        {loading ? (
+          <ActivityIndicator size="large" color="#00ff00" />
+        ) : (
+          <View>
+            <FlatList
+              data={searchEvents}
+              keyExtractor={item => item.event_id}
+              renderItem={EventListItem}
+            />
+          </View>
+        )}
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
       </View>
     </SafeAreaView>
   );

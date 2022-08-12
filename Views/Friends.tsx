@@ -5,7 +5,15 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
+<<<<<<< HEAD
   SafeAreaView,
+=======
+<<<<<<< Updated upstream
+=======
+  SafeAreaView,
+  RefreshControl,
+>>>>>>> Stashed changes
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
@@ -17,20 +25,24 @@ import Text from '../Components/CustomText';
 import Clipboard from '@react-native-community/clipboard';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCamera, faQrcode, faShare} from '@fortawesome/free-solid-svg-icons';
-import showToast from '../utils/toaster';
+import Clipboard from '@react-native-community/clipboard';
+import Toast from 'react-native-toast-message';
 
 export default ({navigation}: any): JSX.Element => {
   const [friends, setFriends] = useState(
     useAppSelector(state => state.friends.value),
   );
   const [loading, setLoading] = useState(false);
+  const [linkShown, setLinkShown] = useState(false);
   const user = useAppSelector(state => state.user.value);
+  const [refreshing, setRefreshing] = useState(true);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     let unmounted = false;
 
     const getAllFriends = async () => {
+      setRefreshing(true);
       setLoading(true);
       if (friends === null || friends === undefined) {
         try {
@@ -50,6 +62,7 @@ export default ({navigation}: any): JSX.Element => {
         }
       }
       setLoading(false);
+      setRefreshing(false);
     };
     if (!unmounted) {
       getAllFriends();
@@ -64,11 +77,6 @@ export default ({navigation}: any): JSX.Element => {
     navigation.navigate('Friend');
   };
 
-  const copyFriendLink = () => {
-    const urlToCopy = `https://opiskelija-appi.web.app/qr?uid=${user.uid}`;
-    Clipboard.setString(urlToCopy);
-    showToast('Linkki kopioitu leikepöydälle', 'success');
-  };
   const width = Dimensions.get('window').width;
 
   const FriendListItem = ({item}: {item: Friend}) => (
@@ -95,11 +103,66 @@ export default ({navigation}: any): JSX.Element => {
       </View>
     </TouchableOpacity>
   );
+  const friendLink = 'https://opiskelija-appi.web.app/qr?uid=' + user.uid;
+  const showLink = () => {
+    try {
+      setLinkShown(true);
+      Clipboard.setString(friendLink);
+      Toast.show({
+        text1: 'Link copied to clipboard',
+        type: 'success',
+        position: 'top',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const {colors} = useTheme();
   return (
+<<<<<<< HEAD
     <SafeAreaView>
       <View>
+=======
+<<<<<<< Updated upstream
+    <View>
+      <View>
+        {loading ? (
+          <ActivityIndicator size="large" color="#00ff00" />
+        ) : (
+          <View>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                borderBottomColor: '#ccc',
+                borderBottomWidth: 1,
+                padding: 20,
+              }}>
+              <TouchableOpacity onPress={() => navigation.navigate('QR')}>
+                <View style={{width: 100, alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={faQrcode} size={30} color="#FFF" />
+                  <Text>Avaa sinun QR</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('QrReader')}>
+                <View style={{width: 100, alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={faCamera} size={30} color="#FFF" />
+                  <Text>Skannaa QR</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={showLink}>
+                <View style={{width: 100, alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={faShare} size={30} color="#FFF" />
+                  <Text>Jaa kaverilinkki</Text>
+                </View>
+              </TouchableOpacity>
+=======
+    <SafeAreaView>
+      {refreshing ? <ActivityIndicator /> : null}
+      <View>
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
         <View>
           {loading ? (
             <ActivityIndicator size="large" color="#00ff00" />
@@ -138,6 +201,10 @@ export default ({navigation}: any): JSX.Element => {
                 data={friends}
                 keyExtractor={item => item.attribute_values.id}
                 renderItem={FriendListItem}
+<<<<<<< HEAD
+=======
+                refreshControl={<RefreshControl refreshing={refreshing} />}
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
                 ListEmptyComponent={() => (
                   <View
                     style={{
@@ -153,9 +220,38 @@ export default ({navigation}: any): JSX.Element => {
                   </View>
                 )}
               />
+<<<<<<< HEAD
             </View>
           )}
         </View>
+=======
+>>>>>>> Stashed changes
+            </View>
+            {linkShown ? (
+              <Text style={{color: 'white', fontSize: 22}}>{friendLink}</Text>
+            ) : null}
+            <FlatList
+              data={friends}
+              keyExtractor={item => item.attribute_values.id}
+              renderItem={FriendListItem}
+              ListEmptyComponent={() => (
+                <View
+                  style={{
+                    flex: 1,
+                    marginTop: 20,
+                  }}>
+                  <Text style={styles.emptyText}>
+                    Sinulla ei ole vielä yhtään kavereita 🥺
+                  </Text>
+                  <Text style={styles.emptyText}>
+                    Lisää kaverisi klikkaamalla yläpuolelta olevaa painiketta
+                  </Text>
+                </View>
+              )}
+            />
+          </View>
+        )}
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
       </View>
     </SafeAreaView>
   );

@@ -4,7 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+<<<<<<< HEAD
 import com.reactnativecommunity.clipboard.ClipboardPackage;
+=======
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

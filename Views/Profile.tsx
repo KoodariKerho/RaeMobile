@@ -5,7 +5,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Pressable,
+<<<<<<< HEAD
   SafeAreaView,
+=======
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
 } from 'react-native';
 import React, {useState} from 'react';
 import {useTheme} from '@react-navigation/native';
@@ -23,6 +26,7 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/update-user/' +
         user.uid;
+<<<<<<< HEAD
       const body = JSON.stringify({
         id: user.uid,
         username: username,
@@ -40,6 +44,26 @@ export default ({navigation}: any): JSX.Element => {
         body: body,
       });
       const data = await response.json();
+=======
+      try {
+        const response = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: user.uid,
+            username: username,
+            email: user.email,
+            photo: user.photo,
+          }),
+        });
+        const data = await response.json();
+      } catch (e) {
+        console.log(e);
+        showToast('Error updating user', 'error');
+      }
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
       if (data.status_code !== 200) {
         showToast('Cannot update username', 'error');
       } else {
@@ -51,6 +75,7 @@ export default ({navigation}: any): JSX.Element => {
     }
   };
   return (
+<<<<<<< HEAD
     <SafeAreaView>
       <View>
         <View style={styles.container}>
@@ -95,6 +120,28 @@ export default ({navigation}: any): JSX.Element => {
           onPress={() => navigation.navigate('OwnEvents')}>
           <Text style={{color: 'white'}}>Omat tapahtumat</Text>
         </Pressable>
+=======
+    <View>
+      <View style={styles.container}>
+        <Pressable onPress={() => navigation.navigate('OwnEvents')}>
+          <Text>Omat tapahtumat</Text>
+        </Pressable>
+        <Image
+          source={{uri: user.photo}}
+          style={{width: 120, height: 120, borderRadius: 180, marginBottom: 50}}
+        />
+        <Text>Vaihda käyttäjänimi</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={e => setUsername(e)}
+          value={username}
+          placeholder="Username"
+          selectTextOnFocus={true}
+          autoComplete={'username'}
+          maxLength={20}
+          onKeyPress={() => updateUserData()}
+        />
+>>>>>>> 6178c090402b2a6c41def06da9d5fe86da93b266
       </View>
     </SafeAreaView>
   );

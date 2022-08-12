@@ -9,27 +9,63 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import React, { useState } from 'react';
-import auth, { firebase, FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import React, {useEffect, useState} from 'react';
+import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import Modal from 'react-native-modal';
-import { useAppDispatch } from '../hooks';
-import { changeUser } from '../features/userSlice';
-import { useTheme } from '@react-navigation/native';
+import {useAppDispatch} from '../hooks';
+import {changeUser} from '../features/userSlice';
+import {useTheme} from '@react-navigation/native';
 import showToast from '../utils/toaster';
 import Toast from 'react-native-toast-message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default ({ navigation }: any): JSX.Element => {
-  const { colors } = useTheme();
+export default ({navigation}: any): JSX.Element => {
+  const {colors} = useTheme();
 
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
 
   const dispatch = useAppDispatch();
+
+  const storeData = async value => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@storage_Key', jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@storage_Key');
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    let unmounted = false;
+    const checkIfUserIsLoggedIn = async () => {
+      const data = await getData();
+      console.log(data);
+      if (data) {
+        dispatch(changeUser(data));
+        navigation.navigate('AppTabs');
+      }
+    };
+    if (!unmounted) {
+      checkIfUserIsLoggedIn();
+    }
+    return () => {
+      unmounted = true;
+    };
+  }, [dispatch, navigation]);
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
@@ -44,7 +80,7 @@ export default ({ navigation }: any): JSX.Element => {
       const data = await auth().signInWithEmailAndPassword(email, password);
       const response = await fetch(
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
-        data.user.uid,
+          data.user.uid,
         {
           method: 'GET',
           headers: {
@@ -53,16 +89,16 @@ export default ({ navigation }: any): JSX.Element => {
         },
       );
       const userData = await response.json();
-      dispatch(
-        changeUser({
-          uid: data.user.uid,
-          email: data.user.email,
-          username: userData.attribute_values.username,
-          photo: userData.attribute_values.photo,
-          friends: userData.attribute_values.friends,
-          posts: userData.attribute_values.posts,
-        }),
-      );
+      const user = {
+        uid: data.user.uid,
+        email: data.user.email,
+        username: userData.attribute_values.username,
+        photo: userData.attribute_values.photo,
+        friends: userData.attribute_values.friends,
+        posts: userData.attribute_values.posts,
+      };
+      storeData(user);
+      dispatch(changeUser(user));
       navigation.navigate('AppTabs');
     } catch (error: unknown) {
       if (error.code === 'auth/user-not-found') {
@@ -105,17 +141,17 @@ export default ({ navigation }: any): JSX.Element => {
             posts: [],
           }),
         });
-        dispatch(
-          changeUser({
-            uid: data.user.uid,
-            username: username,
-            email: data.user.email,
-            photo:
-              'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
-            friends: [],
-            posts: [],
-          }),
-        );
+        const user = {
+          uid: data.user.uid,
+          username: username,
+          email: data.user.email,
+          photo:
+            'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
+          friends: [],
+          posts: [],
+        };
+        storeData(user);
+        dispatch(changeUser(user));
         showToast('Registration successful', 'success');
         navigation.navigate('AppTabs');
       })
@@ -140,43 +176,78 @@ export default ({ navigation }: any): JSX.Element => {
       });
 
       const data = await GoogleSignin.signIn();
+      console.log('data', data);
       const credential = firebase.auth.GoogleAuthProvider.credential(
         data.idToken,
         data.accessToken,
       );
+      console.log('credential', credential);
       const firebaseUserCredential = await auth().signInWithCredential(
         credential,
       );
-      setUser(firebaseUserCredential.user);
-      dispatch(
-        changeUser({
+      console.log('firebaseUserCredential', firebaseUserCredential.user);
+      const urlAPI =
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
+        firebaseUserCredential.user.uid;
+      console.log('urlAPI', urlAPI);
+      try {
+        const response = await fetch(urlAPI, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const userData = await response.json();
+        console.log('userData', userData);
+        const user = {
+          uid: firebaseUserCredential.user.uid,
+          email: firebaseUserCredential.user.email,
+          username: userData.attribute_values.username,
+          photo: userData.attribute_values.photo,
+          friends: userData.attribute_values.friends,
+          posts: userData.attribute_values.posts,
+        };
+        console.log('user try', user);
+        storeData(user);
+        dispatch(changeUser(user));
+        navigation.navigate('AppTabs');
+      } catch (error) {
+        console.log(error);
+        const urlCreate =
+          'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
+          firebaseUserCredential.user.uid;
+        fetch(urlCreate, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: firebaseUserCredential.user.uid,
+            username: firebaseUserCredential.user.displayName,
+            email: firebaseUserCredential.user.email,
+            photo: firebaseUserCredential.user.photoURL,
+            friends: [],
+            posts: [],
+          }),
+        });
+        const user = {
           uid: firebaseUserCredential.user.uid,
           username: firebaseUserCredential.user.displayName,
           email: firebaseUserCredential.user.email,
           photo: firebaseUserCredential.user.photoURL,
           friends: [],
           posts: [],
-        }),
-      );
-      const url =
-        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
-        firebaseUserCredential.user.uid;
-      await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: firebaseUserCredential.user.uid,
-          username: firebaseUserCredential.user.displayName,
-          email: firebaseUserCredential.user.email,
-          photo: firebaseUserCredential.user.photoURL,
-          friends: [],
-          posts: [],
-        }),
-      });
+        };
+        console.log('userCatch', user);
+        storeData(user);
+        dispatch(changeUser(user));
+        navigation.navigate('AppTabs');
+      }
+
+      // this needs to be different, could be returning user... dispatch(changeUser(user));
       setLoading(false);
-      navigation.navigate('AppTabs');
+
+      /* navigation.navigate('AppTabs'); */
     } catch (error) {
       console.log(error);
       showToast('Unexpected error in Google login', 'error');
@@ -187,7 +258,7 @@ export default ({ navigation }: any): JSX.Element => {
   const Button = children => {
     return (
       <TouchableOpacity onPress={children.onPress}>
-        <Text style={{ color: 'white' }}>{children.title}</Text>
+        <Text style={{color: 'white'}}>{children.title}</Text>
       </TouchableOpacity>
     );
   };
@@ -203,7 +274,7 @@ export default ({ navigation }: any): JSX.Element => {
               <ActivityIndicator size="large" color={colors.primary} />
             </View>
           ) : (
-            <View style={{ height: height }}>
+            <View style={{height: height}}>
               <Image
                 source={{
                   uri: 'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
@@ -237,7 +308,7 @@ export default ({ navigation }: any): JSX.Element => {
                     Kirjaudu sisään
                   </Text>
                 </TouchableOpacity>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <View
                     style={{
                       flex: 1,

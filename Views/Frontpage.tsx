@@ -9,18 +9,18 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import React, {useState} from 'react';
-import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import React, { useState } from 'react';
+import auth, { firebase, FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Modal from 'react-native-modal';
-import {useAppDispatch} from '../hooks';
-import {changeUser} from '../features/userSlice';
-import {useTheme} from '@react-navigation/native';
+import { useAppDispatch } from '../hooks';
+import { changeUser } from '../features/userSlice';
+import { useTheme } from '@react-navigation/native';
 import showToast from '../utils/toaster';
 import Toast from 'react-native-toast-message';
 
-export default ({navigation}: any): JSX.Element => {
-  const {colors} = useTheme();
+export default ({ navigation }: any): JSX.Element => {
+  const { colors } = useTheme();
 
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -28,8 +28,6 @@ export default ({navigation}: any): JSX.Element => {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
 
   const dispatch = useAppDispatch();
 
@@ -42,24 +40,42 @@ export default ({navigation}: any): JSX.Element => {
       showToast('Please enter email and password', 'error');
       return;
     }
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(data => {
-        dispatch(
-          changeUser({
-            uid: data.user.uid,
-            username: data.user.displayName,
-            email: data.user.email,
-            photo: data.user.photoURL,
-            friends: [],
-            posts: [],
-          }),
-        );
-        navigation.navigate('AppTabs');
-      })
-      .catch(error => {
-        showToast('Invalid username or password', 'error');
-      });
+    try {
+      const data = await auth().signInWithEmailAndPassword(email, password);
+      const response = await fetch(
+        'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/users/' +
+        data.user.uid,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      const userData = await response.json();
+      dispatch(
+        changeUser({
+          uid: data.user.uid,
+          email: data.user.email,
+          username: userData.attribute_values.username,
+          photo: userData.attribute_values.photo,
+          friends: userData.attribute_values.friends,
+          posts: userData.attribute_values.posts,
+        }),
+      );
+      navigation.navigate('AppTabs');
+    } catch (error: unknown) {
+      if (error.code === 'auth/user-not-found') {
+        showToast('User not found', 'error');
+      } else if (
+        error.code === 'auth/wrong-password' ||
+        error.code === 'auth/invalid-email'
+      ) {
+        showToast('Wrong username or password', 'error');
+      } else {
+        showToast(error.message, 'error');
+      }
+    }
   };
 
   const signInWithEmailAndPassword = async () => {
@@ -145,7 +161,7 @@ export default ({navigation}: any): JSX.Element => {
       const url =
         'https://hlw2l5zrpk.execute-api.eu-north-1.amazonaws.com/dev/create-user/' +
         firebaseUserCredential.user.uid;
-      const response = await fetch(url, {
+      await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -162,6 +178,7 @@ export default ({navigation}: any): JSX.Element => {
       setLoading(false);
       navigation.navigate('AppTabs');
     } catch (error) {
+      console.log(error);
       showToast('Unexpected error in Google login', 'error');
       setLoading(false);
     }
@@ -170,7 +187,7 @@ export default ({navigation}: any): JSX.Element => {
   const Button = children => {
     return (
       <TouchableOpacity onPress={children.onPress}>
-        <Text style={{color: 'white'}}>{children.title}</Text>
+        <Text style={{ color: 'white' }}>{children.title}</Text>
       </TouchableOpacity>
     );
   };
@@ -186,7 +203,7 @@ export default ({navigation}: any): JSX.Element => {
               <ActivityIndicator size="large" color={colors.primary} />
             </View>
           ) : (
-            <View style={{height: height}}>
+            <View style={{ height: height }}>
               <Image
                 source={{
                   uri: 'https://firebasestorage.googleapis.com/v0/b/opiskelija-appi.appspot.com/o/logoteal.png?alt=media&token=a32ea342-c941-4e69-ab19-bcf02b3d4000',
@@ -220,7 +237,7 @@ export default ({navigation}: any): JSX.Element => {
                     Kirjaudu sisään
                   </Text>
                 </TouchableOpacity>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <View
                     style={{
                       flex: 1,

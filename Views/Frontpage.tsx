@@ -11,7 +11,7 @@ import {
   Platform,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import auth, {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
+import auth, {firebase} from '@react-native-firebase/auth';
 import {appleAuth} from '@invertase/react-native-apple-authentication';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import Modal from 'react-native-modal';

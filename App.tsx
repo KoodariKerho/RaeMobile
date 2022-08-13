@@ -21,6 +21,8 @@ import {faHome} from '@fortawesome/free-solid-svg-icons/faHome';
 import {faUserFriends} from '@fortawesome/free-solid-svg-icons/faUserFriends';
 import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
 import {faPerson} from '@fortawesome/free-solid-svg-icons/faPerson';
+import { useTranslation } from 'react-i18next';
+import './i18n';
 
 import Toast from 'react-native-toast-message';
 
@@ -50,12 +52,14 @@ const App = () => {
   const Tab = createBottomTabNavigator();
   const scheme = useColorScheme();
   const Stack = createNativeStackNavigator();
+  const {t} = useTranslation();
   function AppTabs() {
     return (
       <Tab.Navigator>
         <Tab.Screen
           options={{
             headerShown: false,
+            headerTitle: t('screens.home'),
             tabBarIcon: () => (
               <FontAwesomeIcon
                 color={'white'}
@@ -70,6 +74,7 @@ const App = () => {
         <Tab.Screen
           options={{
             headerShown: false,
+            headerTitle: t('screens.events'),
             tabBarIcon: () => (
               <FontAwesomeIcon
                 color={'white'}
@@ -84,6 +89,7 @@ const App = () => {
         <Tab.Screen
           options={{
             headerShown: false,
+            headerTitle: t('screens.friends'),
             tabBarIcon: () => (
               <FontAwesomeIcon
                 color={'white'}
@@ -98,6 +104,7 @@ const App = () => {
         <Tab.Screen
           options={{
             headerShown: false,
+            headerTitle: t('screens.profile'),
             tabBarIcon: () => (
               <FontAwesomeIcon
                 color={'white'}

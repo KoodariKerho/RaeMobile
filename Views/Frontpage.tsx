@@ -22,10 +22,11 @@ import showToast from '../utils/toaster';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AppleButton} from '@invertase/react-native-apple-authentication';
+import {useTranslation} from 'react-i18next';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
-
+  const {t} = useTranslation();
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -317,7 +318,7 @@ export default ({navigation}: any): JSX.Element => {
                   style={styles.input}
                   onChangeText={e => setEmail(e)}
                   value={email}
-                  placeholder="Email"
+                  placeholder={t('labels.email')}
                   keyboardType="email-address"
                   textContentType="emailAddress"
                 />
@@ -325,7 +326,7 @@ export default ({navigation}: any): JSX.Element => {
                   style={styles.input}
                   onChangeText={e => setPassword(e)}
                   value={password}
-                  placeholder="Password"
+                  placeholder={t('labels.password')}
                   textContentType="password"
                   secureTextEntry={true}
                 />
@@ -336,7 +337,7 @@ export default ({navigation}: any): JSX.Element => {
                       fontSize: 18,
                       textDecorationLine: 'underline',
                     }}>
-                    Kirjaudu sisään
+                    {t('labels.login')}
                   </Text>
                 </TouchableOpacity>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -356,7 +357,7 @@ export default ({navigation}: any): JSX.Element => {
                         width: 50,
                         textAlign: 'center',
                       }}>
-                      Tai
+                      {t('labels.or')}
                     </Text>
                   </View>
                   <View
@@ -446,7 +447,7 @@ export default ({navigation}: any): JSX.Element => {
                       marginRight: 10,
                       fontSize: 18,
                     }}>
-                    Ei vielä tiliä?
+                    {t('labels.dontHaveAccount')}
                   </Text>
                   <TouchableOpacity onPress={toggleModal}>
                     <Text
@@ -455,7 +456,7 @@ export default ({navigation}: any): JSX.Element => {
                         fontSize: 18,
                         textDecorationLine: 'underline',
                       }}>
-                      Rekisteröidy
+                      {t('labels.register')}
                     </Text>
                   </TouchableOpacity>
                 </View>

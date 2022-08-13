@@ -1,0 +1,43 @@
+export default {
+  labels: {
+    email: 'Email',
+    password: 'Password',
+    login: 'Login',
+    or: 'Or',
+    dontHaveAccount: "Don't have an account?",
+    register: 'Register',
+    intrested: 'Intrested',
+    going: 'Going',
+    sales_ongoing: 'Sales ongoing',
+    days_till_event: 'Days till event',
+    days_till_sales: 'Days till sales start',
+    chooseCity: 'Choose a city',
+    search: 'Search',
+    no: 'No',
+    yes: 'Yes',
+    ticket: 'Tickets',
+  },
+  common: {
+    friend_events: "Friends' events",
+    no_friends_events_found: 'No friends have added any events.',
+    empty_list_subtitle: 'Add friends at "Friends"- page.',
+  },
+  screens: {
+    home: 'Home',
+    friends: 'Friends',
+    events: 'Events',
+    profile: 'Profile',
+  },
+  toast: {
+    already_attending: 'You are already attending this event.',
+    now_attending: 'You are now attending this event.',
+    unknown_error: 'Something went wrong.',
+    cannot_update_username: 'Cannot update username.',
+    updated_username: 'Username updated.',
+  },
+  profile: {
+    username: 'Username',
+    change: 'Change username',
+    own_events: 'Own events',
+  },
+};

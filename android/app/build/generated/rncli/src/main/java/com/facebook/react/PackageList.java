@@ -11,6 +11,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+// @invertase/react-native-apple-authentication
+import com.RNAppleAuthentication.AppleAuthenticationAndroidPackage;
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/clipboard
@@ -25,6 +27,8 @@ import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // react-native-camera
 import org.reactnative.camera.RNCameraPackage;
+// react-native-localize
+import com.zoontek.rnlocalize.RNLocalizePackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-safe-area-context
@@ -78,6 +82,7 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
+      new AppleAuthenticationAndroidPackage(),
       new AsyncStoragePackage(),
       new ClipboardPackage(),
       new ReactNativeFirebaseAppPackage(),
@@ -85,6 +90,7 @@ public class PackageList {
       new ReactNativeFirebaseStoragePackage(),
       new RNGoogleSigninPackage(),
       new RNCameraPackage(),
+      new RNLocalizePackage(),
       new RNPermissionsPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

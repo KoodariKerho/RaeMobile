@@ -1,0 +1,43 @@
+export default {
+  labels: {
+    email: 'Sähköposti',
+    password: 'Salasana',
+    login: 'Kirjaudu sisään',
+    or: 'Tai',
+    dontHaveAccount: 'Ei vielä tiliä?',
+    register: 'Rekisteröidy',
+    intrested: 'Kiinnostunut',
+    going: 'Menossa',
+    sales_ongoing: 'Myynti käynnissä',
+    days_till_event: 'Päiviä tapahtumaan',
+    days_till_sales: 'Päiviä myynnin aloitukseen',
+    chooseCity: 'Valitse kaupunki',
+    search: 'Haku',
+    no: 'Ei',
+    yes: 'Kyllä',
+    ticket: 'Liput',
+  },
+  common: {
+    friend_events: 'Kavereiden tapahtumat',
+    no_friends_events_found: 'Kaverit eivät ole lisänneet yhtään tapahtumaa.',
+    empty_list_subtitle: 'Lisää kavereita "Kaverit" -välilehdellä.',
+  },
+  screens: {
+    home: 'Aloitus',
+    friends: 'Kaverit',
+    events: 'Tapahtumat',
+    profile: 'Profiili',
+  },
+  toast: {
+    already_attending: 'Olet jo ilmoittautunut tähän tapahtumaan.',
+    now_attending: 'Olet ilmoittautunut tähän tapahtumaan.',
+    unknown_error: 'Jotain meni pieleen.',
+    cannot_update_username: 'Ei voitu päivittää käyttäjänimeä.',
+    updated_username: 'Käyttäjänimi päivitetty.',
+  },
+  profile: {
+    username: 'Käyttäjänimi',
+    change: 'Vaihda käyttäjänimeä',
+    own_events: 'Omat tapahtumat',
+  },
+};

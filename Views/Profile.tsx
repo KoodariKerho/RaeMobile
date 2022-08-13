@@ -12,11 +12,12 @@ import {useTheme} from '@react-navigation/native';
 import Text from '../Components/CustomText';
 import {useAppSelector} from '../hooks';
 import showToast from '../utils/toaster';
+import { useTranslation } from 'react-i18next';
 
 export default ({navigation}: any): JSX.Element => {
   const user = useAppSelector(state => state.user.value);
   const [username, setUsername] = useState(user.username);
-
+  const {t} = useTranslation();
   const {colors} = useTheme();
 
   const updateUserData = async () => {
@@ -38,12 +39,12 @@ export default ({navigation}: any): JSX.Element => {
       });
       const data = await response.json();
       if (data.status_code !== 200) {
-        showToast('Cannot update username', 'error');
+        showToast(t('toast.cannot_update_username'), 'error');
       } else {
-        showToast('Username updated!', 'success');
+        showToast(t('toast.updated_username'), 'success');
       }
     } catch (error) {
-      showToast('Something went wrong', 'error');
+      showToast(t('toast.unknown_error'), 'error');
     }
   };
   return (
@@ -59,12 +60,12 @@ export default ({navigation}: any): JSX.Element => {
               marginBottom: 50,
             }}
           />
-          <Text>Vaihda käyttäjänimi</Text>
+          <Text>{t('profile.change')}</Text>
           <TextInput
             style={styles.input}
             onChangeText={e => setUsername(e)}
             value={username}
-            placeholder="Username"
+            placeholder={t('profile.username')}
             selectTextOnFocus={true}
             autoComplete={'username'}
             maxLength={20}
@@ -81,7 +82,7 @@ export default ({navigation}: any): JSX.Element => {
             borderRadius: 10,
           }}
           onPress={() => updateUserData()}>
-          <Text>Vaihda</Text>
+          <Text>{t('profile.change')}</Text>
         </TouchableOpacity>
         <Pressable
           style={{
@@ -90,7 +91,7 @@ export default ({navigation}: any): JSX.Element => {
             borderBottomWidth: 1,
           }}
           onPress={() => navigation.navigate('OwnEvents')}>
-          <Text style={{color: 'white'}}>Omat tapahtumat</Text>
+          <Text style={{color: 'white'}}>{t('profile.own_events')}</Text>
         </Pressable>
       </View>
     </SafeAreaView>

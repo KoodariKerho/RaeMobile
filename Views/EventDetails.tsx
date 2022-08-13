@@ -21,11 +21,13 @@ import {
   faTicket,
 } from '@fortawesome/free-solid-svg-icons';
 import showToast from '../utils/toaster';
+import {useTranslation} from 'react-i18next';
 
 export default ({navigation}: any): JSX.Element => {
   const {colors} = useTheme();
   const event = useAppSelector(state => state.event.value);
   const user = useAppSelector(state => state.user.value);
+  const {t} = useTranslation();
 
   const [timeUntilSalesStart, setTimeuntilSalesStart] = useState(0);
   const [timeUntilActual, setTimeuntilActual] = useState(0);
@@ -95,13 +97,13 @@ export default ({navigation}: any): JSX.Element => {
       });
       const data = await response.json();
       if (data.status_code !== 200) {
-        showToast('You are already attending this event', 'error');
+        showToast(t('toast.already_attending'), 'error');
       } else {
-        showToast('You are now attending this event', 'success');
+        showToast(t('toast.now_attending'), 'success');
         setGoing(going + 1);
       }
     } catch (error) {
-      showToast('Something went wrong', 'error');
+      showToast(t('toast.unknown_error'), 'error');
     }
   };
 
@@ -185,7 +187,7 @@ export default ({navigation}: any): JSX.Element => {
               }}>
               <FontAwesomeIcon icon={faStar} color={'white'} size={32} />
 
-              <Text style={{color: colors.text}}>Intrested</Text>
+              <Text style={{color: colors.text}}>{t('labels.intrested')}</Text>
               <Text style={{color: colors.text, fontSize: 18}}>
                 {interested}
               </Text>
@@ -202,7 +204,7 @@ export default ({navigation}: any): JSX.Element => {
             onPress={() => attendToEvent()}>
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <FontAwesomeIcon icon={faCheck} color={'white'} size={32} />
-              <Text style={{color: colors.text}}>Going</Text>
+              <Text style={{color: colors.text}}>{t('labels.going')}</Text>
               <Text style={{color: colors.text, fontSize: 18}}>{going}</Text>
             </View>
           </TouchableOpacity>
@@ -264,7 +266,7 @@ export default ({navigation}: any): JSX.Element => {
                 borderBottomColor: '#ccc',
                 borderBottomWidth: 1,
               }}>
-              Liput
+              {t('labels.ticket')}
             </Text>
           </View>
         </TouchableOpacity>
@@ -280,11 +282,11 @@ export default ({navigation}: any): JSX.Element => {
           }}>
           <View style={{width: 90}}>
             <Text style={{color: colors.text, fontSize: 15}}>
-              Myynti käynnissä?
+              {t('labels.sales_ongoing')}
             </Text>
             <View>
               {event.salesOnGoing ? (
-                <Text style={{color: colors.text, fontSize: 18}}>Kyllä</Text>
+                <Text style={{color: colors.text, fontSize: 18}}>{t('labels.yes')}</Text>
               ) : (
                 <Text
                   style={{
@@ -292,14 +294,14 @@ export default ({navigation}: any): JSX.Element => {
                     fontSize: 22,
                     fontWeight: 'bold',
                   }}>
-                  Ei
+                  {t('labels.no')}
                 </Text>
               )}
             </View>
           </View>
           <View style={{width: 90}}>
             <Text style={{color: colors.text, fontSize: 15}}>
-              Päiviä tapahtumaan
+              {t('labels.days_till_event')}
             </Text>
             <Text
               style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>
@@ -308,7 +310,7 @@ export default ({navigation}: any): JSX.Element => {
           </View>
           <View style={{width: 90}}>
             <Text style={{color: colors.text, fontSize: 15}}>
-              Päiviä myynnin aloitukseen
+              {t('labels.days_till_sales')}
             </Text>
             <Text
               style={{color: colors.text, fontSize: 18, fontWeight: 'bold'}}>

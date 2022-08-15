@@ -286,7 +286,9 @@ export default ({navigation}: any): JSX.Element => {
             </Text>
             <View>
               {event.salesOnGoing ? (
-                <Text style={{color: colors.text, fontSize: 18}}>{t('labels.yes')}</Text>
+                <Text style={{color: colors.text, fontSize: 18}}>
+                  {t('labels.yes')}
+                </Text>
               ) : (
                 <Text
                   style={{

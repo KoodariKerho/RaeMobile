@@ -12,7 +12,7 @@ import {useTheme} from '@react-navigation/native';
 import Text from '../Components/CustomText';
 import {useAppSelector} from '../hooks';
 import showToast from '../utils/toaster';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 export default ({navigation}: any): JSX.Element => {
   const user = useAppSelector(state => state.user.value);

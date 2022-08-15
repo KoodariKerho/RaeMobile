@@ -17,10 +17,12 @@ import {useAppDispatch, useAppSelector} from '../hooks';
 import {changeEvent} from '../features/eventSlice';
 import {useTheme} from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {useTranslation} from 'react-i18next';
 
 const width = Dimensions.get('window').width;
 
 export default ({navigation}: any): JSX.Element => {
+  const {t} = useTranslation();
   const {colors} = useTheme();
   const [search, setSearch] = useState('');
   const [searchEvents, setSearchEvents] = useState([]);
@@ -160,7 +162,7 @@ export default ({navigation}: any): JSX.Element => {
           setOpen={setOpen}
           setValue={setValue}
           setItems={setItems}
-          placeholder="Valitse kaupunki"
+          placeholder={t('labels.chooseCity')}
           placeholderStyle={{
             color: 'black',
             fontWeight: 'bold',
@@ -180,7 +182,7 @@ export default ({navigation}: any): JSX.Element => {
               filterEvents();
             }}
             value={search}
-            placeholder="Haku"
+            placeholder={t('labels.search')}
             selectTextOnFocus={true}
             maxLength={20}
           />

@@ -114,7 +114,7 @@ export default ({navigation}: any): JSX.Element => {
             isVisible={modalVisible}
             backdropOpacity={0.8}
             hasBackdrop={true}
-            backdropColor={'green'}
+            backdropColor={'black'}
             onBackButtonPress={toggleModal}>
             {alreadyFriend ? (
               <Text>Already friend</Text>
